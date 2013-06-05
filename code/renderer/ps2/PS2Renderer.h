@@ -23,7 +23,7 @@ public:
 	// This needs to be factored out.
 	virtual void FakeSceneSetup( RendererConfig config );
 
-	~OpenGLRenderer();
+	~PS2Renderer();
 
 protected:
 

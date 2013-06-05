@@ -1,3 +1,6 @@
+#include "platform.h"
+
+#ifdef OPENGL_RENDERER
 #include "OpenGLRenderer.h"
 #include "../Color.h"
 #include "../../core/math/Vector3.h"
@@ -97,3 +100,4 @@ OpenGLRenderer::~OpenGLRenderer()
 {
 
 }
+#endif

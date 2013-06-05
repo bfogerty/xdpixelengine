@@ -107,7 +107,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine
 
 int main( int argc, char *argv[] )
 {
-	Engine *pEngine = new Engine();
+	EngineConfig engineConfig;
+	engineConfig.WindowHandle = NULL;
+	Engine *pEngine = new Engine(engineConfig);
 	while( 1 == 1 )
 	{
 		pEngine->Update();

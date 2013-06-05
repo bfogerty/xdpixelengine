@@ -1,3 +1,5 @@
+#include "platform.h"
+
 #ifdef PS2_RELEASE
 
 #include "PS2Renderer.h"
@@ -16,7 +18,7 @@
 
 
 //-----------------------------------------------------------------------------------
-PS2Renderer::PS2Renderer(RendererConfig config)
+PS2Renderer::PS2Renderer(RendererConfig config) : PlatformRenderer(config)
 {
 	draw_initialize(GRAPH_MODE_AUTO , GRAPH_PSM_32, GRAPH_PSM_32);
 }
@@ -26,27 +28,13 @@ PS2Renderer::PS2Renderer(RendererConfig config)
 // This needs to be factored out.
 void PS2Renderer::FakeSceneSetup(RendererConfig config)
 {
-	glViewport(0, 0, (GLsizei)config.ScreenWidth, (GLsizei)config.ScreenHeight);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0f, mfAspectRatio, 0.01f, 1000.0f);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 }
 
 //-----------------------------------------------------------------------------------
 void PS2Renderer::SetVertexData(TriangleData triangle)
 {
-	for( int i=0; i<3; ++i)
-	{
-		glVertex3f(triangle.verts[i].x,triangle.verts[i].y,triangle.verts[i].z);
-		glColor4d(	(GLdouble)triangle.colors[i].r, 
-			(GLdouble)triangle.colors[i].g, 
-			(GLdouble)triangle.colors[i].b, 
-			(GLdouble)triangle.colors[i].a );
-	}
+
 }
 
 //-----------------------------------------------------------------------------------
@@ -58,7 +46,7 @@ void PS2Renderer::Clear(Color c)
 //-----------------------------------------------------------------------------------
 void PS2Renderer::BeginScene()
 {
-	glBegin(GL_TRIANGLES);
+	
 }
 
 //-----------------------------------------------------------------------------------

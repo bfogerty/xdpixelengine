@@ -1,10 +1,12 @@
 #include "PlatformRenderer.h"
 
-//#ifdef DX9_RENDERER
+#ifdef PS2_RELEASE
+#include "ps2/PS2Renderer.h"
+#elif DX9_RENDERER
 #include "dx9/DX9Renderer.h"
-//#endif
-
+#elif OPENGL_RENDERER
 #include "opengl/OpenGLRenderer.h"
+#endif
 
 class GameObject;
 
