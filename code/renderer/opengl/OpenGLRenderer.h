@@ -1,0 +1,44 @@
+#ifndef		__OPENGL_RENDERER__
+#define		__OPENGL__RENDERER__
+#include "platform.h"
+#include "PlatformRenderer.h"
+#include "RendererConfig.h"
+
+#ifdef WIN_RELEASE
+#include "windows.h"
+#endif
+
+#include <gl/gl.h>
+#include <gl/glu.h>
+
+class Color;
+class TriangleData;
+
+class OpenGLRenderer : public PlatformRenderer
+{
+public:
+	OpenGLRenderer(RendererConfig config);
+
+	virtual void Clear( Color c );
+	virtual void BeginScene();
+	virtual void EndScene();
+	virtual void Present();
+
+	virtual void SetVertexData(TriangleData triangle);
+
+	// This needs to be factored out.
+	virtual void FakeSceneSetup( RendererConfig config );
+
+	~OpenGLRenderer();
+
+protected:
+
+#ifdef WIN_RELEASE
+	void InitializeForWindows( RendererConfig config );
+	HDC mHdc;
+	HGLRC mpDev;
+#endif
+
+};
+
+#endif
