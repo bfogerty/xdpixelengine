@@ -7,13 +7,6 @@ void RenderTestComponent::OnAwake()
 {
 	Mesh *mesh = mpGameObject->mMesh;
 
-	// OpenGL Version
-	/*
-	mesh->verticies.push_back(new Vector3(-1,0,-10));
-	mesh->verticies.push_back(new Vector3(0,1,-10));
-	mesh->verticies.push_back(new Vector3(1,0,-10));
-	*/
-
 	// DirectX Version
 	mesh->verticies.push_back(new Vector3(-1,0,10));
 	mesh->verticies.push_back(new Vector3(0,1, 10));

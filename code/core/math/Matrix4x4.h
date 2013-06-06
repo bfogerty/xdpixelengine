@@ -23,6 +23,9 @@ public:
 	Vector4 GetRow(int iRow);
 	void SetRow(int iRow, Vector4 vec);
 
+	void Transpose();
+	void SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, float fZF);
+
 };
 
 #endif

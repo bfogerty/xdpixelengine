@@ -1,4 +1,5 @@
 #include "Matrix4x4.h"
+#include "math.h"
 
 //-----------------------------------------------------------------------------------
 Matrix4x4::Matrix4x4()
@@ -99,4 +100,37 @@ void Matrix4x4::SetRow(int iRow, Vector4 vec)
 	Set(1, iRow, vec.y());
 	Set(2, iRow, vec.z());
 	Set(3, iRow, vec.w());
+}
+
+//-----------------------------------------------------------------------------------
+void Matrix4x4::Transpose()
+{
+	Vector4 row0 = GetRow(0);
+	Vector4 row1 = GetRow(1);
+	Vector4 row2 = GetRow(2);
+	Vector4 row3 = GetRow(3);
+
+	SetColumn(0, row0);
+	SetColumn(1, row1);
+	SetColumn(2, row2);
+	SetColumn(3, row3);
+}
+
+//-----------------------------------------------------------------------------------
+// http://msdn.microsoft.com/en-us/library/windows/desktop/bb205350(v=vs.85).aspx
+void Matrix4x4::SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, float fZF)
+{
+	SetIdentity();
+	
+	float cotan = 1/tan(fFovY/2.0f);
+	float fYScale = cotan;
+	float fXScale = fYScale/fAspectRatio;
+
+
+	Set(0,0, fXScale);
+	Set(1,1, fYScale);
+	Set(2,2, fZF/(fZF-fZN));
+	Set(3,2, 1.0f);
+	Set(2,3, (-fZN*fZF)/(fZF-fZN));
+
 }

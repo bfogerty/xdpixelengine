@@ -5,6 +5,8 @@
 #include "../Color.h"
 #include "../../core/math/Vector3.h"
 #include "../core/mesh/Mesh.h"
+#include "../../core/math/MathHelper.h"
+#include "../../core/math/Matrix4x4.h"
 
 //-----------------------------------------------------------------------------------
 OpenGLRenderer::OpenGLRenderer(RendererConfig config) : PlatformRenderer(config)
@@ -48,9 +50,16 @@ void OpenGLRenderer::FakeSceneSetup(RendererConfig config)
 {
 	glViewport(0, 0, (GLsizei)config.ScreenWidth, (GLsizei)config.ScreenHeight);
 	
+	/*
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45.0f, mfAspectRatio, 0.01f, 1000.0f);
+	*/
+
+	glMatrixMode(GL_PROJECTION);
+	Matrix4x4 matProjection;
+	matProjection.SetPerspectiveFovLH(MathHelper::PI * 45.0f / 180, mfAspectRatio, 0.01f, 1000.0f);
+	glLoadMatrixf(matProjection.mMatrix);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -61,7 +70,7 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 {
 	for( int i=0; i<3; ++i)
 	{
-		glVertex3f(triangle.verts[i].x,triangle.verts[i].y,triangle.verts[i].z);
+		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());
 		glColor4d(	(GLdouble)triangle.colors[i].r, 
 					(GLdouble)triangle.colors[i].g, 
 					(GLdouble)triangle.colors[i].b, 

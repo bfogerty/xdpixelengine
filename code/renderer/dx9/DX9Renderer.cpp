@@ -7,6 +7,7 @@
 #include "../../core/math/Vector3.h"
 #include "../core/mesh/Mesh.h"
 #include "../../core/math/MathHelper.h"
+#include "../../core/math/Matrix4x4.h"
 
 //-----------------------------------------------------------------------------------
 DX9Renderer::DX9Renderer(RendererConfig config) : PlatformRenderer(config)
@@ -63,9 +64,15 @@ void DX9Renderer::FakeSceneSetup(RendererConfig config)
 	mpDev->CreateVertexDeclaration( vertexDeclaration, &_vertexDeclaration ); 
 	mpDev->SetVertexDeclaration( _vertexDeclaration );
 
+	/*
 	D3DXMATRIX mtxPerspective;
 	D3DXMatrixIdentity(&mtxPerspective);
 	D3DXMatrixPerspectiveFovLH(&mtxPerspective, MathHelper::PI * 45.0f / 180, mfAspectRatio, 0.01f, 1000.0f);
+	*/
+
+	Matrix4x4 matProjection;
+	matProjection.SetPerspectiveFovLH(MathHelper::PI * 45.0f / 180, mfAspectRatio, 0.01f, 1000.0f);
+	D3DXMATRIX mtxPerspective(matProjection.mMatrix);
 
 	mpDev->SetTransform(D3DTS_PROJECTION, &mtxPerspective);
 	mpDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
