@@ -9,13 +9,27 @@ class Vector3 : BaseObject
 {
 public:
 
-	float x;
-	float y;
-	float z;
+	enum XYZ
+	{
+		X = 0,
+		Y = 1,
+		Z = 2,
+	};
+
+	float data[3];
 
 	Vector3();
 	Vector3( float x, float y, float z );
 	~Vector3();
+
+	float x() { return data[X];}
+	void x(float v) { data[X] = v;}
+	
+	float y() { return data[Y];}
+	void y(float v) { data[Y] = v;}
+
+	float z() { return data[Z];}
+	void z(float v) { data[Z] = v;}
 
 	Vector3 operator-();
 	Vector3 operator+(Vector3 vec);

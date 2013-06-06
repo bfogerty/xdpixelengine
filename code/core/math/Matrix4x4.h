@@ -2,6 +2,7 @@
 #define __MATRIX4X4__
 
 #include "Vector3.h"
+#include "Vector4.h"
 
 class Matrix4x4
 {
@@ -12,7 +13,15 @@ public:
 	void SetIdentity();
 	float Get(int iColumn, int iRow);
 	void Set(int iColumn, int iRow, float fValue);
+	Matrix4x4 operator*(float fScalar);
 	Matrix4x4 operator*(Matrix4x4 other);
+	Vector4 operator*(Vector4 vec);
+
+	Vector4 GetColumn(int iColumn);
+	void SetColumn(int iColumn, Vector4 vec);
+
+	Vector4 GetRow(int iRow);
+	void SetRow(int iRow, Vector4 vec);
 
 };
 

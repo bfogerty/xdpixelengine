@@ -1,28 +1,29 @@
 #include "Vector3.h"
 #include "math.h"
+#include "MathHelper.h"
 #include <sstream>
 using namespace std;
 
 Vector3::Vector3()
 {
-	this->x = 0.0000f;
-	this->y = 0.0000f;
-	this->z = 0.0000f;
+	data[X] = 0.0000f;
+	data[Y] = 0.0000f;
+	data[Z] = 0.0000f;
 }
 
 Vector3::Vector3( float x, float y, float z )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
+	data[X] = x;
+	data[Y] = y;
+	data[Z] = z;
 }
 
 Vector3 Vector3::operator -()
 {
 	Vector3 vecResult;
-	vecResult.x = -this->x;
-	vecResult.y = -this->y;
-	vecResult.z = -this->z;
+	vecResult.data[X] = -data[X];
+	vecResult.data[Y] = -data[Y];
+	vecResult.data[Z] = -data[Z];
 
 	return vecResult;
 }
@@ -30,9 +31,9 @@ Vector3 Vector3::operator -()
 Vector3 Vector3::operator +( Vector3 vec )
 {
 	Vector3 vecResult;
-	vecResult.x = this->x + vec.x;
-	vecResult.y = this->y + vec.y;
-	vecResult.z = this->z + vec.z;
+	vecResult.data[X] = data[X] + vec.data[X];
+	vecResult.data[Y] = data[Y] + vec.data[Y];
+	vecResult.data[Z] = data[Z] + vec.data[Z];
 	
 	return vecResult;
 }
@@ -40,9 +41,9 @@ Vector3 Vector3::operator +( Vector3 vec )
 Vector3 Vector3::operator -(Vector3 vec)
 {
 	Vector3 vecResult;
-	vecResult.x = this->x - vec.x;
-	vecResult.y = this->y - vec.y;
-	vecResult.z = this->z - vec.z;
+	vecResult.data[X] = data[X] - vec.data[X];
+	vecResult.data[Y] = data[Y] - vec.data[Y];
+	vecResult.data[Z] = data[Z] - vec.data[Z];
 
 	return vecResult;
 }
@@ -50,9 +51,9 @@ Vector3 Vector3::operator -(Vector3 vec)
 Vector3 Vector3::operator *( float fScale )
 {
 	Vector3 vecResult;
-	vecResult.x = this->x * fScale;
-	vecResult.y = this->y * fScale;
-	vecResult.z = this->z * fScale;
+	vecResult.data[X] = data[X] * fScale;
+	vecResult.data[Y] = data[Y] * fScale;
+	vecResult.data[Z] = data[Z] * fScale;
 
 	return vecResult;
 }
@@ -75,9 +76,9 @@ float Vector3::Magnitude()
 
 float Vector3::SqrMagnitude()
 {
-	float fResult = (this->x * this->x) + 
-					(this->y * this->y) + 
-					(this->z * this->z);
+	float fResult = (data[X] * data[X]) + 
+					(data[Y] * data[Y]) + 
+					(data[Z] * data[Z]);
 
 	return fResult;
 }
@@ -87,9 +88,9 @@ Vector3 Vector3::GetNormalized()
 	Vector3 vecResult;
 	float fNorm = Magnitude();
 
-	vecResult.x = this->x / fNorm;
-	vecResult.y = this->y / fNorm;
-	vecResult.z = this->z / fNorm;
+	vecResult.data[X] = data[X] / fNorm;
+	vecResult.data[Y] = data[Y] / fNorm;
+	vecResult.data[Z] = data[Z] / fNorm;
 
 	return vecResult;
 }
@@ -98,22 +99,22 @@ void Vector3::Normalize()
 {
 	Vector3 vecNormalized = GetNormalized();
 
-	this->x = vecNormalized.x;
-	this->y = vecNormalized.y;
-	this->z = vecNormalized.z;
+	data[X] = vecNormalized.data[X];
+	data[Y] = vecNormalized.data[Y];
+	data[Z] = vecNormalized.data[Z];
 }
 
 void Vector3::Set( float x, float y, float z)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
+	data[X] = x;
+	data[Y] = y;
+	data[Z] = z;
 }
 
 float Vector3::Dot( Vector3 vec1, Vector3 vec2 )
 {
 	float fResult = 0.0000f;
-	fResult = ( vec1.x * vec2.x ) + ( vec1.y * vec2.y ) + (vec1.z * vec2.z);
+	fResult = ( vec1.data[X] * vec2.data[X] ) + ( vec1.data[Y] * vec2.data[Y] ) + (vec1.data[Z] * vec2.data[Z]);
 
 	return fResult;
 }
@@ -121,9 +122,9 @@ float Vector3::Dot( Vector3 vec1, Vector3 vec2 )
 Vector3 Vector3::Cross( Vector3 vec1, Vector3 vec2 )
 {
 	Vector3 vecResult;
-	vecResult.x = (vec2.y * vec1.z) - ( vec1.y * vec2.z ); 
-	vecResult.y = (vec2.z * vec1.x) - ( vec1.z * vec2.x );
-	vecResult.z = (vec2.x * vec1.y) - ( vec1.x * vec2.y );
+	vecResult.data[X] = (vec2.data[Y] * vec1.data[Z]) - ( vec1.data[Y] * vec2.data[Z] ); 
+	vecResult.data[Y] = (vec2.data[Z] * vec1.data[X]) - ( vec1.data[Z] * vec2.data[X] );
+	vecResult.data[Z] = (vec2.data[X] * vec1.data[Y]) - ( vec1.data[X] * vec2.data[Y] );
 
 	return vecResult;
 }
@@ -175,7 +176,7 @@ float Vector3::Angle( Vector3 vecA, Vector3 vecB)
 	Vector3 vecBN = vecB.GetNormalized();
 	float fThetaRAD =  acos( Vector3::Dot( vecAN, vecBN) );
 
-	float fThetaDEG = fThetaRAD * 180.0f / 3.14159f;
+	float fThetaDEG = fThetaRAD * 180.0f / MathHelper::PI;
 
 	return fThetaDEG;
 }
@@ -273,7 +274,7 @@ Vector3 Vector3::Zero()
 string Vector3::ToString()
 {
 	std::stringstream ss;
-	ss << "[" << this->x << ", " << this->y << ", " << this->z << "]";
+	ss << "[" << data[X] << ", " << data[Y] << ", " << data[Z] << "]";
 	
 	std::string strVal = ss.str();
 
