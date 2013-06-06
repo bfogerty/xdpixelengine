@@ -219,6 +219,10 @@
 						RelativePath="..\..\code\core\math\Vector3.cpp"
 						>
 					</File>
+					<File
+						RelativePath="..\..\code\core\math\Vector4.cpp"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="time"
@@ -347,6 +351,10 @@
 					</File>
 					<File
 						RelativePath="..\..\code\core\math\Vector3.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\code\core\math\Vector4.h"
 						>
 					</File>
 				</Filter>

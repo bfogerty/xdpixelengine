@@ -94,9 +94,9 @@ void DX9Renderer::SetVertexData(TriangleData triangle)
 {
 	CUSTOMVERT t[] = 
 	{
-		{triangle.verts[0].x,triangle.verts[0].y,triangle.verts[0].z,D3DXCOLOR(triangle.colors[0].r,triangle.colors[0].g,triangle.colors[0].b,triangle.colors[0].a)},
-		{triangle.verts[1].x,triangle.verts[1].y,triangle.verts[1].z,D3DXCOLOR(triangle.colors[1].r,triangle.colors[1].g,triangle.colors[1].b,triangle.colors[1].a)},
-		{triangle.verts[2].x,triangle.verts[2].y,triangle.verts[2].z,D3DXCOLOR(triangle.colors[2].r,triangle.colors[2].g,triangle.colors[2].b,triangle.colors[2].a)},
+		{triangle.verts[0].x(),triangle.verts[0].y(),triangle.verts[0].z(),D3DXCOLOR(triangle.colors[0].r,triangle.colors[0].g,triangle.colors[0].b,triangle.colors[0].a)},
+		{triangle.verts[1].x(),triangle.verts[1].y(),triangle.verts[1].z(),D3DXCOLOR(triangle.colors[1].r,triangle.colors[1].g,triangle.colors[1].b,triangle.colors[1].a)},
+		{triangle.verts[2].x(),triangle.verts[2].y(),triangle.verts[2].z(),D3DXCOLOR(triangle.colors[2].r,triangle.colors[2].g,triangle.colors[2].b,triangle.colors[2].a)},
 	};
 
 	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
