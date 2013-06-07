@@ -8,10 +8,15 @@
 #include "../game/RenderTestComponent.h"
 using namespace std;
 
+unsigned int Engine::TotalFramesSinceStartup = 0;
+
 GameObject *mpGameObject = NULL;
+
 
 Engine::Engine(EngineConfig config) : pRenderEngine(0)
 {
+	TotalFramesSinceStartup = 0;
+
 	// Test
 	mpGameObject = new GameObject("Test");
 	mpGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(mpGameObject) ) );
@@ -52,4 +57,5 @@ void Engine::Update()
 	pRenderEngine->Render(mpGameObject);
 
 	Time::GetInstance()->End();
+	++TotalFramesSinceStartup;
 }

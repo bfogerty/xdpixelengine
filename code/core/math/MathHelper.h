@@ -5,7 +5,9 @@ class MathHelper
 {
 
 public:
-	static float PI;
+	const static float PI;
+	const static float Deg2Rad;
+
 };
 
 #endif

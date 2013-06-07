@@ -9,6 +9,7 @@
 #endif
 
 class GameObject;
+struct RendererConfig;
 
 class RenderEngine
 {
@@ -21,4 +22,5 @@ public:
 
 protected:
 	PlatformRenderer *mRenderer;
+	RendererConfig mConfig;
 };

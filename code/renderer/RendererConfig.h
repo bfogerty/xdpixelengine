@@ -8,6 +8,11 @@ public:
 	int ScreenHeight;
 	bool FullScreen;
 	char *WindowHandle;
+
+	float GetAspectRatio()
+	{
+		return (float)(ScreenWidth)/ScreenHeight;
+	}
 };
 
 #endif

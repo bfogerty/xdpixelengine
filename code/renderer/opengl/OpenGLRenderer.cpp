@@ -16,6 +16,7 @@ OpenGLRenderer::OpenGLRenderer(RendererConfig config) : PlatformRenderer(config)
 	InitializeForWindows(config);
 #endif
 
+	glViewport(0, 0, (GLsizei)config.ScreenWidth, (GLsizei)config.ScreenHeight);
 }
 
 //-----------------------------------------------------------------------------------
@@ -40,29 +41,45 @@ void OpenGLRenderer::InitializeForWindows( RendererConfig config )
 	mpDev = wglCreateContext(mHdc);
 	wglMakeCurrent(mHdc, mpDev);
 
-	FakeSceneSetup(config);
+	//FakeSceneSetup(config);
 }
 #endif
 
 //-----------------------------------------------------------------------------------
 // This needs to be factored out.
 void OpenGLRenderer::FakeSceneSetup(RendererConfig config)
+{	
+
+}
+
+//-----------------------------------------------------------------------------------
+void OpenGLRenderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat)
 {
-	glViewport(0, 0, (GLsizei)config.ScreenWidth, (GLsizei)config.ScreenHeight);
-	
-	/*
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0f, mfAspectRatio, 0.01f, 1000.0f);
-	*/
+	int TS = 0;
 
-	glMatrixMode(GL_PROJECTION);
-	Matrix4x4 matProjection;
-	matProjection.SetPerspectiveFovLH(MathHelper::PI * 45.0f / 180, mfAspectRatio, 0.01f, 1000.0f);
-	glLoadMatrixf(matProjection.mMatrix);
+	switch( ts )
+	{
+	case PlatformRenderer::TS_PROJECTION:
+		{
+			TS = GL_PROJECTION;
+		}
+		break;
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	case PlatformRenderer::TS_VIEW:
+		{
+			TS = GL_MODELVIEW;
+		}
+		break;
+
+	case PlatformRenderer::TS_WORLD:
+		{
+			TS = GL_MODELVIEW;
+		}
+		break;
+	}
+
+	glMatrixMode(TS);
+	glLoadMatrixf(mat.mMatrix);
 }
 
 //-----------------------------------------------------------------------------------

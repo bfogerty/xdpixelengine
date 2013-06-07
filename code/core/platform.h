@@ -12,8 +12,8 @@
 //-----------------------------------------------------------------------------------
 
 #ifndef PS2_RELEASE
-	#define DX9_RENDERER		1
-	//#define OPENGL_RENDERER		1
+	//#define DX9_RENDERER		1
+	#define OPENGL_RENDERER		1
 #endif
 
 #endif

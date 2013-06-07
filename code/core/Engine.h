@@ -15,6 +15,8 @@ public:
 
 	~Engine();
 
+	static unsigned int TotalFramesSinceStartup;
+
 protected:
 	RenderEngine *pRenderEngine;
 

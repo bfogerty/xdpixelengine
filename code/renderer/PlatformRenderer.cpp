@@ -1,6 +1,7 @@
 #include "PlatformRenderer.h"
 #include "Color.h"
 #include "../core/math/Vector3.h"
+#include "../core/math/Matrix4x4.h"
 #include "../core/mesh/Mesh.h"
 
 PlatformRenderer::PlatformRenderer(RendererConfig config)
@@ -41,6 +42,12 @@ void PlatformRenderer::EndScene()
 }
 
 void PlatformRenderer::Present()
+{
+
+}
+
+
+void PlatformRenderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat)
 {
 
 }
