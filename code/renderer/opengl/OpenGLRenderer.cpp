@@ -52,48 +52,19 @@ void OpenGLRenderer::FakeSceneSetup(RendererConfig config)
 
 }
 
-/*
-//-----------------------------------------------------------------------------------
-void OpenGLRenderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat)
-{
-	int TS = 0;
-
-	switch( ts )
-	{
-	case PlatformRenderer::TS_PROJECTION:
-		{
-			TS = GL_PROJECTION;
-		}
-		break;
-
-	case PlatformRenderer::TS_VIEW:
-		{
-			TS = GL_MODELVIEW;
-		}
-		break;
-
-	case PlatformRenderer::TS_WORLD:
-		{
-			TS = GL_MODELVIEW;
-		}
-		break;
-	}
-
-	glMatrixMode(TS);
-	glLoadMatrixf(mat.mMatrix);
-}
-*/
-
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::SetVertexData(TriangleData triangle)
 {
 	for( int i=0; i<3; ++i)
 	{
-		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());
+		// Color must come before vertex,
+		// otherwise the color will not be assigned to the correct vertex.
 		glColor4d(	(GLdouble)triangle.colors[i].r, 
 					(GLdouble)triangle.colors[i].g, 
 					(GLdouble)triangle.colors[i].b, 
 					(GLdouble)triangle.colors[i].a );
+
+		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());
 	}
 }
 

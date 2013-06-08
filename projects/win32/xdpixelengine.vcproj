@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib d3d9.lib d3dx9.lib dinput8.lib dxguid.lib opengl32.lib glu32.lib"
+				AdditionalDependencies="winmm.lib d3d9.lib d3dx9d.lib dinput8.lib dxguid.lib opengl32.lib glu32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Lib\x86"
 				GenerateDebugInformation="true"
@@ -253,10 +253,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\code\renderer\Color.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\code\renderer\PlatformRenderer.cpp"
 					>
 				</File>
@@ -298,6 +294,10 @@
 				</File>
 				<File
 					RelativePath="..\..\code\game\RenderTestComponent.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\game\TriangleComponent.cpp"
 					>
 				</File>
 			</Filter>
@@ -383,6 +383,10 @@
 				Name="renderer"
 				>
 				<File
+					RelativePath="..\..\code\renderer\Color.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\code\renderer\PlatformRenderer.h"
 					>
 				</File>
@@ -428,6 +432,10 @@
 				</File>
 				<File
 					RelativePath="..\..\code\game\RenderTestComponent.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\game\TriangleComponent.h"
 					>
 				</File>
 			</Filter>

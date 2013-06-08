@@ -5,6 +5,8 @@
 #include "../core/time/Time.h"
 
 #include "../game/RenderTestComponent.h"
+#include "../game/TriangleComponent.h"
+
 
 //-----------------------------------------------------------------------------------
 void GameMain::OnAwake()
@@ -14,9 +16,10 @@ void GameMain::OnAwake()
 
 	// Add Game Specific logic below.
 	GameObject *pGameObject = new GameObject("RenderTest0");
-	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pGameObject) ) );
+	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new TriangleComponent(pGameObject) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pGameObject->mpTransform);
 
+	/*
 	pGameObject = new GameObject("RenderTest1");
 	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pGameObject) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pGameObject->mpTransform);
@@ -24,6 +27,7 @@ void GameMain::OnAwake()
 	pGameObject = new GameObject("RenderTest2");
 	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pGameObject) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pGameObject->mpTransform);
+	*/
 }
 
 //-----------------------------------------------------------------------------------

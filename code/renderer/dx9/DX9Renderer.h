@@ -3,6 +3,7 @@
 #include "platform.h"
 
 #ifdef DX9_RENDERER
+#define D3D_DEBUG_INFO
 #include "PlatformRenderer.h"
 #include "RendererConfig.h"
 #include <d3d9.h>
@@ -29,6 +30,11 @@ public:
 	~DX9Renderer();
 
 protected:
+
+	virtual void SetVertexDataViaSystemMemory(TriangleData triangle);
+	virtual void SetVertexDataViaVertexBuffer(TriangleData triangle);
+
+
 	LPDIRECT3D9 mpD3D9;
 	D3DDISPLAYMODE mDisplayMode;
 	D3DPRESENT_PARAMETERS mPresentationParams;

@@ -23,7 +23,7 @@ Time *Time::GetInstance()
 
 void Time::Start()
 {
-	mfStartTime = timeGetTime();
+	mfStartTime = static_cast<float>(timeGetTime());
 }
 
 void Time::End()

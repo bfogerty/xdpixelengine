@@ -13,13 +13,17 @@ public:
 		GREEN,
 		BLUE,
 		GRAY,
+		YELLOW,
 	};
 
 	Color();
 	Color(float r, float g, float b, float a);
 	Color(float r, float g, float b);
+	Color(int r, int g, int b);
+	Color(int r, int g, int b, int a);
 	Color(ColorType c);
 
+	void Normalize();
 
 	float r,g,b,a;
 

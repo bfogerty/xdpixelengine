@@ -52,20 +52,6 @@ DX9Renderer::DX9Renderer(RendererConfig config) : PlatformRenderer(config)
 // This needs to be factored out.
 void DX9Renderer::FakeSceneSetup(RendererConfig config)
 {
-
-	D3DVERTEXELEMENT9 vertexDeclaration[] = 
-	{
-		{0,  0, D3DDECLTYPE_FLOAT3,   D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0}, 
-		{0, 12, D3DDECLTYPE_D3DCOLOR, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_COLOR,    0}, 
-		D3DDECL_END()
-	};
-
-	LPDIRECT3DVERTEXDECLARATION9 _vertexDeclaration = 0; 
-	mpDev->CreateVertexDeclaration( vertexDeclaration, &_vertexDeclaration ); 
-	mpDev->SetVertexDeclaration( _vertexDeclaration );
-
-	mpDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-
 	mpDev->SetRenderState( D3DRS_FILLMODE, D3DFILL_SOLID );       
 	mpDev->SetRenderState( D3DRS_SHADEMODE, D3DSHADE_GOURAUD );   
 	mpDev->SetRenderState( D3DRS_LIGHTING, FALSE );
@@ -75,20 +61,63 @@ struct CUSTOMVERT
 {
 	float x,y,z;
 	DWORD color;
+
+	CUSTOMVERT( Vector3 verts, Color color)
+	{
+		x = verts.x();
+		y = verts.y();
+		z = verts.z();
+
+		this->color = D3DXCOLOR(color.r,color.g, color.b, color.a);
+	}
 };
 
 //-----------------------------------------------------------------------------------
 void DX9Renderer::SetVertexData(TriangleData triangle)
 {
+	SetVertexDataViaSystemMemory(triangle);
+	//SetVertexDataViaVertexBuffer( triangle );
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::SetVertexDataViaSystemMemory(TriangleData triangle)
+{
 	CUSTOMVERT t[] = 
 	{
-		{triangle.verts[0].x(),triangle.verts[0].y(),triangle.verts[0].z(),D3DXCOLOR(triangle.colors[0].r,triangle.colors[0].g,triangle.colors[0].b,triangle.colors[0].a)},
-		{triangle.verts[1].x(),triangle.verts[1].y(),triangle.verts[1].z(),D3DXCOLOR(triangle.colors[1].r,triangle.colors[1].g,triangle.colors[1].b,triangle.colors[1].a)},
-		{triangle.verts[2].x(),triangle.verts[2].y(),triangle.verts[2].z(),D3DXCOLOR(triangle.colors[2].r,triangle.colors[2].g,triangle.colors[2].b,triangle.colors[2].a)},
+		CUSTOMVERT(triangle.verts[0], triangle.colors[0]),
+		CUSTOMVERT(triangle.verts[1], triangle.colors[1]),
+		CUSTOMVERT(triangle.verts[2], triangle.colors[2])
 	};
 
 	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
 	mpDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, t, sizeof(CUSTOMVERT));
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::SetVertexDataViaVertexBuffer(TriangleData triangle)
+{
+	LPDIRECT3DVERTEXBUFFER9 pVertexBuffer;
+	CUSTOMVERT *pVerts;
+
+	mpDev->CreateVertexBuffer(sizeof(CUSTOMVERT)*6,
+		D3DUSAGE_WRITEONLY,
+		D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX0,
+		D3DPOOL_DEFAULT,
+		&pVertexBuffer,
+		NULL);
+
+	pVertexBuffer->Lock(0, sizeof(CUSTOMVERT)*3,(void**) &pVerts, 0);
+	for(int i=0; i<3; ++i)
+	{
+		Vector3 points = triangle.verts[i];
+		Color color = triangle.colors[i];
+		*pVerts++ = CUSTOMVERT(points, color);
+	}
+	pVertexBuffer->Unlock();
+
+	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
+	mpDev->SetStreamSource(0, pVertexBuffer, 0, sizeof(CUSTOMVERT));
+	mpDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
 }
 
 //-----------------------------------------------------------------------------------
