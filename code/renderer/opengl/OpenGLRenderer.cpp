@@ -52,6 +52,7 @@ void OpenGLRenderer::FakeSceneSetup(RendererConfig config)
 
 }
 
+/*
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat)
 {
@@ -81,6 +82,7 @@ void OpenGLRenderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat
 	glMatrixMode(TS);
 	glLoadMatrixf(mat.mMatrix);
 }
+*/
 
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::SetVertexData(TriangleData triangle)
@@ -105,6 +107,13 @@ void OpenGLRenderer::Clear(Color c)
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::BeginScene()
 {
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf(mMatProjection.mMatrix);
+
+	Matrix4x4 matModelView = mMatView * mMatWorld;
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf(matModelView.mMatrix);
+
 	glBegin(GL_TRIANGLES);
 }
 

@@ -26,8 +26,6 @@ public:
 	// This should be factored out
 	void FakeSceneSetup(RendererConfig config);
 
-	virtual void SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat);
-
 	~DX9Renderer();
 
 protected:

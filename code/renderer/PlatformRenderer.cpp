@@ -46,8 +46,52 @@ void PlatformRenderer::Present()
 
 }
 
+Matrix4x4* PlatformRenderer::GetTransform( MATRIX_TRANSFORM_STATE_TYPE ts)
+{
+	switch( ts )
+	{
+	case PlatformRenderer::TS_PROJECTION:
+		{
+			return &mMatProjection;
+		}
+		break;
+
+	case PlatformRenderer::TS_VIEW:
+		{
+			return &mMatView;
+		}
+		break;
+
+	case PlatformRenderer::TS_WORLD:
+		{
+			return &mMatWorld;
+		}
+		break;
+	}
+
+	return 0;
+}
 
 void PlatformRenderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat)
 {
+	switch( ts )
+	{
+	case PlatformRenderer::TS_PROJECTION:
+		{
+			mMatProjection = mat;
+		}
+		break;
 
+	case PlatformRenderer::TS_VIEW:
+		{
+			mMatView = mat;
+		}
+		break;
+
+	case PlatformRenderer::TS_WORLD:
+		{
+			mMatWorld = mat;
+		}
+		break;
+	}
 }

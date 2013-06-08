@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "../core/math/Matrix4x4.h"
 #include "../core/math/MathHelper.h"
+#include "../core/Transform.h"
 
 RenderEngine::RenderEngine( RendererConfig config ) : mRenderer(0), mConfig(config)
 {
@@ -43,21 +44,53 @@ void RenderEngine::Render( GameObject *pGameObject )
 		return;
 	}
 
-	if( !pGameObject || !pGameObject->mMesh || pGameObject->mMesh->verticies.size() <= 0 )
+	mRenderer->Clear(Color(Color::GRAY));
+
+	RenderGameObject( pGameObject );
+
+	mRenderer->Present();
+}
+
+void RenderEngine::RenderGameObject( GameObject *pGameObject )
+{
+	bool CanRenderGameObject = true;
+
+	if( !pGameObject )
 	{
 		return;
 	}
 
-	mRenderer->Clear(Color(Color::GRAY));
+	// Can we render the game object?
+	if( !pGameObject->mMesh || 
+		pGameObject->mMesh->verticies.size() <= 0 )
+	{
+		CanRenderGameObject = false;
+	}
+
+	// If we can't render the game object,
+	// we should try to render its children.
+	if( !CanRenderGameObject )
+	{
+		int iChildCount = pGameObject->mpTransform->mChildren.size();
+		for(int i=0; i< iChildCount; ++i)
+		{
+			GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
+			RenderGameObject( pChild );
+		}
+		return;
+	}
+
+
 	mRenderer->BeginScene();
+	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, 
+		pGameObject->mpTransform->mMatWorld);
+
 	//   ... Draw Here ...
-	
+
 	int iNumberOfTriangles = pGameObject->mMesh->triangleData.size();
 	for( int i=0; i< iNumberOfTriangles; ++i )
 	{
 		mRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
 	}
-
 	mRenderer->EndScene();
-	mRenderer->Present();
 }

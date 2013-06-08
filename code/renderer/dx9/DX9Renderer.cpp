@@ -71,35 +71,6 @@ void DX9Renderer::FakeSceneSetup(RendererConfig config)
 	mpDev->SetRenderState( D3DRS_LIGHTING, FALSE );
 }
 
-void DX9Renderer::SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat)
-{
-	D3DTRANSFORMSTATETYPE d3dTS;
-
-	switch( ts )
-	{
-		case PlatformRenderer::TS_PROJECTION:
-			{
-				d3dTS = D3DTS_PROJECTION;
-			}
-			break;
-
-		case PlatformRenderer::TS_VIEW:
-			{
-				d3dTS = D3DTS_VIEW;
-			}
-			break;
-
-		case PlatformRenderer::TS_WORLD:
-			{
-				d3dTS = D3DTS_WORLD;
-			}
-			break;
-	}
-
-	D3DXMATRIX d3dMat(mat.mMatrix);
-	mpDev->SetTransform(d3dTS, &d3dMat);
-}
-
 struct CUSTOMVERT
 {
 	float x,y,z;
@@ -129,6 +100,15 @@ void DX9Renderer::Clear(Color c)
 //-----------------------------------------------------------------------------------
 void DX9Renderer::BeginScene()
 {
+	D3DXMATRIX d3dMat(mMatProjection.mMatrix);
+	mpDev->SetTransform(D3DTS_PROJECTION, &d3dMat);
+
+	d3dMat = mMatView.mMatrix;
+	mpDev->SetTransform(D3DTS_VIEW, &d3dMat);
+
+	d3dMat = mMatWorld.mMatrix;
+	mpDev->SetTransform(D3DTS_WORLD, &d3dMat);
+
 	mpDev->BeginScene();
 }
 

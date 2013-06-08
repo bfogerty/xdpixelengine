@@ -185,10 +185,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\code\core\EngineMain.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\code\core\GameObject.cpp"
 					>
 				</File>
@@ -297,6 +293,10 @@
 				Name="game"
 				>
 				<File
+					RelativePath="..\..\code\game\GameMain.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\code\game\RenderTestComponent.cpp"
 					>
 				</File>
@@ -316,10 +316,6 @@
 				</File>
 				<File
 					RelativePath="..\..\code\core\Engine.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\code\core\EngineMain.h"
 					>
 				</File>
 				<File
@@ -426,6 +422,10 @@
 			<Filter
 				Name="game"
 				>
+				<File
+					RelativePath="..\..\code\game\GameMain.h"
+					>
+				</File>
 				<File
 					RelativePath="..\..\code\game\RenderTestComponent.h"
 					>

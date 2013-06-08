@@ -12,6 +12,12 @@ public:
 	}
 
 	virtual void OnAwake();
+	virtual void OnUpdate();
+
+protected:
+	float mT;
+	int id;
+	static int iID;
 
 };
 

@@ -1,25 +1,27 @@
 #include "Engine.h"
 #include "GameObject.h"
 #include "GameObjectComponent.h"
+#include "Transform.h"
 #include "math/Vector3.h"
 #include "time/Time.h"
 #include "math/Matrix4x4.h"
 #include <iostream>
-#include "../game/RenderTestComponent.h"
+#include "../game/GameMain.h"
+//#include "../game/RenderTestComponent.h"
 using namespace std;
 
 unsigned int Engine::TotalFramesSinceStartup = 0;
-
-GameObject *mpGameObject = NULL;
-
 
 Engine::Engine(EngineConfig config) : pRenderEngine(0)
 {
 	TotalFramesSinceStartup = 0;
 
+	mpRootGameObject = new GameObject("root");
+	mpRootGameObject->AddComponent( static_cast<GameObjectComponent*>( new GameMain(mpRootGameObject) ) );
+
 	// Test
-	mpGameObject = new GameObject("Test");
-	mpGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(mpGameObject) ) );
+	//mpGameObject = new GameObject("Test");
+	//mpGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(mpGameObject) ) );
 
 	Matrix4x4 mat;
 
@@ -34,8 +36,8 @@ Engine::Engine(EngineConfig config) : pRenderEngine(0)
 
 Engine::~Engine()
 {
-	delete mpGameObject;
-	mpGameObject = NULL;
+	delete mpRootGameObject;
+	mpRootGameObject = NULL;
 
 	if( pRenderEngine != NULL )
 	{
@@ -49,13 +51,30 @@ void Engine::Update()
 {
 	Time::GetInstance()->Start();
 
-	if( mpGameObject != NULL )
+	if( mpRootGameObject != NULL )
 	{
-		mpGameObject->OnUpdate();
+		UpdateGameObject(mpRootGameObject);
+		pRenderEngine->Render(mpRootGameObject);
 	}
-
-	pRenderEngine->Render(mpGameObject);
 
 	Time::GetInstance()->End();
 	++TotalFramesSinceStartup;
+}
+
+
+void Engine::UpdateGameObject( GameObject *pGameObject )
+{
+	if( !pGameObject )
+	{
+		return;
+	}
+
+	pGameObject->OnUpdate();
+
+	int iChildCount = pGameObject->mpTransform->mChildren.size();
+	for(int i=0; i< iChildCount; ++i)
+	{
+		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
+		UpdateGameObject(pChild);
+	}
 }

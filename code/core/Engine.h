@@ -18,6 +18,10 @@ public:
 	static unsigned int TotalFramesSinceStartup;
 
 protected:
+
+	void UpdateGameObject( GameObject *pGameObject );
+
 	RenderEngine *pRenderEngine;
+	GameObject *mpRootGameObject;
 
 };

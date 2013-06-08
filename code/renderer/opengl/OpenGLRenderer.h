@@ -29,7 +29,7 @@ public:
 	// This needs to be factored out.
 	virtual void FakeSceneSetup( RendererConfig config );
 
-	virtual void SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat);
+	//virtual void SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat);
 
 	~OpenGLRenderer();
 

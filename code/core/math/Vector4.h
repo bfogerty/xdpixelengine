@@ -21,6 +21,7 @@ public:
 
 	Vector4();
 	Vector4( float x, float y, float z, float w );
+	Vector4( float *values );
 	~Vector4();
 
 	float x() { return data[X];}

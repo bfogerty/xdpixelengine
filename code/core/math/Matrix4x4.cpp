@@ -1,5 +1,7 @@
 #include "Matrix4x4.h"
+#include "MathHelper.h"
 #include "math.h"
+
 
 //-----------------------------------------------------------------------------------
 Matrix4x4::Matrix4x4()
@@ -51,6 +53,26 @@ Matrix4x4 Matrix4x4::operator *(Matrix4x4 other)
 {
 	Matrix4x4 matResult;
 
+	const int iDim = 4;
+
+	Vector4 myRow[iDim];
+	Vector4 otherCol[iDim];
+	for(int i=0; i<iDim; ++i)
+	{
+		myRow[i] = GetRow(i);
+		otherCol[i] = other.GetColumn(i);
+	}
+
+	for(int row = 0; row < iDim; ++row )
+	{
+		float dots[iDim];
+		dots[0] = Vector4::Dot( myRow[row], otherCol[0] );
+		dots[1] = Vector4::Dot( myRow[row], otherCol[1] );
+		dots[2] = Vector4::Dot( myRow[row], otherCol[2] );
+		dots[3] = Vector4::Dot( myRow[row], otherCol[3] );
+
+		matResult.SetRow(row, Vector4(dots));
+	}
 
 
 	return matResult;
@@ -133,4 +155,26 @@ void Matrix4x4::SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, 
 	Set(3,2, 1.0f);
 	Set(2,3, (-fZN*fZF)/(fZF-fZN));
 
+}
+
+//-----------------------------------------------------------------------------------
+void Matrix4x4::Translate( Vector3 position )
+{
+	Set(0,3, position.x());
+	Set(1,3, position.y());
+	Set(2,3, position.z());
+}
+
+//-----------------------------------------------------------------------------------
+void Matrix4x4::RotationZ( float degrees )
+{
+	float fRad = degrees * MathHelper::Deg2Rad;
+	float fs = sin(fRad);
+	float fc = cos(fRad);
+
+	SetIdentity();
+	Set(0,0, fc);
+	Set(1,0, fs);
+	Set(0,1, -fs);
+	Set(1,1, fc);
 }

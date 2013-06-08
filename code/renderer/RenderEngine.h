@@ -21,6 +21,9 @@ public:
 	void Render(GameObject *pGameObject);
 
 protected:
+
+	void RenderGameObject( GameObject *pGameObject );
+
 	PlatformRenderer *mRenderer;
 	RendererConfig mConfig;
 };

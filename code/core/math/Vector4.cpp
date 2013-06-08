@@ -20,6 +20,14 @@ Vector4::Vector4( float x, float y, float z, float w )
 	data[W] = w;
 }
 
+Vector4::Vector4( float *values )
+{
+	data[X] = values[0];
+	data[Y] = values[1];
+	data[Z] = values[2];
+	data[W] = values[3];
+}
+
 Vector4 Vector4::operator -()
 {
 	Vector4 vecResult;

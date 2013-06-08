@@ -25,6 +25,8 @@ public:
 
 	void Transpose();
 	void SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, float fZF);
+	void Translate( Vector3 position );
+	void RotationZ( float degrees );
 
 };
 

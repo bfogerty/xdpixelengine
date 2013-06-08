@@ -1,6 +1,7 @@
 #ifndef __PLATFORM_RENDERER__
 #define __PLATFORM_RENDERER__
 #include "RendererConfig.h"
+#include "../core/math/Matrix4x4.h"
 
 class Color;
 class Vector3;
@@ -33,11 +34,14 @@ public:
 	// This needs to be factored out.
 	virtual void FakeSceneSetup(RendererConfig config);
 
+	virtual Matrix4x4* GetTransform( MATRIX_TRANSFORM_STATE_TYPE ts);
 	virtual void SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat);
 
 protected:
 	float mfAspectRatio;
-
+	Matrix4x4 mMatProjection;
+	Matrix4x4 mMatView;
+	Matrix4x4 mMatWorld;
 };
 
 #endif
