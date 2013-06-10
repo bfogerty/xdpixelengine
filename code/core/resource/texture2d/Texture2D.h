@@ -19,28 +19,18 @@ class Texture2D
 {
 
 public:
+		Texture2D(unsigned char *data, unsigned int width, unsigned int height);
 
-		Texture2D(){};
-		
-		void Load(string strName);
-		
-		void Upload();
-
-#ifdef COMPILE_OPENGL_RENDERER
-		void Upload_OpenGL();
-#endif
-
-		bool Validate(std::istream &source);
-
-
-		//void userReadData(png_structp pngPtr, png_bytep data, png_size_t length);
-
-		png_bytep *rowPtrs;
 		unsigned char *data;
 		unsigned int iTextureID;
 		unsigned int Width;
 		unsigned int Height;
 
+protected:
+		void Upload();
+#ifdef COMPILE_OPENGL_RENDERER
+		void Upload_OpenGL();
+#endif
 
 };
 

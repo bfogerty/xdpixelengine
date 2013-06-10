@@ -9,7 +9,6 @@ void TriangleComponent::OnAwake()
 {
 	Mesh *mesh = mpGameObject->mMesh;
 
-	// DirectX Version
 	mesh->verticies.push_back(new Vector3(-1,0,10));
 	mesh->verticies.push_back(new Vector3(0,1, 10));
 	mesh->verticies.push_back(new Vector3(1,0, 10));

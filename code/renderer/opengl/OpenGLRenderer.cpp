@@ -59,13 +59,11 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 	{
 		// Color must come before vertex,
 		// otherwise the color will not be assigned to the correct vertex.
-		/*
 		glColor4d(	(GLdouble)triangle.colors[i].r, 
 					(GLdouble)triangle.colors[i].g, 
 					(GLdouble)triangle.colors[i].b, 
 					(GLdouble)triangle.colors[i].a );
 
-		*/
 		glTexCoord2d(triangle.uvs[i].x(),triangle.uvs[i].y());
 
 		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());

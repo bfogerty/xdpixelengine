@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer"
+				AdditionalIncludeDirectories="&quot;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;&quot;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,7 +63,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib d3d9.lib d3dx9d.lib dinput8.lib dxguid.lib opengl32.lib glu32.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Lib\x86"
+				AdditionalLibraryDirectories="&quot;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Lib\x86&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -244,6 +244,30 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="resource"
+					>
+					<Filter
+						Name="texture2d"
+						>
+						<File
+							RelativePath="..\..\code\core\resource\texture2d\Texture2D.cpp"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="ImageLoaders"
+						>
+						<File
+							RelativePath="..\..\code\core\resource\image_loaders\ImageLoader.cpp"
+							>
+						</File>
+						<File
+							RelativePath="..\..\code\core\resource\image_loaders\ImageLoader_PNG.cpp"
+							>
+						</File>
+					</Filter>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="renderer"
@@ -378,6 +402,30 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="resource"
+					>
+					<Filter
+						Name="texture2d"
+						>
+						<File
+							RelativePath="..\..\code\core\resource\texture2d\Texture2D.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="ImageLoaders"
+						>
+						<File
+							RelativePath="..\..\code\core\resource\image_loaders\ImageLoader.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\code\core\resource\image_loaders\ImageLoader_PNG.h"
+							>
+						</File>
+					</Filter>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="renderer"
@@ -445,6 +493,214 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="third_party"
+			>
+			<Filter
+				Name="libpng"
+				>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\png.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\png.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngconf.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngdebug.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngerror.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngget.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pnginfo.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pnglibconf.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngmem.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngpread.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngpriv.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngread.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngrio.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngrtran.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngrutil.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngset.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngstruct.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngtest.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngtrans.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngwio.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngwrite.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngwtran.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\lpng162\pngwutil.c"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="zlib"
+				>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\adler32.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\compress.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\crc32.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\crc32.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\deflate.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\deflate.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\gzclose.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\gzguts.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\gzlib.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\gzread.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\gzwrite.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\infback.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inffast.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inffast.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inffixed.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inflate.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inflate.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inftrees.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\inftrees.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\trees.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\trees.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\uncompr.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\zconf.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\zlib.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\zutil.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\thirdparty\zlib-1.2.8\zutil.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

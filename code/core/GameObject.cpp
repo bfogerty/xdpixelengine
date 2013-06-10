@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "Transform.h"
+#include "./resource/image_loaders/ImageLoader.h"
 
 GameObject::GameObject( string Name )
 {
@@ -9,8 +10,7 @@ GameObject::GameObject( string Name )
 
 	mMesh = new Mesh();
 
-	pTexture = new Texture2D();
-	pTexture->Load("");
+	pTexture = ImageLoader::Load("./assets/textures/mushroom.png");
 }
 
 GameObject::~GameObject()

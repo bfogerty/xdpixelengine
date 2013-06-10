@@ -10,7 +10,7 @@
 			>
 			<DebugSettings
 				Command="$(TargetPath)"
-				WorkingDirectory="$(SolutionDir)$(ConfigurationName)\..\..\..\assets\"
+				WorkingDirectory="$(SolutionDir)$(ConfigurationName)\..\..\..\"
 				CommandArguments=""
 				Attach="false"
 				DebuggerType="3"
