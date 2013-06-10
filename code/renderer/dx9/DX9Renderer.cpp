@@ -1,6 +1,6 @@
 #include "platform.h"
 
-#ifdef DX9_RENDERER
+#ifdef COMPILE_DX9_RENDERER
 #include <d3dx9.h>
 #include "DX9Renderer.h"
 #include "../Color.h"
@@ -42,10 +42,6 @@ DX9Renderer::DX9Renderer(RendererConfig config) : PlatformRenderer(config)
 	{
 		// Failed to Create Device.
 	}
-
-	//mpDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-
-	//FakeSceneSetup(config);
 }
 
 //-----------------------------------------------------------------------------------

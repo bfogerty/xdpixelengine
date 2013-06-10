@@ -4,10 +4,18 @@
 struct RendererConfig
 {
 public:
+
+	enum RENDER_API
+	{
+		DX9 = 0,
+		OPENGL,
+	};
+
 	int ScreenWidth;
 	int ScreenHeight;
 	bool FullScreen;
 	char *WindowHandle;
+	RENDER_API RenderAPI;
 
 	float GetAspectRatio()
 	{

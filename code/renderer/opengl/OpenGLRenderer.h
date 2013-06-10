@@ -25,6 +25,7 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
+	virtual void BindTexture(unsigned int ID);
 
 	// This needs to be factored out.
 	virtual void FakeSceneSetup( RendererConfig config );

@@ -8,6 +8,9 @@ GameObject::GameObject( string Name )
 	mpTransform = new Transform( this );
 
 	mMesh = new Mesh();
+
+	pTexture = new Texture2D();
+	pTexture->Load("");
 }
 
 GameObject::~GameObject()

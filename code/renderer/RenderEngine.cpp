@@ -11,10 +11,19 @@ RenderEngine::RenderEngine( RendererConfig config ) : mRenderer(0), mConfig(conf
 
 #ifdef PS2_RELEASE
 	mRenderer = static_cast<PlatformRenderer*>( new PS2Renderer(mConfig) );
-#elif DX9_RENDERER
-	mRenderer = static_cast<PlatformRenderer*>( new DX9Renderer( mConfig ) );
-#elif OPENGL_RENDERER
-	mRenderer = static_cast<PlatformRenderer*>( new OpenGLRenderer( mConfig ) );
+#else
+#if COMPILE_DX9_RENDERER
+	if( mConfig.RenderAPI == RendererConfig::DX9)
+	{
+		mRenderer = static_cast<PlatformRenderer*>( new DX9Renderer( mConfig ) );
+	}
+#endif
+#if COMPILE_OPENGL_RENDERER
+	if( mConfig.RenderAPI == RendererConfig::OPENGL)
+	{
+		mRenderer = static_cast<PlatformRenderer*>( new OpenGLRenderer( mConfig ) );
+	}
+#endif
 #endif
 
 	Matrix4x4 matProjection;
@@ -80,6 +89,7 @@ void RenderEngine::RenderGameObject( GameObject *pGameObject )
 		return;
 	}
 
+	mRenderer->BindTexture(pGameObject->pTexture->iTextureID);
 
 	mRenderer->BeginScene();
 	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, 

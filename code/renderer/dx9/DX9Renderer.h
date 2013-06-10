@@ -2,7 +2,7 @@
 #define __DX9_RENDERER__
 #include "platform.h"
 
-#ifdef DX9_RENDERER
+#ifdef COMPILE_DX9_RENDERER
 #define D3D_DEBUG_INFO
 #include "PlatformRenderer.h"
 #include "RendererConfig.h"

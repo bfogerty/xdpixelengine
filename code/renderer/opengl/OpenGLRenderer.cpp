@@ -1,6 +1,6 @@
 #include "platform.h"
 
-#ifdef OPENGL_RENDERER
+#ifdef COMPILE_OPENGL_RENDERER
 #include "OpenGLRenderer.h"
 #include "../Color.h"
 #include "../../core/math/Vector3.h"
@@ -59,10 +59,14 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 	{
 		// Color must come before vertex,
 		// otherwise the color will not be assigned to the correct vertex.
+		/*
 		glColor4d(	(GLdouble)triangle.colors[i].r, 
 					(GLdouble)triangle.colors[i].g, 
 					(GLdouble)triangle.colors[i].b, 
 					(GLdouble)triangle.colors[i].a );
+
+		*/
+		glTexCoord2d(triangle.uvs[i].x(),triangle.uvs[i].y());
 
 		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());
 	}
@@ -86,6 +90,13 @@ void OpenGLRenderer::BeginScene()
 	glLoadMatrixf(matModelView.mMatrix);
 
 	glBegin(GL_TRIANGLES);
+}
+
+//-----------------------------------------------------------------------------------
+void OpenGLRenderer::BindTexture( unsigned int ID )
+{
+	glEnable( GL_TEXTURE_2D );
+	glBindTexture( GL_TEXTURE_2D, ID );
 }
 
 //-----------------------------------------------------------------------------------

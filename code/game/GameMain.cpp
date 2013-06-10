@@ -7,7 +7,6 @@
 #include "../game/RenderTestComponent.h"
 #include "../game/TriangleComponent.h"
 
-
 //-----------------------------------------------------------------------------------
 void GameMain::OnAwake()
 {

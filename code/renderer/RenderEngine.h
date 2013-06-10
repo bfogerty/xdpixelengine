@@ -2,10 +2,13 @@
 
 #ifdef PS2_RELEASE
 #include "ps2/PS2Renderer.h"
-#elif DX9_RENDERER
+#else
+#if COMPILE_DX9_RENDERER
 #include "dx9/DX9Renderer.h"
-#elif OPENGL_RENDERER
+#endif
+#if COMPILE_OPENGL_RENDERER
 #include "opengl/OpenGLRenderer.h"
+#endif
 #endif
 
 class GameObject;

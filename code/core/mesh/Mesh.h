@@ -3,6 +3,7 @@
 #include <vector>
 #include "./math/Vector3.h"
 #include "../renderer/Color.h"
+#include "../resource/texture2d/Texture2D.h"
 using namespace std;
 
 class TriangleData
@@ -10,6 +11,7 @@ class TriangleData
 public:
 	Vector3 verts[3];
 	Color colors[3];
+	Vector3 uvs[3];
 };
 
 class Mesh
@@ -23,6 +25,7 @@ public:
 	vector<int> triangles;
 	vector<Vector3*> normals;
 	vector<Color*> colors;
+	vector<Vector3*> uvs;
 
 	TriangleData *GetTriangleData(int iTriangle);
 	void Build();

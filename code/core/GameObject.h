@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "./mesh/Mesh.h"
+#include "./resource/texture2d/Texture2D.h"
 using namespace std;
 
 // Forward Declarations
@@ -19,6 +20,7 @@ public:
 	std::vector<GameObjectComponent*> mComponents;
 	Transform *mpTransform;
 	Mesh *mMesh;
+	Texture2D *pTexture;
 
 	GameObject(string name);
 	virtual ~GameObject();
