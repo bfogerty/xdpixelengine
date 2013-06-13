@@ -28,9 +28,18 @@ Engine::Engine(EngineConfig config) : pRenderEngine(0)
 	renderConfig.ScreenWidth = 800;
 	renderConfig.ScreenHeight = 600;
 	renderConfig.WindowHandle = config.WindowHandle;
-	renderConfig.RenderAPI = RendererConfig::OPENGL;
-	pRenderEngine = new RenderEngine( renderConfig );
 
+	// TODO: We shouldn't use a define to determine which
+	// Rendering API to use.  This should come from a config
+	// file when we have config file tech.
+#ifdef USE_DX9_RENDERER
+	renderConfig.RenderAPI = RendererConfig::DX9;
+#elif USE_OPENGL_RENDERER
+	renderConfig.RenderAPI = RendererConfig::OPENGL;
+#endif
+	
+	RenderEngine::GetInstance()->Initialize(renderConfig);
+	
 	mpRootGameObject = new GameObject("root");
 	mpRootGameObject->AddComponent( static_cast<GameObjectComponent*>( new GameMain(mpRootGameObject) ) );
 
@@ -40,13 +49,6 @@ Engine::~Engine()
 {
 	delete mpRootGameObject;
 	mpRootGameObject = NULL;
-
-	if( pRenderEngine != NULL )
-	{
-		delete pRenderEngine;
-		pRenderEngine = NULL;
-	}
-
 }
 
 void Engine::Update()
@@ -56,7 +58,7 @@ void Engine::Update()
 	if( mpRootGameObject != NULL )
 	{
 		UpdateGameObject(mpRootGameObject);
-		pRenderEngine->Render(mpRootGameObject);
+		RenderEngine::GetInstance()->Render(mpRootGameObject);
 	}
 
 	Time::GetInstance()->End();

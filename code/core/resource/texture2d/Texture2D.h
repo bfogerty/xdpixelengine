@@ -13,6 +13,9 @@
 #include <gl/GLU.h>
 #endif
 
+#include "../renderer/RenderEngine.h"
+#include "../renderer/PlatformRenderer.h"
+
 using namespace std;
 
 class Texture2D
@@ -21,17 +24,13 @@ class Texture2D
 public:
 		Texture2D(unsigned char *data, unsigned int width, unsigned int height);
 
+		TextureInfo* GetTextureMemoryData() { return mpTextureInfo; }
 		unsigned char *data;
-		unsigned int iTextureID;
 		unsigned int Width;
 		unsigned int Height;
 
 protected:
-		void Upload();
-#ifdef COMPILE_OPENGL_RENDERER
-		void Upload_OpenGL();
-#endif
-
+		TextureInfo *mpTextureInfo;
 };
 
 

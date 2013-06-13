@@ -1,12 +1,26 @@
 #ifndef __PLATFORM_RENDERER__
 #define __PLATFORM_RENDERER__
+#include "../core/platform.h"
 #include "RendererConfig.h"
 #include "../core/math/Matrix4x4.h"
+
+#ifdef COMPILE_DX9_RENDERER
+#include <d3d9.h>
+#endif
 
 class Color;
 class Vector3;
 class TriangleData;
 class Matrix4x4;
+
+struct TextureInfo
+{
+	int iTextureID;
+
+	#ifdef COMPILE_DX9_RENDERER
+	LPDIRECT3DTEXTURE9 pDX9Texture;
+	#endif
+};
 
 class PlatformRenderer
 {
@@ -30,7 +44,8 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
-	virtual void BindTexture(unsigned int ID){};
+	virtual TextureInfo *CreateTexture(void *data, int Width, int Height){ return 0; }
+	virtual void BindTexture( TextureInfo *pTextureInfo ){};
 
 	// This needs to be factored out.
 	virtual void FakeSceneSetup(RendererConfig config);

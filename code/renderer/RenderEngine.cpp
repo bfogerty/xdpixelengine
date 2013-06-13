@@ -6,8 +6,28 @@
 #include "../core/math/MathHelper.h"
 #include "../core/Transform.h"
 
-RenderEngine::RenderEngine( RendererConfig config ) : mRenderer(0), mConfig(config)
+RenderEngine* RenderEngine::mpInstance = (RenderEngine*)0;
+
+RenderEngine* RenderEngine::GetInstance()
 {
+	if( mpInstance == 0 )
+	{
+		mpInstance = new RenderEngine();
+	}
+
+	return mpInstance;
+}
+
+RenderEngine::RenderEngine()
+{
+
+}
+
+void RenderEngine::Initialize(RendererConfig config)
+{
+	mRenderer = 0;
+	mConfig = config;
+
 
 #ifdef PS2_RELEASE
 	mRenderer = static_cast<PlatformRenderer*>( new PS2Renderer(mConfig) );
@@ -39,6 +59,7 @@ RenderEngine::RenderEngine( RendererConfig config ) : mRenderer(0), mConfig(conf
 	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, matWorld);
 
 	mRenderer->FakeSceneSetup(mConfig);
+
 }
 
 RenderEngine::~RenderEngine()
@@ -89,7 +110,7 @@ void RenderEngine::RenderGameObject( GameObject *pGameObject )
 		return;
 	}
 
-	mRenderer->BindTexture(pGameObject->pTexture->iTextureID);
+	mRenderer->BindTexture(pGameObject->pTexture->GetTextureMemoryData());
 
 	mRenderer->BeginScene();
 	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, 

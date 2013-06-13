@@ -57,14 +57,18 @@ struct CUSTOMVERT
 {
 	float x,y,z;
 	DWORD color;
+	float u,v;
 
-	CUSTOMVERT( Vector3 verts, Color color)
+	CUSTOMVERT( Vector3 verts, Color color, Vector3 texCoord)
 	{
 		x = verts.x();
 		y = verts.y();
 		z = verts.z();
 
 		this->color = D3DXCOLOR(color.r,color.g, color.b, color.a);
+
+		u = texCoord.x();
+		v = texCoord.y();
 	}
 };
 
@@ -80,12 +84,12 @@ void DX9Renderer::SetVertexDataViaSystemMemory(TriangleData triangle)
 {
 	CUSTOMVERT t[] = 
 	{
-		CUSTOMVERT(triangle.verts[0], triangle.colors[0]),
-		CUSTOMVERT(triangle.verts[1], triangle.colors[1]),
-		CUSTOMVERT(triangle.verts[2], triangle.colors[2])
+		CUSTOMVERT(triangle.verts[0], triangle.colors[0], triangle.uvs[0]),
+		CUSTOMVERT(triangle.verts[1], triangle.colors[1], triangle.uvs[1]),
+		CUSTOMVERT(triangle.verts[2], triangle.colors[2], triangle.uvs[2])
 	};
 
-	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
+	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	mpDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, t, sizeof(CUSTOMVERT));
 }
 
@@ -107,11 +111,12 @@ void DX9Renderer::SetVertexDataViaVertexBuffer(TriangleData triangle)
 	{
 		Vector3 points = triangle.verts[i];
 		Color color = triangle.colors[i];
-		*pVerts++ = CUSTOMVERT(points, color);
+		Vector3 texCoord = triangle.uvs[i];
+		*pVerts++ = CUSTOMVERT(points, color, texCoord);
 	}
 	pVertexBuffer->Unlock();
 
-	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
+	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	mpDev->SetStreamSource(0, pVertexBuffer, 0, sizeof(CUSTOMVERT));
 	mpDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
 }
@@ -138,8 +143,56 @@ void DX9Renderer::BeginScene()
 }
 
 //-----------------------------------------------------------------------------------
+TextureInfo *DX9Renderer::CreateTexture(void *data, int Width, int Height)
+{
+	UCHAR r, g, b;
+	UINT *pDest;
+	int nRow, nPixel;
+	D3DLOCKED_RECT d3dRect;
+	TextureInfo *pTextureInfo = new TextureInfo();
+	
+	mpDev->CreateTexture(Width,Height,0,D3DUSAGE_DYNAMIC,D3DFMT_X8R8G8B8,D3DPOOL_DEFAULT, &pTextureInfo->pDX9Texture, NULL);
+	pTextureInfo->pDX9Texture->LockRect(0,&d3dRect,0,0);
+
+	d3dRect.Pitch >>= 2;
+
+	// copy the image
+	unsigned char *pSrc = (unsigned char *)data;
+	for (nRow = 0; nRow < Height; nRow++)
+	{
+		// set destination pointer for this row
+		pDest = (UINT*)d3dRect.pBits + (nRow + 0) * d3dRect.Pitch + 0;
+
+		// copy the row
+		for (nPixel = 0; nPixel < Width; nPixel++)
+		{
+			// extract pixel data
+
+			r = *pSrc++;
+			g = *pSrc++;
+			b = *pSrc++;
+
+			// write color word to texture
+
+			(*pDest++) = 0xFF000000 | (r << 16) | (g << 8) | b;
+		}
+	}
+
+	pTextureInfo->pDX9Texture->UnlockRect(0);
+
+	return pTextureInfo;
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::BindTexture( TextureInfo *pTextureInfo )
+{
+	mpDev->SetTexture(0, pTextureInfo->pDX9Texture);
+}
+
+//-----------------------------------------------------------------------------------
 void DX9Renderer::EndScene()
 {
+	mpDev->SetTexture(0, 0);
 	mpDev->EndScene();
 }
 

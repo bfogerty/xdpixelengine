@@ -23,6 +23,8 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
+	virtual TextureInfo *CreateTexture(void *data, int Width, int Height);
+	virtual void BindTexture( TextureInfo *pTextureInfo );
 
 	// This should be factored out
 	void FakeSceneSetup(RendererConfig config);

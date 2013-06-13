@@ -91,10 +91,28 @@ void OpenGLRenderer::BeginScene()
 }
 
 //-----------------------------------------------------------------------------------
-void OpenGLRenderer::BindTexture( unsigned int ID )
+TextureInfo *OpenGLRenderer::CreateTexture(void *data, int Width, int Height)
+{
+	TextureInfo *pTextureInfo = new TextureInfo();
+
+	int wrap = 1;
+	glGenTextures(1, (GLuint*)&pTextureInfo->iTextureID);
+	glBindTexture(GL_TEXTURE_2D, pTextureInfo->iTextureID);
+
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)data);
+
+	//// build our texture mipmaps
+	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, Width, Height,
+		GL_RGB, GL_UNSIGNED_BYTE, data );
+
+	return pTextureInfo;
+}
+
+//-----------------------------------------------------------------------------------
+void OpenGLRenderer::BindTexture( TextureInfo *pTextureInfo )
 {
 	glEnable( GL_TEXTURE_2D );
-	glBindTexture( GL_TEXTURE_2D, ID );
+	glBindTexture( GL_TEXTURE_2D, pTextureInfo->iTextureID );
 }
 
 //-----------------------------------------------------------------------------------

@@ -1,3 +1,6 @@
+#ifndef __ENGINE__
+#define __ENGINE__
+
 #include "RendererConfig.h"
 #include "RenderEngine.h"
 
@@ -25,3 +28,5 @@ protected:
 	GameObject *mpRootGameObject;
 
 };
+
+#endif

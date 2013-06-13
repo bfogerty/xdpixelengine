@@ -1,5 +1,5 @@
 #ifndef		__OPENGL_RENDERER__
-#define		__OPENGL__RENDERER__
+#define		__OPENGL_RENDERER__
 #include "platform.h"
 #include "PlatformRenderer.h"
 #include "RendererConfig.h"
@@ -25,7 +25,8 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
-	virtual void BindTexture(unsigned int ID);
+	virtual TextureInfo *CreateTexture(void *data, int Width, int Height);
+	virtual void BindTexture( TextureInfo *pTextureInfo );
 
 	// This needs to be factored out.
 	virtual void FakeSceneSetup( RendererConfig config );

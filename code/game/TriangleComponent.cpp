@@ -3,10 +3,13 @@
 #include "../core/mesh/Mesh.h"
 #include "../core/Transform.h"
 #include "../core/time/Time.h"
+#include "./resource/image_loaders/ImageLoader.h"
 
 //-----------------------------------------------------------------------------------
 void TriangleComponent::OnAwake()
 {
+	this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/mushroom.png");
+
 	Mesh *mesh = mpGameObject->mMesh;
 
 	mesh->verticies.push_back(new Vector3(-1,0,10));

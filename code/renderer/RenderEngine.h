@@ -1,3 +1,6 @@
+#ifndef __RENDER_ENGINE__
+#define __RENDER_ENGINE__
+
 #include "PlatformRenderer.h"
 
 #ifdef PS2_RELEASE
@@ -18,10 +21,16 @@ class RenderEngine
 {
 public:
 
-	RenderEngine( RendererConfig config );
+	RenderEngine();
 	~RenderEngine();
 
+	static RenderEngine *mpInstance;
+	static RenderEngine* GetInstance();
+
+	void Initialize(RendererConfig renderConfig);
 	void Render(GameObject *pGameObject);
+
+	PlatformRenderer *GetRenderer() { return mRenderer; }
 
 protected:
 
@@ -30,3 +39,9 @@ protected:
 	PlatformRenderer *mRenderer;
 	RendererConfig mConfig;
 };
+
+
+#endif
+
+
+
