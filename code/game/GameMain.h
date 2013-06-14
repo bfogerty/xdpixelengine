@@ -16,6 +16,8 @@ public:
 
 protected:
 
+	void LoadLua();
+
 };
 
 #endif

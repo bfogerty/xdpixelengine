@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;&quot;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer"
+				AdditionalIncludeDirectories="&quot;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8&quot;;&quot;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;&quot;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\&quot;;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
