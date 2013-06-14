@@ -10,6 +10,8 @@
 
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include "../../core/resource/texture2d/Texture2D.h"
+#include "../../core/resource/texture2d/OpenGLTexture2D.h"
 
 class Color;
 class TriangleData;
@@ -25,8 +27,8 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
-	virtual TextureInfo *CreateTexture(void *data, int Width, int Height);
-	virtual void BindTexture( TextureInfo *pTextureInfo );
+	virtual void CreateTexture(Texture2D &texture);
+	virtual void BindTexture( Texture2D *pTexture );
 
 	// This needs to be factored out.
 	virtual void FakeSceneSetup( RendererConfig config );

@@ -110,11 +110,16 @@ void RenderEngine::RenderGameObject( GameObject *pGameObject )
 		return;
 	}
 
-	mRenderer->BindTexture(pGameObject->pTexture->GetTextureMemoryData());
+	// Bind the GameObject's texture if it has one.
+	if(pGameObject->pTexture)
+	{
+		mRenderer->BindTexture(pGameObject->pTexture);
+	}
 
-	mRenderer->BeginScene();
 	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, 
 		pGameObject->mpTransform->mMatWorld);
+
+	mRenderer->BeginScene();
 
 	//   ... Draw Here ...
 
@@ -124,4 +129,8 @@ void RenderEngine::RenderGameObject( GameObject *pGameObject )
 		mRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
 	}
 	mRenderer->EndScene();
+
+	// Unbind the texture if one was given.
+	mRenderer->BindTexture(0);
+	
 }

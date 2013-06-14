@@ -12,15 +12,7 @@ class Color;
 class Vector3;
 class TriangleData;
 class Matrix4x4;
-
-struct TextureInfo
-{
-	int iTextureID;
-
-	#ifdef COMPILE_DX9_RENDERER
-	LPDIRECT3DTEXTURE9 pDX9Texture;
-	#endif
-};
+class Texture2D;
 
 class PlatformRenderer
 {
@@ -44,8 +36,8 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
-	virtual TextureInfo *CreateTexture(void *data, int Width, int Height){ return 0; }
-	virtual void BindTexture( TextureInfo *pTextureInfo ){};
+	virtual void CreateTexture(Texture2D &texture){ }
+	virtual void BindTexture( Texture2D *pTexture ){};
 
 	// This needs to be factored out.
 	virtual void FakeSceneSetup(RendererConfig config);

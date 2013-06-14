@@ -143,28 +143,29 @@ void DX9Renderer::BeginScene()
 }
 
 //-----------------------------------------------------------------------------------
-TextureInfo *DX9Renderer::CreateTexture(void *data, int Width, int Height)
+void DX9Renderer::CreateTexture(Texture2D &texture)
 {
 	UCHAR r, g, b;
 	UINT *pDest;
-	int nRow, nPixel;
+	unsigned int nRow, nPixel;
 	D3DLOCKED_RECT d3dRect;
-	TextureInfo *pTextureInfo = new TextureInfo();
+
+	DX9Texture2D *pTexture = static_cast<DX9Texture2D*>(&texture);
 	
-	mpDev->CreateTexture(Width,Height,0,D3DUSAGE_DYNAMIC,D3DFMT_X8R8G8B8,D3DPOOL_DEFAULT, &pTextureInfo->pDX9Texture, NULL);
-	pTextureInfo->pDX9Texture->LockRect(0,&d3dRect,0,0);
+	mpDev->CreateTexture(pTexture->Width,pTexture->Height,0,D3DUSAGE_DYNAMIC,D3DFMT_X8R8G8B8,D3DPOOL_DEFAULT, &pTexture->mpTexture, NULL);
+	pTexture->mpTexture->LockRect(0,&d3dRect,0,0);
 
 	d3dRect.Pitch >>= 2;
 
 	// copy the image
-	unsigned char *pSrc = (unsigned char *)data;
-	for (nRow = 0; nRow < Height; nRow++)
+	unsigned char *pSrc = (unsigned char *)pTexture->data;
+	for (nRow = 0; nRow < pTexture->Height; nRow++)
 	{
 		// set destination pointer for this row
 		pDest = (UINT*)d3dRect.pBits + (nRow + 0) * d3dRect.Pitch + 0;
 
 		// copy the row
-		for (nPixel = 0; nPixel < Width; nPixel++)
+		for (nPixel = 0; nPixel < pTexture->Width; nPixel++)
 		{
 			// extract pixel data
 
@@ -178,21 +179,26 @@ TextureInfo *DX9Renderer::CreateTexture(void *data, int Width, int Height)
 		}
 	}
 
-	pTextureInfo->pDX9Texture->UnlockRect(0);
-
-	return pTextureInfo;
+	pTexture->mpTexture->UnlockRect(0);
 }
 
 //-----------------------------------------------------------------------------------
-void DX9Renderer::BindTexture( TextureInfo *pTextureInfo )
+void DX9Renderer::BindTexture( Texture2D *pTexture )
 {
-	mpDev->SetTexture(0, pTextureInfo->pDX9Texture);
+	if( pTexture != 0)
+	{
+		DX9Texture2D *pDX9Texture = static_cast<DX9Texture2D*>(pTexture);
+		mpDev->SetTexture(0, pDX9Texture->mpTexture);
+	}
+	else
+	{
+		mpDev->SetTexture(0, 0);
+	}
 }
 
 //-----------------------------------------------------------------------------------
 void DX9Renderer::EndScene()
 {
-	mpDev->SetTexture(0, 0);
 	mpDev->EndScene();
 }
 

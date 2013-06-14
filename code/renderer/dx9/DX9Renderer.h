@@ -8,9 +8,12 @@
 #include "RendererConfig.h"
 #include <d3d9.h>
 #include <d3dx9.h>
+#include "../../core/resource/texture2d/Texture2D.h"
+#include "../../core/resource/texture2d/DX9Texture2D.h"
 
 class Color;
 class TriangleData;
+class Texture2D;
 
 class DX9Renderer : public PlatformRenderer
 {
@@ -23,8 +26,8 @@ public:
 	virtual void Present();
 
 	virtual void SetVertexData(TriangleData triangle);
-	virtual TextureInfo *CreateTexture(void *data, int Width, int Height);
-	virtual void BindTexture( TextureInfo *pTextureInfo );
+	virtual void CreateTexture(Texture2D &texture);
+	virtual void BindTexture( Texture2D *pTexture );
 
 	// This should be factored out
 	void FakeSceneSetup(RendererConfig config);

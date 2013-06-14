@@ -27,9 +27,12 @@ void Mesh::Build()
 		pTri->colors[1] = *colors[i+1];
 		pTri->colors[2] = *colors[i+2];
 
-		pTri->uvs[0] = *uvs[i+0];
-		pTri->uvs[1] = *uvs[i+1];
-		pTri->uvs[2] = *uvs[i+2];
+		if(uvs.size() > 0 )
+		{
+			pTri->uvs[0] = *uvs[i+0];
+			pTri->uvs[1] = *uvs[i+1];
+			pTri->uvs[2] = *uvs[i+2];
+		}
 
 		triangleData.push_back(pTri);
 	}

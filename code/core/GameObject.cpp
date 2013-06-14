@@ -8,6 +8,8 @@ GameObject::GameObject( string Name )
 	mpTransform = new Transform( this );
 
 	mMesh = new Mesh();
+	pTexture = 0;
+	
 }
 
 GameObject::~GameObject()
@@ -21,10 +23,12 @@ GameObject::~GameObject()
 	mComponents.clear();
 
 	delete mpTransform;
-	mpTransform = NULL;
+	mpTransform = 0;
 
 	delete mMesh;
-	mMesh = NULL;
+	mMesh = 0;
+
+	pTexture = 0;
 }
 
 void GameObject::AddComponent( GameObjectComponent *component )

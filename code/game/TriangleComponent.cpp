@@ -16,9 +16,13 @@ void TriangleComponent::OnAwake()
 	mesh->verticies.push_back(new Vector3(0,1, 10));
 	mesh->verticies.push_back(new Vector3(1,0, 10));
 
-	mesh->colors.push_back(new Color(255,0,0));
-	mesh->colors.push_back(new Color(0,255,0));
-	mesh->colors.push_back(new Color(0,0,255));
+	//mesh->colors.push_back(new Color(255,0,0));
+	//mesh->colors.push_back(new Color(0,255,0));
+	//mesh->colors.push_back(new Color(0,0,255));
+
+	mesh->colors.push_back(new Color(Color::RED));
+	mesh->colors.push_back(new Color(Color::RED));
+	mesh->colors.push_back(new Color(Color::RED));
 
 	mesh->uvs.push_back(new Vector3(0.0f, 0.0f, 0.0f));
 	mesh->uvs.push_back(new Vector3(1.0f, 0.0f, 0.0f));

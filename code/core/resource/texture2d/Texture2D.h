@@ -13,24 +13,16 @@
 #include <gl/GLU.h>
 #endif
 
-#include "../renderer/RenderEngine.h"
-#include "../renderer/PlatformRenderer.h"
-
 using namespace std;
 
 class Texture2D
 {
-
 public:
 		Texture2D(unsigned char *data, unsigned int width, unsigned int height);
 
-		TextureInfo* GetTextureMemoryData() { return mpTextureInfo; }
 		unsigned char *data;
 		unsigned int Width;
 		unsigned int Height;
-
-protected:
-		TextureInfo *mpTextureInfo;
 };
 
 

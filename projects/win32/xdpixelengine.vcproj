@@ -251,6 +251,14 @@
 						Name="texture2d"
 						>
 						<File
+							RelativePath="..\..\code\core\resource\texture2d\DX9Texture2D.cpp"
+							>
+						</File>
+						<File
+							RelativePath="..\..\code\core\resource\texture2d\OpenGLTexture2D.cpp"
+							>
+						</File>
+						<File
 							RelativePath="..\..\code\core\resource\texture2d\Texture2D.cpp"
 							>
 						</File>
@@ -408,6 +416,14 @@
 					<Filter
 						Name="texture2d"
 						>
+						<File
+							RelativePath="..\..\code\core\resource\texture2d\DX9Texture2D.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\code\core\resource\texture2d\OpenGLTexture2D.h"
+							>
+						</File>
 						<File
 							RelativePath="..\..\code\core\resource\texture2d\Texture2D.h"
 							>

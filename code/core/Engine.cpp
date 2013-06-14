@@ -55,7 +55,7 @@ void Engine::Update()
 {
 	Time::GetInstance()->Start();
 
-	if( mpRootGameObject != NULL )
+	if( mpRootGameObject != 0 )
 	{
 		UpdateGameObject(mpRootGameObject);
 		RenderEngine::GetInstance()->Render(mpRootGameObject);

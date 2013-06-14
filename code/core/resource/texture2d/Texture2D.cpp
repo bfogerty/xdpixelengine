@@ -1,5 +1,6 @@
 #include "Texture2D.h"
-#include <fstream>
+#include "../../renderer/RenderEngine.h"
+#include "../../renderer/PlatformRenderer.h"
 
 Texture2D::Texture2D(unsigned char *data, unsigned int width, unsigned int height)
 {
@@ -7,10 +8,7 @@ Texture2D::Texture2D(unsigned char *data, unsigned int width, unsigned int heigh
 	this->Width = width;
 	this->Height = height;
 
-	mpTextureInfo = RenderEngine::GetInstance()->GetRenderer()->CreateTexture(	this->data, 
-																				this->Width, 
-																				this->Height);
-	
+	RenderEngine::GetInstance()->GetRenderer()->CreateTexture(*this);
 }
 
 //void Texture2D::Load(string strName)

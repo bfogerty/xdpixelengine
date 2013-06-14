@@ -73,7 +73,7 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::Clear(Color c)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(c.r, c.g, c.b, c.a);
 }
 
@@ -91,28 +91,36 @@ void OpenGLRenderer::BeginScene()
 }
 
 //-----------------------------------------------------------------------------------
-TextureInfo *OpenGLRenderer::CreateTexture(void *data, int Width, int Height)
+void OpenGLRenderer::CreateTexture(Texture2D &texture)
 {
-	TextureInfo *pTextureInfo = new TextureInfo();
+	OpenGLTexture2D *pTexture = static_cast<OpenGLTexture2D*>(&texture);
 
 	int wrap = 1;
-	glGenTextures(1, (GLuint*)&pTextureInfo->iTextureID);
-	glBindTexture(GL_TEXTURE_2D, pTextureInfo->iTextureID);
+	glGenTextures(1, (GLuint*)&pTexture->iTextureID);
+	glBindTexture(GL_TEXTURE_2D, pTexture->iTextureID);
 
 	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)data);
 
 	//// build our texture mipmaps
-	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, Width, Height,
-		GL_RGB, GL_UNSIGNED_BYTE, data );
-
-	return pTextureInfo;
+	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, pTexture->Width, pTexture->Height,
+		GL_RGB, GL_UNSIGNED_BYTE, pTexture->data );
 }
 
 //-----------------------------------------------------------------------------------
-void OpenGLRenderer::BindTexture( TextureInfo *pTextureInfo )
+void OpenGLRenderer::BindTexture( Texture2D *pTexture )
 {
-	glEnable( GL_TEXTURE_2D );
-	glBindTexture( GL_TEXTURE_2D, pTextureInfo->iTextureID );
+	if( pTexture != 0 )
+	{
+		OpenGLTexture2D *pOpenGLTexture = static_cast<OpenGLTexture2D*>(pTexture);
+		glEnable( GL_TEXTURE_2D );
+		glBindTexture( GL_TEXTURE_2D, pOpenGLTexture->iTextureID);
+	
+	}
+	else
+	{
+		glBindTexture( GL_TEXTURE_2D, 0 );
+		glDisable( GL_TEXTURE_2D );
+	}
 }
 
 //-----------------------------------------------------------------------------------
