@@ -16,6 +16,9 @@ public:
 
 protected:
 
+	float mft;
+	char mDir;
+
 };
 
 #endif

@@ -35,20 +35,21 @@ void GameMain::OnAwake()
 	mpGameObject->mpTransform->mMatWorld.Translate(Vector3(0.0f, 0.0f, 0.0f));
 
 	// Add Game Specific logic below.
-	GameObject *pGameObject = new GameObject("RenderTest0");
-	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new TriangleComponent(pGameObject) ) );
-	mpGameObject->mpTransform->mChildren.push_back(pGameObject->mpTransform);
+	GameObject *pChildObj = new GameObject("RenderTest0");
+	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new TriangleComponent(pChildObj) ) );
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	
-
-	pGameObject = new GameObject("RenderTest1");
-	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pGameObject) ) );
-	mpGameObject->mpTransform->mChildren.push_back(pGameObject->mpTransform);
+	/*
+	pChildObj = new GameObject("RenderTest1");
+	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	
-	pGameObject = new GameObject("RenderTest2");
-	pGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pGameObject) ) );
-	mpGameObject->mpTransform->mChildren.push_back(pGameObject->mpTransform);
+	pChildObj = new GameObject("RenderTest2");
+	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+	*/
 	
-	LoadLua();
+	//LoadLua();
 }
 
 //-----------------------------------------------------------------------------------

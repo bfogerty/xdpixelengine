@@ -16,11 +16,17 @@ public:
 
 	GameObject *mpGameObject;
 	Matrix4x4 mMatWorld;
+	Transform *mpParent;
 
 	std::vector<Transform*> mChildren;
 
 	Transform( GameObject *pGameObject );
 	virtual ~Transform();
+
+	void SetParent(Transform &parent);
+
+	void SetPosition(Vector3 &vecPos);
+	void SetLocalPosition(Vector3 &vecPos);
 };
 
 #endif
