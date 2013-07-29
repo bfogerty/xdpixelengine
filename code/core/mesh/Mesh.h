@@ -12,6 +12,7 @@ public:
 	Vector3 verts[3];
 	Color colors[3];
 	Vector3 uvs[3];
+	Vector3 normals[3];
 };
 
 class Mesh
@@ -29,6 +30,8 @@ public:
 
 	TriangleData *GetTriangleData(int iTriangle);
 	void Build();
+
+	void Clone(Mesh *pSrcMesh);
 
 	vector<TriangleData*> triangleData;
 };

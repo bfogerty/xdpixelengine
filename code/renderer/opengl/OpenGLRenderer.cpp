@@ -66,6 +66,8 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 
 		glTexCoord2d(triangle.uvs[i].x(),triangle.uvs[i].y());
 
+		glNormal3f( triangle.normals[i].x(), triangle.normals[i].y(), triangle.normals[i].z() );
+
 		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());
 	}
 }
@@ -75,6 +77,8 @@ void OpenGLRenderer::Clear(Color c)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(c.r, c.g, c.b, c.a);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 //-----------------------------------------------------------------------------------

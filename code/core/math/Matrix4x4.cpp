@@ -166,6 +166,20 @@ void Matrix4x4::Translate( Vector3 position )
 }
 
 //-----------------------------------------------------------------------------------
+void Matrix4x4::RotationY( float degrees )
+{
+	float fRad = degrees * MathHelper::Deg2Rad;
+	float fs = sin(fRad);
+	float fc = cos(fRad);
+
+	SetIdentity();
+	Set(0,0, fc);
+	Set(2,0, fs);
+	Set(0,2, -fs);
+	Set(2,2, fc);
+}
+
+//-----------------------------------------------------------------------------------
 void Matrix4x4::RotationZ( float degrees )
 {
 	float fRad = degrees * MathHelper::Deg2Rad;
@@ -177,4 +191,13 @@ void Matrix4x4::RotationZ( float degrees )
 	Set(1,0, fs);
 	Set(0,1, -fs);
 	Set(1,1, fc);
+}
+
+//-----------------------------------------------------------------------------------
+void Matrix4x4::UniformScale( float fScale )
+{
+	SetIdentity();
+	Set(0,0, fScale);
+	Set(1,1, fScale);
+	Set(2,2, fScale);
 }

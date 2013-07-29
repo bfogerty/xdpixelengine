@@ -43,7 +43,6 @@ void TriangleComponent::OnAwake()
 	Quaternion qRot = Quaternion::AxisAngle(vAxis, -90.0f);
 
 	vP = qRot * vP;
-
 }
 
 //-----------------------------------------------------------------------------------

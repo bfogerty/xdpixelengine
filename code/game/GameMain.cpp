@@ -6,6 +6,7 @@
 
 #include "../game/RenderTestComponent.h"
 #include "../game/TriangleComponent.h"
+#include "../game/ObjLoaderTestComponent.h"
 
 extern "C"
 {
@@ -36,7 +37,7 @@ void GameMain::OnAwake()
 
 	// Add Game Specific logic below.
 	GameObject *pChildObj = new GameObject("RenderTest0");
-	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new TriangleComponent(pChildObj) ) );
+	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	
 	/*

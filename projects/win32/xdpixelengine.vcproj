@@ -279,6 +279,22 @@
 							>
 						</File>
 					</Filter>
+					<Filter
+						Name="model_loaders"
+						>
+						<File
+							RelativePath="..\..\code\core\resource\model_loaders\ObjLoader.cpp"
+							>
+						</File>
+					</Filter>
+				</Filter>
+				<Filter
+					Name="input"
+					>
+					<File
+						RelativePath="..\..\code\core\input\Input.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -326,6 +342,10 @@
 				>
 				<File
 					RelativePath="..\..\code\game\GameMain.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\game\ObjLoaderTestComponent.cpp"
 					>
 				</File>
 				<File
@@ -449,6 +469,22 @@
 							>
 						</File>
 					</Filter>
+					<Filter
+						Name="model_loaders"
+						>
+						<File
+							RelativePath="..\..\code\core\resource\model_loaders\ObjLoader.h"
+							>
+						</File>
+					</Filter>
+				</Filter>
+				<Filter
+					Name="input"
+					>
+					<File
+						RelativePath="..\..\code\core\input\Input.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -500,6 +536,10 @@
 				>
 				<File
 					RelativePath="..\..\code\game\GameMain.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\code\game\ObjLoaderTestComponent.h"
 					>
 				</File>
 				<File

@@ -47,7 +47,7 @@ void RenderEngine::Initialize(RendererConfig config)
 #endif
 
 	Matrix4x4 matProjection;
-	matProjection.SetPerspectiveFovLH(45.0f * MathHelper::Deg2Rad, mConfig.GetAspectRatio(), 0.01f, 1000.0f);
+	matProjection.SetPerspectiveFovLH(45.0f * MathHelper::Deg2Rad, mConfig.GetAspectRatio(), 0.001f, 10000.0f);
 	mRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
 
 	Matrix4x4 matView;
