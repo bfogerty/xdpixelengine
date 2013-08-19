@@ -22,8 +22,8 @@ int LuaTest(lua_State *pLuaState)
 
 	for(int i=1; i<=argc; ++i)
 	{
-		OutputDebugStr(lua_tostring(pLuaState, i));
-		OutputDebugStr("\n");
+		//OutputDebugStr(lua_tostring(pLuaState, i));
+		//OutputDebugStr("\n");
 	}
 
 	return 0;
@@ -36,19 +36,24 @@ void GameMain::OnAwake()
 	mpGameObject->mpTransform->mMatWorld.Translate(Vector3(0.0f, 0.0f, 0.0f));
 
 	// Add Game Specific logic below.
+	/*
 	GameObject *pChildObj = new GameObject("RenderTest0");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+	*/
+
 	
-	/*
-	pChildObj = new GameObject("RenderTest1");
+	GameObject *pChildObj = new GameObject("RenderTest1");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+	
+
 	
 	pChildObj = new GameObject("RenderTest2");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	*/
+	
+	
 	
 	//LoadLua();
 }

@@ -15,6 +15,17 @@ class Transform;
 class GameObject : BaseObject
 {
 public:
+
+	enum EPrimitiveType
+	{
+		Plane = 0,
+		Cube,
+		Sphere,
+		Cylinder,
+		Torus,
+		Pyramid
+	};
+
 	string mName;
 	std::vector<int> mComponents1;
 	std::vector<GameObjectComponent*> mComponents;
@@ -29,6 +40,8 @@ public:
 	void RemoveComponent( GameObjectComponent *component );
 
 	void OnUpdate();
+
+	static GameObject* CreatePrimitive( EPrimitiveType type );
 };
 
 #endif

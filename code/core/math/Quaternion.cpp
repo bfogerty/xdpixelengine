@@ -128,3 +128,36 @@ Quaternion Quaternion::Inverse(Quaternion quat)
 
 	return qResult;
 }
+
+//-----------------------------------------------------------------------------------
+Matrix4x4 Quaternion::ToMatrix(Quaternion quat)
+{
+	Matrix4x4 mat;
+
+	float t = acos(quat.w)*2.0f;;
+	float ct = cos(t);
+	float st = sin(t);
+	float stDiv2 = sin(t/2.0f);
+	float OMCT = (1.0f - ct);
+
+	Vector3 n;
+	n.x(quat.v.x() / stDiv2);
+	n.y(quat.v.y() / stDiv2);
+	n.z(quat.v.z() / stDiv2);
+
+	float nx2 = n.x() * n.x();
+	float ny2 = n.y() * n.y();
+	float nz2 = n.z() * n.z();
+
+	float nxny = n.x() * n.y();
+	float nxnz = n.x() * n.z();
+	float nynz = n.y() * n.z();
+
+	mat.Set(0,0, nx2*OMCT+ct);				mat.Set(1,0, nxny*OMCT+n.z()*st);		mat.Set(2,0, nxnz*OMCT-n.y()*st);
+	mat.Set(0,1, nxny*OMCT-n.z()*st);		mat.Set(1,1, ny2*OMCT+ct);				mat.Set(2,1, nynz*OMCT+n.x()*st);
+	mat.Set(0,2, nxnz*OMCT+n.y()*st);		mat.Set(1,2, nynz*OMCT-n.x()*st);		mat.Set(2,2, nz2*OMCT+ct);
+
+	return mat;
+}
+
+

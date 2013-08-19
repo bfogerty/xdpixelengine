@@ -2,6 +2,7 @@
 #define __QUATERNION__
 
 #include "Vector3.h"
+#include "Matrix4x4.h"
 
 class Quaternion
 {
@@ -19,6 +20,7 @@ public:
 	static Quaternion Conjugate(Quaternion quat);
 	static float Magnitude(Quaternion quat);
 	static Quaternion Inverse(Quaternion quat);
+	static Matrix4x4 ToMatrix(Quaternion quat);
 
 	float w;
 	Vector3 v;

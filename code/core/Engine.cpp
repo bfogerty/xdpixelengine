@@ -6,6 +6,7 @@
 #include "time/Time.h"
 #include "math/Matrix4x4.h"
 #include <iostream>
+#include "input/Input.h"
 #include "../game/GameMain.h"
 //#include "../game/RenderTestComponent.h"
 
@@ -40,6 +41,8 @@ Engine::Engine(EngineConfig config) : pRenderEngine(0)
 	
 	RenderEngine::GetInstance()->Initialize(renderConfig);
 	
+	Input::Inst()->Initialize();
+
 	mpRootGameObject = new GameObject("root");
 	mpRootGameObject->AddComponent( static_cast<GameObjectComponent*>( new GameMain(mpRootGameObject) ) );
 
@@ -74,6 +77,7 @@ void Engine::UpdateGameObject( GameObject *pGameObject )
 	}
 
 	pGameObject->OnUpdate();
+	pGameObject->mpTransform->Update();
 
 	int iChildCount = pGameObject->mpTransform->mChildren.size();
 	for(int i=0; i< iChildCount; ++i)

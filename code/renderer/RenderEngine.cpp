@@ -47,7 +47,7 @@ void RenderEngine::Initialize(RendererConfig config)
 #endif
 
 	Matrix4x4 matProjection;
-	matProjection.SetPerspectiveFovLH(45.0f * MathHelper::Deg2Rad, mConfig.GetAspectRatio(), 0.001f, 10000.0f);
+	matProjection.SetPerspectiveFovLH(45.0f * MathHelper::Deg2Rad, mConfig.GetAspectRatio(), 0.00f, 10000.0f);
 	mRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
 
 	Matrix4x4 matView;
@@ -132,5 +132,12 @@ void RenderEngine::RenderGameObject( GameObject *pGameObject )
 
 	// Unbind the texture if one was given.
 	mRenderer->BindTexture(0);
+
+	int iChildCount = pGameObject->mpTransform->mChildren.size();
+	for(int i=0; i< iChildCount; ++i)
+	{
+		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
+		RenderGameObject( pChild );
+	}
 	
 }

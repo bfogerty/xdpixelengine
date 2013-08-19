@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "Transform.h"
+#include "./resource/model_loaders/ObjLoader.h"
 
 GameObject::GameObject( string Name )
 {
@@ -70,4 +71,48 @@ void GameObject::OnUpdate()
 	{
 		mComponents[i]->OnUpdate();
 	}
+}
+
+GameObject* GameObject::CreatePrimitive( EPrimitiveType type )
+{
+	GameObject *pGO = 0;
+
+	if( type == Plane )
+	{
+		pGO = new GameObject("Plane");
+		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Plane.obj");
+		pGO->mMesh->Clone(pMeshTest);
+	}
+	else if( type == Sphere )
+	{
+		pGO = new GameObject("Sphere");
+		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Sphere.obj");
+		pGO->mMesh->Clone(pMeshTest);
+	}
+	else if( type == Cube )
+	{
+		pGO = new GameObject("Cube");
+		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Cube.obj");
+		pGO->mMesh->Clone(pMeshTest);
+	}
+	else if( type == Cylinder )
+	{
+		pGO = new GameObject("Cylinder");
+		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Cylinder.obj");
+		pGO->mMesh->Clone(pMeshTest);
+	}
+	else if( type == Torus )
+	{
+		pGO = new GameObject("Torus");
+		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Torus.obj");
+		pGO->mMesh->Clone(pMeshTest);
+	}
+	else if( type == Pyramid )
+	{
+		pGO = new GameObject("Pyramid");
+		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Pyramid.obj");
+		pGO->mMesh->Clone(pMeshTest);
+	}
+
+	return pGO;
 }

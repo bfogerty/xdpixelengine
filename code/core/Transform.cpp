@@ -22,12 +22,6 @@ Transform::~Transform()
 }
 
 //-----------------------------------------------------------------------------------
-void Transform::SetParent(Transform &parent)
-{
-	mpParent = &parent;
-}
-
-//-----------------------------------------------------------------------------------
 void Transform::SetPosition(Vector3 &vecPos)
 {
 	mMatWorld.Translate(vecPos);
@@ -37,4 +31,38 @@ void Transform::SetPosition(Vector3 &vecPos)
 void Transform::SetLocalPosition(Vector3 &vecPos)
 {
 	
+}
+
+//-----------------------------------------------------------------------------------
+void Transform::Update()
+{
+	matScale.SetIdentity();
+	matScale.UniformScale(Scale.x());
+	
+	matRotation.SetIdentity();
+	matRotation = Quaternion::ToMatrix(Rotation);
+
+	matPosition.SetIdentity();
+	matPosition.Translate(Position);
+
+
+	mMatWorld = matScale * matRotation * matPosition;
+}
+
+//-----------------------------------------------------------------------------------
+Transform* Transform::GetParent()
+{
+	return mpParent;
+}
+
+//-----------------------------------------------------------------------------------
+void Transform::SetParent(Transform &parent)
+{
+	if( mpParent != 0 )
+	{
+		//mpParent->mChildren.erase(this);
+	}
+
+	mpParent = &parent;
+	mpParent->mChildren.push_back(this);
 }

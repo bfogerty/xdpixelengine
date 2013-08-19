@@ -154,6 +154,7 @@ void Matrix4x4::SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, 
 	Set(2,2, fZF/(fZF-fZN));
 	Set(3,2, 1.0f);
 	Set(2,3, (-fZN*fZF)/(fZF-fZN));
+	Set(3,3, 0.00f);
 
 }
 

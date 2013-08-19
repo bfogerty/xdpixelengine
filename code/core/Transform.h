@@ -4,6 +4,7 @@
 #include "math/Matrix4x4.h"
 #include "math/Vector4.h"
 #include "math/Vector3.h"
+#include "math/Quaternion.h"
 #include <vector>
 using namespace std;
 
@@ -16,7 +17,15 @@ public:
 
 	GameObject *mpGameObject;
 	Matrix4x4 mMatWorld;
-	Transform *mpParent;
+
+	Matrix4x4 matScale;
+	Matrix4x4 matRotation;
+	Matrix4x4 matPosition;
+
+	Vector3 Scale;
+	Quaternion Rotation;
+	Vector3 Position;
+	
 
 	std::vector<Transform*> mChildren;
 
@@ -25,8 +34,16 @@ public:
 
 	void SetParent(Transform &parent);
 
+	void Update();
+
 	void SetPosition(Vector3 &vecPos);
 	void SetLocalPosition(Vector3 &vecPos);
+
+	Transform* GetParent();
+	void SetParent(Transform *parent);
+
+private:
+	Transform *mpParent;
 };
 
 #endif

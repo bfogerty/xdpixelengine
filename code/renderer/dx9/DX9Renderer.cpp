@@ -94,7 +94,7 @@ void DX9Renderer::SetVertexDataViaSystemMemory(TriangleData triangle)
 		CUSTOMVERT(triangle.verts[2], triangle.normals[2], triangle.colors[2], triangle.uvs[2])
 	};
 
-	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX0);
+	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	mpDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, t, sizeof(CUSTOMVERT));
 }
 
@@ -106,7 +106,7 @@ void DX9Renderer::SetVertexDataViaVertexBuffer(TriangleData triangle)
 
 	mpDev->CreateVertexBuffer(sizeof(CUSTOMVERT)*6,
 		D3DUSAGE_WRITEONLY,
-		D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX0,
+		D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1,
 		D3DPOOL_DEFAULT,
 		&pVertexBuffer,
 		NULL);
@@ -122,7 +122,7 @@ void DX9Renderer::SetVertexDataViaVertexBuffer(TriangleData triangle)
 	}
 	pVertexBuffer->Unlock();
 
-	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX0);
+	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	mpDev->SetStreamSource(0, pVertexBuffer, 0, sizeof(CUSTOMVERT));
 	mpDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
 }
@@ -145,7 +145,7 @@ void DX9Renderer::BeginScene()
 	d3dMat = mMatWorld.mMatrix;
 	mpDev->SetTransform(D3DTS_WORLD, &d3dMat);
 
-	mpDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	//mpDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
 	mpDev->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
 

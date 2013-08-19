@@ -50,6 +50,8 @@ void RenderTestComponent::OnAwake()
 
 	id = iID;
 	++iID;
+
+	mpGameObject->mpTransform->Scale = Vector3(1,1,1);
 }
 
 //-----------------------------------------------------------------------------------
@@ -65,8 +67,8 @@ void RenderTestComponent::OnUpdate()
 		fY = -6.0f;
 	}
 
-	Vector3 vecStart(-7.0f, fY, 0.0f);
-	Vector3 vecEnd(7.0f, fY, 0.0f);
+	Vector3 vecStart(-7.0f, fY, 5.0f);
+	Vector3 vecEnd(7.0f, fY, 5.0f);
 
 	if( mT >= 1.0f )
 	{
@@ -74,13 +76,11 @@ void RenderTestComponent::OnUpdate()
 	}
 
 	float fAngle = (1.0f - mT)*0.0f + (mT * 359.0f);
-	Matrix4x4 matRot;
-	matRot.RotationZ(fAngle);
+	mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(-Vector3::Forward(), fAngle);
 
 	Vector3 pos = vecStart * (1.0f - mT) + (vecEnd * mT);
-	Matrix4x4 matPos;
-	matPos.Translate(pos);
-	mpGameObject->mpTransform->mMatWorld = matRot * matPos;
+	mpGameObject->mpTransform->Position = pos;
+
 
 	if( mT >= 1.0f )
 	{

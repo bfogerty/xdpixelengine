@@ -485,6 +485,10 @@
 						RelativePath="..\..\code\core\input\Input.h"
 						>
 					</File>
+					<File
+						RelativePath="..\..\code\core\input\Keycode.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
