@@ -88,11 +88,22 @@ global proc vector VectorTimesMatrix( vector $v, matrix $m )
 
 global proc matrix GetWorldMatrixOfObject( string $obj )
 { 
+/*
    float $f[] = `getAttr ($obj+".parentMatrix")`; 
    matrix $m[4][4] = << $f[0], $f[1],   $f[2],    $f[3]; 
                         $f[4], $f[5],   $f[6],    $f[7]; 
                         $f[8], $f[9],   $f[10],   $f[11]; 
-                        $f[12], $f[13], $f[14],   $f[15] >>; 
+                        $f[12], $f[13], $f[14],   $f[15] >>;
+*/
+ 
+   string $data[] = `listRelatives -p $obj`;
+   string $transform = $data[0]; 
+   float $f[] = `xform -q -ws -m $transform`;
+   matrix $m[4][4] = << $f[0], $f[1],   $f[2],    $f[3]; 
+                        $f[4], $f[5],   $f[6],    $f[7]; 
+                        $f[8], $f[9],   $f[10],   $f[11]; 
+                        $f[12], $f[13], $f[14],   $f[15] >>;
+ 
    return $m; 
 } 
 
@@ -197,5 +208,11 @@ proc int onSave( string $filename, string $type )
    return true;
 } 
 
-fileBrowser("onSave","Save As","OBJ", 1);
+//fileBrowser("onSave","Save As","OBJ", 1);
+string $result[] = `fileDialog2 -fileFilter "*.OBJ (*.obj)" -dialogStyle 2 -fileMode 0 -okc "Export"`;
+
+if ( size($result) > 0 )
+{
+   onSave( $result[0], "");
+}
 
