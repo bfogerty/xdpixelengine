@@ -42,6 +42,8 @@ public:
 	Transform* GetParent();
 	void SetParent(Transform *parent);
 
+	void BuildTranslationMatrix();
+
 private:
 	Transform *mpParent;
 };

@@ -52,6 +52,7 @@ void ObjLoaderTestComponent::OnUpdate()
 
 	mft += Time::GetInstance()->GetDeltaTime() / 5;
 
+	/*
 	if( Input::Inst()->GeyKey(KeyCode::LeftArrow) ||
 		Input::Inst()->GeyKey(KeyCode::A) )
 	{
@@ -83,4 +84,5 @@ void ObjLoaderTestComponent::OnUpdate()
 	{
 		fZ -= (1.f * Time::GetInstance()->GetDeltaTime());
 	}
+	*/
 }

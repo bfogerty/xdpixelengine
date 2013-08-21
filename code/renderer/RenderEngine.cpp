@@ -46,6 +46,7 @@ void RenderEngine::Initialize(RendererConfig config)
 #endif
 #endif
 
+	/*
 	Matrix4x4 matProjection;
 	matProjection.SetPerspectiveFovLH(45.0f * MathHelper::Deg2Rad, mConfig.GetAspectRatio(), 0.00f, 10000.0f);
 	mRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
@@ -57,6 +58,7 @@ void RenderEngine::Initialize(RendererConfig config)
 	Matrix4x4 matWorld;
 	matWorld.SetIdentity();
 	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, matWorld);
+	*/
 
 	mRenderer->FakeSceneSetup(mConfig);
 
@@ -67,18 +69,19 @@ RenderEngine::~RenderEngine()
 
 }
 
+void RenderEngine::AddCamera(Camera *camera)
+{
+	Cameras.push_back(camera);
+}
+
 void RenderEngine::Render( GameObject *pGameObject )
 {
-	if( !mRenderer )
+	if( !mRenderer && Cameras.size() > 0 )
 	{
 		return;
 	}
 
-	mRenderer->Clear(Color(Color::GRAY));
-
-	RenderGameObject( pGameObject );
-
-	mRenderer->Present();
+	Cameras[0]->RenderScene(mRenderer, pGameObject);
 }
 
 void RenderEngine::RenderGameObject( GameObject *pGameObject )
@@ -139,5 +142,4 @@ void RenderEngine::RenderGameObject( GameObject *pGameObject )
 		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
 		RenderGameObject( pChild );
 	}
-	
 }

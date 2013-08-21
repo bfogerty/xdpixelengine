@@ -7,6 +7,10 @@ Transform::Transform( GameObject *pGameObject )
 	mChildren.reserve(5);
 
 	mpParent = 0;
+	
+	Scale = Vector3::One();
+	Rotation = Quaternion::AxisAngle(Vector3::Up(), 1.0f);
+	Position = Vector3::Zero();
 }
 
 //-----------------------------------------------------------------------------------
@@ -34,6 +38,13 @@ void Transform::SetLocalPosition(Vector3 &vecPos)
 }
 
 //-----------------------------------------------------------------------------------
+void Transform::BuildTranslationMatrix()
+{
+	matPosition.SetIdentity();
+	matPosition.Translate(Position);
+}
+
+//-----------------------------------------------------------------------------------
 void Transform::Update()
 {
 	matScale.SetIdentity();
@@ -42,9 +53,7 @@ void Transform::Update()
 	matRotation.SetIdentity();
 	matRotation = Quaternion::ToMatrix(Rotation);
 
-	matPosition.SetIdentity();
-	matPosition.Translate(Position);
-
+	BuildTranslationMatrix();
 
 	mMatWorld = matScale * matRotation * matPosition;
 }

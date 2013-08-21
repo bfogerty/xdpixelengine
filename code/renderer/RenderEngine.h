@@ -2,6 +2,7 @@
 #define __RENDER_ENGINE__
 
 #include "PlatformRenderer.h"
+#include "../core/Camera.h"
 
 #ifdef PS2_RELEASE
 #include "ps2/PS2Renderer.h"
@@ -13,6 +14,9 @@
 #include "opengl/OpenGLRenderer.h"
 #endif
 #endif
+
+#include <vector>
+using namespace std;
 
 class GameObject;
 struct RendererConfig;
@@ -32,12 +36,17 @@ public:
 
 	PlatformRenderer *GetRenderer() { return mRenderer; }
 
+	void AddCamera(Camera *camera);
+
+	RendererConfig* GetRenderConfig() { return &mConfig; } 
+
 protected:
 
 	void RenderGameObject( GameObject *pGameObject );
 
 	PlatformRenderer *mRenderer;
 	RendererConfig mConfig;
+	vector<Camera*> Cameras;
 };
 
 

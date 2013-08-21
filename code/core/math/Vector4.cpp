@@ -1,4 +1,5 @@
 #include "Vector4.h"
+#include "Vector3.h"
 #include "math.h"
 #include "MathHelper.h"
 #include <sstream>
@@ -10,6 +11,14 @@ Vector4::Vector4()
 	data[Y] = 0.0000f;
 	data[Z] = 0.0000f;
 	data[W] = 0.0000f;
+}
+
+Vector4::Vector4( Vector3 vec3, float w )
+{
+	data[X] = vec3.x();
+	data[Y] = vec3.y();
+	data[Z] = vec3.z();
+	data[W] = w;
 }
 
 Vector4::Vector4( float x, float y, float z, float w )

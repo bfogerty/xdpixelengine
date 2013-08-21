@@ -2,11 +2,16 @@
 #include "../core/GameObject.h"
 #include "../core/mesh/Mesh.h"
 #include "../core/Transform.h"
+#include "../core/Camera.h"
 #include "../core/time/Time.h"
+
+#include "../renderer/RenderEngine.h"
+#include "../renderer/RendererConfig.h"
 
 #include "../game/RenderTestComponent.h"
 #include "../game/TriangleComponent.h"
 #include "../game/ObjLoaderTestComponent.h"
+#include "../game/FPCameraControllerComponent.h"
 
 extern "C"
 {
@@ -36,13 +41,13 @@ void GameMain::OnAwake()
 	mpGameObject->mpTransform->mMatWorld.Translate(Vector3(0.0f, 0.0f, 0.0f));
 
 	// Add Game Specific logic below.
-	/*
+	
 	GameObject *pChildObj = new GameObject("RenderTest0");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	*/
-
 	
+
+	/*
 	GameObject *pChildObj = new GameObject("RenderTest1");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
@@ -53,7 +58,24 @@ void GameMain::OnAwake()
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	
-	
+	pChildObj = new GameObject("Triangle");
+	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new TriangleComponent(pChildObj) ) );
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+	*/
+
+	pChildObj = new GameObject("Camera");
+	Camera *camera = new Camera(pChildObj);
+	pChildObj->AddComponent(static_cast<Camera*>( camera ));
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+
+	pChildObj->mpTransform->Position = Vector3(0,0.2f,-0.2f);
+	camera->BackGroundColor = Color(Color::GRAY);
+	camera->mAspectRatio = RenderEngine::GetInstance()->GetRenderConfig()->GetAspectRatio();
+	camera->mFov = 45.0f;
+	camera->mNear = 0.01f;
+	camera->mFar = 10000.0f;
+
+	pChildObj->AddComponent(static_cast<FPCameraControllerComponent*>(new FPCameraControllerComponent(pChildObj)));
 	
 	//LoadLua();
 }

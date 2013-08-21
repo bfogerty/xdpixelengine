@@ -5,6 +5,8 @@
 #include "string"
 using namespace std;
 
+class Vector3;
+
 class Vector4 : BaseObject
 {
 public:
@@ -20,6 +22,7 @@ public:
 	float data[4];
 
 	Vector4();
+	Vector4( Vector3 vec3, float w );
 	Vector4( float x, float y, float z, float w );
 	Vector4( float *values );
 	~Vector4();

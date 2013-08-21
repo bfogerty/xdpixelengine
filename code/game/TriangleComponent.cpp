@@ -34,15 +34,11 @@ void TriangleComponent::OnAwake()
 
 	mesh->Build();
 
-	//mpGameObject->mpTransform->SetPosition( Vector3(0,-2,0) );
 	mft = 0.0f;
 	mDir = (char)1;
 
-	Vector3 vP(1.0f,0.0f,0.0f);
-	Vector3 vAxis(0.0f,1.0f,0.0f);
-	Quaternion qRot = Quaternion::AxisAngle(vAxis, -90.0f);
-
-	vP = qRot * vP;
+	//mpGameObject->mpTransform->Scale = Vector3::One();
+	//mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(Vector3::Up(), 1.0f);
 }
 
 //-----------------------------------------------------------------------------------
@@ -53,14 +49,13 @@ void TriangleComponent::OnUpdate()
 		mft = 1.0f;
 	}
 
-
 	if( mDir == 1 )
 	{
-		mpGameObject->mpTransform->SetPosition( Vector3::Lerp(Vector3(0,-3,0), Vector3(0,3,0), mft) );
+		mpGameObject->mpTransform->Position = Vector3::Lerp(Vector3(0,-3,0), Vector3(0,3,0), mft);
 	}
 	else
 	{
-		mpGameObject->mpTransform->SetPosition( Vector3::Lerp( Vector3(0,3,0), Vector3(0,-3,0), mft) );
+		mpGameObject->mpTransform->Position = Vector3::Lerp( Vector3(0,3,0), Vector3(0,-3,0), mft);
 	}
 
 	if( mft == 1.0f )
