@@ -7,6 +7,9 @@
 //-----------------------------------------------------------------------------------
 Camera::Camera( GameObject *pGameObject ) : GameObjectComponent(pGameObject)
 {
+	Depth = 0;
+	BuffersToClear = PlatformRenderer::BT_COLOR | PlatformRenderer::BT_DEPTH | PlatformRenderer::BT_STENCIL;
+
 	RenderEngine::GetInstance()->AddCamera(this);
 }
 
@@ -20,7 +23,8 @@ void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 	Matrix4x4 matView;
 	matView.SetIdentity();
 	matView = Quaternion::ToMatrix(mpGameObject->mpTransform->Rotation);
-	matView.SetRow(3, Vector4(-mpGameObject->mpTransform->Position, 1.0f));
+	matView.SetRow(3, Vector4(mpGameObject->mpTransform->Position, 1.0f));
+	matView.Set(0,3, -matView.Get(0,3));
 	pRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);
 
 	Matrix4x4 matWorld;
@@ -38,11 +42,9 @@ void Camera::RenderScene( PlatformRenderer *pRenderer, GameObject *pGameObject )
 
 	BuildMatricies( pRenderer );
 
-	pRenderer->Clear(BackGroundColor);
+	pRenderer->Clear( BuffersToClear, BackGroundColor);
 
 	RenderGameObject( pRenderer, pGameObject );
-
-	pRenderer->Present();
 }
 
 //-----------------------------------------------------------------------------------
@@ -104,4 +106,10 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
 		RenderGameObject( pRenderer, pChild );
 	}
+}
+
+//-----------------------------------------------------------------------------------
+bool Camera::SortByCameraDepth( Camera* c1, Camera *c2 )
+{
+	return c1->Depth < c2->Depth;
 }

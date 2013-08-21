@@ -7,6 +7,7 @@
 
 #include "../renderer/RenderEngine.h"
 #include "../renderer/RendererConfig.h"
+#include "../renderer/PlatformRenderer.h"
 
 #include "../game/RenderTestComponent.h"
 #include "../game/TriangleComponent.h"
@@ -68,14 +69,34 @@ void GameMain::OnAwake()
 	pChildObj->AddComponent(static_cast<Camera*>( camera ));
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 
-	pChildObj->mpTransform->Position = Vector3(0,0.2f,-0.2f);
+	pChildObj->mpTransform->Position = Vector3(0,-0.2f,0.0f);
 	camera->BackGroundColor = Color(Color::GRAY);
 	camera->mAspectRatio = RenderEngine::GetInstance()->GetRenderConfig()->GetAspectRatio();
 	camera->mFov = 45.0f;
 	camera->mNear = 0.01f;
 	camera->mFar = 10000.0f;
+	camera->BuffersToClear = PlatformRenderer::BT_COLOR | PlatformRenderer::BT_DEPTH | PlatformRenderer::BT_STENCIL;
+	camera->Depth = 0;
 
 	pChildObj->AddComponent(static_cast<FPCameraControllerComponent*>(new FPCameraControllerComponent(pChildObj)));
+
+
+
+
+
+	pChildObj = new GameObject("Camera2");
+	camera = new Camera(pChildObj);
+	pChildObj->AddComponent(static_cast<Camera*>( camera ));
+	pChildObj->mpTransform->SetParent(*mpGameObject->mpTransform);
+
+	pChildObj->mpTransform->Position = Vector3(0,-0.2f,0.0f);
+	camera->BackGroundColor = Color(Color::GRAY);
+	camera->mAspectRatio = RenderEngine::GetInstance()->GetRenderConfig()->GetAspectRatio();
+	camera->mFov = 45.0f;
+	camera->mNear = 0.01f;
+	camera->mFar = 10000.0f;
+	camera->BuffersToClear = PlatformRenderer::BT_DEPTH;
+	camera->Depth = 1;
 	
 	//LoadLua();
 }

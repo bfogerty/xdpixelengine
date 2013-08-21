@@ -7,6 +7,8 @@
 PlatformRenderer::PlatformRenderer(RendererConfig config)
 {
 	mfAspectRatio = (float)(config.ScreenWidth) / config.ScreenHeight;
+
+	mBufferTypeMap.clear();
 }
 
 PlatformRenderer::~PlatformRenderer()
@@ -26,7 +28,7 @@ void PlatformRenderer::SetVertexData(TriangleData triangle)
 
 }
 
-void PlatformRenderer::Clear( Color c )
+void PlatformRenderer::Clear( unsigned int buffers, Color c )
 {
 
 }

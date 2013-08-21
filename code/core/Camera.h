@@ -15,11 +15,15 @@ public:
 	float mNear;
 	float mFar;
 	Color BackGroundColor;
+	unsigned int BuffersToClear;
+	unsigned int Depth;
 
 	Camera( GameObject *pGameObject );
 
 	void RenderScene( PlatformRenderer *pRenderer, GameObject *pGameObject );
 	void RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObject );
+
+	static bool SortByCameraDepth( Camera* c1, Camera *c2 );
 
 protected:
 	void BuildMatricies(PlatformRenderer *pRenderer);

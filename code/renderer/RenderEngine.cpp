@@ -5,9 +5,12 @@
 #include "../core/math/Matrix4x4.h"
 #include "../core/math/MathHelper.h"
 #include "../core/Transform.h"
+#include "../core/Camera.h"
+#include <algorithm>
 
 RenderEngine* RenderEngine::mpInstance = (RenderEngine*)0;
 
+//-----------------------------------------------------------------------------------
 RenderEngine* RenderEngine::GetInstance()
 {
 	if( mpInstance == 0 )
@@ -18,11 +21,13 @@ RenderEngine* RenderEngine::GetInstance()
 	return mpInstance;
 }
 
+//-----------------------------------------------------------------------------------
 RenderEngine::RenderEngine()
 {
 
 }
 
+//-----------------------------------------------------------------------------------
 void RenderEngine::Initialize(RendererConfig config)
 {
 	mRenderer = 0;
@@ -46,34 +51,24 @@ void RenderEngine::Initialize(RendererConfig config)
 #endif
 #endif
 
-	/*
-	Matrix4x4 matProjection;
-	matProjection.SetPerspectiveFovLH(45.0f * MathHelper::Deg2Rad, mConfig.GetAspectRatio(), 0.00f, 10000.0f);
-	mRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
-
-	Matrix4x4 matView;
-	matView.SetIdentity();
-	mRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);
-
-	Matrix4x4 matWorld;
-	matWorld.SetIdentity();
-	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, matWorld);
-	*/
-
 	mRenderer->FakeSceneSetup(mConfig);
-
 }
 
+//-----------------------------------------------------------------------------------
 RenderEngine::~RenderEngine()
 {
 
 }
 
+//-----------------------------------------------------------------------------------
 void RenderEngine::AddCamera(Camera *camera)
 {
 	Cameras.push_back(camera);
+	sort(Cameras.begin(), Cameras.end(), Camera::SortByCameraDepth);
+	
 }
 
+//-----------------------------------------------------------------------------------
 void RenderEngine::Render( GameObject *pGameObject )
 {
 	if( !mRenderer && Cameras.size() > 0 )
@@ -81,65 +76,11 @@ void RenderEngine::Render( GameObject *pGameObject )
 		return;
 	}
 
-	Cameras[0]->RenderScene(mRenderer, pGameObject);
-}
-
-void RenderEngine::RenderGameObject( GameObject *pGameObject )
-{
-	bool CanRenderGameObject = true;
-
-	if( !pGameObject )
+	for( std::vector<Camera*>::iterator it = Cameras.begin(); it != Cameras.end(); ++it )
 	{
-		return;
+		Camera *pCamera = static_cast<Camera*>(*it);
+		pCamera->RenderScene(mRenderer, pGameObject);
 	}
 
-	// Can we render the game object?
-	if( !pGameObject->mMesh || 
-		pGameObject->mMesh->verticies.size() <= 0 )
-	{
-		CanRenderGameObject = false;
-	}
-
-	// If we can't render the game object,
-	// we should try to render its children.
-	if( !CanRenderGameObject )
-	{
-		int iChildCount = pGameObject->mpTransform->mChildren.size();
-		for(int i=0; i< iChildCount; ++i)
-		{
-			GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
-			RenderGameObject( pChild );
-		}
-		return;
-	}
-
-	// Bind the GameObject's texture if it has one.
-	if(pGameObject->pTexture)
-	{
-		mRenderer->BindTexture(pGameObject->pTexture);
-	}
-
-	mRenderer->SetTransform(PlatformRenderer::TS_WORLD, 
-		pGameObject->mpTransform->mMatWorld);
-
-	mRenderer->BeginScene();
-
-	//   ... Draw Here ...
-
-	int iNumberOfTriangles = pGameObject->mMesh->triangleData.size();
-	for( int i=0; i< iNumberOfTriangles; ++i )
-	{
-		mRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
-	}
-	mRenderer->EndScene();
-
-	// Unbind the texture if one was given.
-	mRenderer->BindTexture(0);
-
-	int iChildCount = pGameObject->mpTransform->mChildren.size();
-	for(int i=0; i< iChildCount; ++i)
-	{
-		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
-		RenderGameObject( pChild );
-	}
+	mRenderer->Present();
 }

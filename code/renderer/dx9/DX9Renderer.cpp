@@ -42,6 +42,11 @@ DX9Renderer::DX9Renderer(RendererConfig config) : PlatformRenderer(config)
 	{
 		// Failed to Create Device.
 	}
+
+	// Create Buffer Type Mappings
+	mBufferTypeMap[BT_COLOR] = D3DCLEAR_TARGET;
+	mBufferTypeMap[BT_DEPTH] = D3DCLEAR_ZBUFFER;
+	mBufferTypeMap[BT_STENCIL] = D3DCLEAR_STENCIL;
 }
 
 //-----------------------------------------------------------------------------------
@@ -128,9 +133,15 @@ void DX9Renderer::SetVertexDataViaVertexBuffer(TriangleData triangle)
 }
 
 //-----------------------------------------------------------------------------------
-void DX9Renderer::Clear(Color c)
+void DX9Renderer::Clear( unsigned int buffers, Color c)
 {
-	mpDev->Clear(0,NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, D3DCOLOR_COLORVALUE(c.r, c.g, c.b, c.a) ,1.0f, 0);	
+	unsigned int FinalBuffers = 0;
+
+	FinalBuffers |= ( PlatformRenderer::BT_COLOR & buffers) != 0 ? mBufferTypeMap[BT_COLOR] : 0;
+	FinalBuffers |= ( PlatformRenderer::BT_DEPTH & buffers) != 0 ? mBufferTypeMap[BT_DEPTH] : 0;
+	FinalBuffers |= ( PlatformRenderer::BT_STENCIL & buffers) != 0 ? mBufferTypeMap[BT_STENCIL] : 0;
+
+	mpDev->Clear(0,NULL, FinalBuffers, D3DCOLOR_COLORVALUE(c.r, c.g, c.b, c.a) ,1.0f, 0);
 }
 
 //-----------------------------------------------------------------------------------

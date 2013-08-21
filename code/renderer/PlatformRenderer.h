@@ -8,6 +8,9 @@
 #include <d3d9.h>
 #endif
 
+#include <map>
+using namespace std;
+
 class Color;
 class Vector3;
 class TriangleData;
@@ -26,11 +29,18 @@ public:
 		TS_WORLD,
 	};
 
+	enum BUFFER_TYPE
+	{
+		BT_COLOR = 1,
+		BT_DEPTH = 2,
+		BT_STENCIL = 4,
+	};
+
 	PlatformRenderer(){};
 	PlatformRenderer(RendererConfig config);
 	virtual ~PlatformRenderer();
 
-	virtual void Clear( Color c );
+	virtual void Clear( unsigned int buffers, Color c );
 	virtual void BeginScene();
 	virtual void EndScene();
 	virtual void Present();
@@ -50,6 +60,7 @@ protected:
 	Matrix4x4 mMatProjection;
 	Matrix4x4 mMatView;
 	Matrix4x4 mMatWorld;
+	map<unsigned int, unsigned int> mBufferTypeMap;
 };
 
 #endif

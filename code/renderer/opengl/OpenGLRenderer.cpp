@@ -12,6 +12,11 @@
 OpenGLRenderer::OpenGLRenderer(RendererConfig config) : PlatformRenderer(config)
 {
 
+	// Create Buffer Type Mappings
+	mBufferTypeMap[BT_COLOR] = GL_COLOR_BUFFER_BIT;
+	mBufferTypeMap[BT_DEPTH] = GL_DEPTH_BUFFER_BIT;
+	mBufferTypeMap[BT_STENCIL] = GL_STENCIL_BUFFER_BIT;
+
 #ifdef WIN_RELEASE
 	InitializeForWindows(config);
 #endif
@@ -73,9 +78,15 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 }
 
 //-----------------------------------------------------------------------------------
-void OpenGLRenderer::Clear(Color c)
+void OpenGLRenderer::Clear( unsigned int buffers, Color c)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	unsigned int FinalBuffers = 0;
+
+	FinalBuffers |= ( PlatformRenderer::BT_COLOR & buffers) != 0 ? mBufferTypeMap[BT_COLOR] : 0;
+	FinalBuffers |= ( PlatformRenderer::BT_DEPTH & buffers) != 0 ? mBufferTypeMap[BT_DEPTH] : 0;
+	FinalBuffers |= ( PlatformRenderer::BT_STENCIL & buffers) != 0 ? mBufferTypeMap[BT_STENCIL] : 0;
+
+	glClear(FinalBuffers);
 	glClearColor(c.r, c.g, c.b, c.a);
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -87,7 +98,7 @@ void OpenGLRenderer::BeginScene()
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(mMatProjection.mMatrix);
 
-	Matrix4x4 matModelView = mMatView * mMatWorld;
+	Matrix4x4 matModelView = mMatWorld * mMatView;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(matModelView.mMatrix);
 

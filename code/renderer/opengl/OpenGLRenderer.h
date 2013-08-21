@@ -21,7 +21,7 @@ class OpenGLRenderer : public PlatformRenderer
 public:
 	OpenGLRenderer(RendererConfig config);
 
-	virtual void Clear( Color c );
+	virtual void Clear( unsigned int buffers, Color c );
 	virtual void BeginScene();
 	virtual void EndScene();
 	virtual void Present();

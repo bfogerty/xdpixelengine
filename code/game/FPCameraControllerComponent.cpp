@@ -35,12 +35,12 @@ void FPCameraControllerComponent::OnUpdate()
 
 	if( Input::Inst()->GeyKey(KeyCode::LeftArrow) )
 	{
-		Theta += (45.0f * Time::GetInstance()->GetDeltaTime());
+		fCurX += (1.0f * Time::GetInstance()->GetDeltaTime());
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::RightArrow) )
 	{
-		Theta -= (45.0f * Time::GetInstance()->GetDeltaTime());
+		fCurX -= (1.0f * Time::GetInstance()->GetDeltaTime());
 	}
 
 	/*
