@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7788BC88-70F0-46CB-A8F8-296B08683DDC}</ProjectGuid>
+    <RootNamespace>xdpixelengine</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\obj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\obj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9d.lib;dinput8.lib;dxguid.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\core\BaseObject.cpp" />
+    <ClCompile Include="..\..\code\core\Camera.cpp" />
+    <ClCompile Include="..\..\code\core\Engine.cpp" />
+    <ClCompile Include="..\..\code\core\GameObject.cpp" />
+    <ClCompile Include="..\..\code\core\GameObjectComponent.cpp" />
+    <ClCompile Include="..\..\code\core\main.cpp" />
+    <ClCompile Include="..\..\code\core\Transform.cpp" />
+    <ClCompile Include="..\..\code\core\math\MathHelper.cpp" />
+    <ClCompile Include="..\..\code\core\math\Matrix4x4.cpp" />
+    <ClCompile Include="..\..\code\core\math\Quaternion.cpp" />
+    <ClCompile Include="..\..\code\core\math\Vector3.cpp" />
+    <ClCompile Include="..\..\code\core\math\Vector4.cpp" />
+    <ClCompile Include="..\..\code\core\time\Time.cpp" />
+    <ClCompile Include="..\..\code\core\mesh\Mesh.cpp" />
+    <ClCompile Include="..\..\code\core\GameObjectComponents\RenderComponent.cpp" />
+    <ClCompile Include="..\..\code\core\resource\texture2d\DX9Texture2D.cpp" />
+    <ClCompile Include="..\..\code\core\resource\texture2d\OpenGLTexture2D.cpp" />
+    <ClCompile Include="..\..\code\core\resource\texture2d\Texture2D.cpp" />
+    <ClCompile Include="..\..\code\core\resource\image_loaders\ImageLoader.cpp" />
+    <ClCompile Include="..\..\code\core\resource\image_loaders\ImageLoader_PNG.cpp" />
+    <ClCompile Include="..\..\code\core\resource\model_loaders\ObjLoader.cpp" />
+    <ClCompile Include="..\..\code\core\input\Input.cpp" />
+    <ClCompile Include="..\..\code\game\FPCameraControllerComponent.cpp" />
+    <ClCompile Include="..\..\code\renderer\Color.cpp" />
+    <ClCompile Include="..\..\code\renderer\PlatformRenderer.cpp" />
+    <ClCompile Include="..\..\code\renderer\RenderEngine.cpp" />
+    <ClCompile Include="..\..\code\renderer\dx9\DX9Renderer.cpp" />
+    <ClCompile Include="..\..\code\renderer\ps2\PS2Renderer.cpp" />
+    <ClCompile Include="..\..\code\renderer\opengl\OpenGLRenderer.cpp" />
+    <ClCompile Include="..\..\code\game\GameMain.cpp" />
+    <ClCompile Include="..\..\code\game\ObjLoaderTestComponent.cpp" />
+    <ClCompile Include="..\..\code\game\RenderTestComponent.cpp" />
+    <ClCompile Include="..\..\code\game\TriangleComponent.cpp" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\png.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngerror.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngget.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngmem.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngpread.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngread.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngrio.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngrtran.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngrutil.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngset.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngtest.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngtrans.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngwio.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngwrite.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngwtran.c" />
+    <ClCompile Include="..\..\code\thirdparty\lpng162\pngwutil.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\adler32.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\compress.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\crc32.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\deflate.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\gzclose.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\gzlib.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\gzread.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\gzwrite.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\infback.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\inffast.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\inflate.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\inftrees.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\trees.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\uncompr.c" />
+    <ClCompile Include="..\..\code\thirdparty\zlib-1.2.8\zutil.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lapi.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lauxlib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lbaselib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lbitlib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lcode.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lcorolib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lctype.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ldblib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ldebug.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ldo.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ldump.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lfunc.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lgc.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\linit.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\liolib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\llex.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lmathlib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lmem.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\loadlib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lobject.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lopcodes.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\loslib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lparser.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lstate.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lstring.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lstrlib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ltable.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ltablib.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\ltm.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lundump.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lvm.c" />
+    <ClCompile Include="..\..\code\thirdparty\lua-5.2.2\src\lzio.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\code\core\BaseObject.h" />
+    <ClInclude Include="..\..\code\core\Camera.h" />
+    <ClInclude Include="..\..\code\core\Engine.h" />
+    <ClInclude Include="..\..\code\core\GameObject.h" />
+    <ClInclude Include="..\..\code\core\GameObjectComponent.h" />
+    <ClInclude Include="..\..\code\core\platform.h" />
+    <ClInclude Include="..\..\code\core\Transform.h" />
+    <ClInclude Include="..\..\code\core\math\MathHelper.h" />
+    <ClInclude Include="..\..\code\core\math\Matrix4x4.h" />
+    <ClInclude Include="..\..\code\core\math\Quaternion.h" />
+    <ClInclude Include="..\..\code\core\math\Vector3.h" />
+    <ClInclude Include="..\..\code\core\math\Vector4.h" />
+    <ClInclude Include="..\..\code\core\time\Time.h" />
+    <ClInclude Include="..\..\code\core\mesh\Mesh.h" />
+    <ClInclude Include="..\..\code\core\GameObjectComponents\RenderComponent.h" />
+    <ClInclude Include="..\..\code\core\resource\texture2d\DX9Texture2D.h" />
+    <ClInclude Include="..\..\code\core\resource\texture2d\OpenGLTexture2D.h" />
+    <ClInclude Include="..\..\code\core\resource\texture2d\Texture2D.h" />
+    <ClInclude Include="..\..\code\core\resource\image_loaders\ImageLoader.h" />
+    <ClInclude Include="..\..\code\core\resource\image_loaders\ImageLoader_PNG.h" />
+    <ClInclude Include="..\..\code\core\resource\model_loaders\ObjLoader.h" />
+    <ClInclude Include="..\..\code\core\input\Input.h" />
+    <ClInclude Include="..\..\code\core\input\Keycode.h" />
+    <ClInclude Include="..\..\code\game\FPCameraControllerComponent.h" />
+    <ClInclude Include="..\..\code\renderer\Color.h" />
+    <ClInclude Include="..\..\code\renderer\PlatformRenderer.h" />
+    <ClInclude Include="..\..\code\renderer\RenderEngine.h" />
+    <ClInclude Include="..\..\code\renderer\RendererConfig.h" />
+    <ClInclude Include="..\..\code\renderer\dx9\DX9Renderer.h" />
+    <ClInclude Include="..\..\code\renderer\ps2\PS2Renderer.h" />
+    <ClInclude Include="..\..\code\renderer\opengl\OpenGLRenderer.h" />
+    <ClInclude Include="..\..\code\game\GameMain.h" />
+    <ClInclude Include="..\..\code\game\ObjLoaderTestComponent.h" />
+    <ClInclude Include="..\..\code\game\RenderTestComponent.h" />
+    <ClInclude Include="..\..\code\game\TriangleComponent.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\png.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\pngconf.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\pngdebug.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\pnginfo.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\pnglibconf.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\pngpriv.h" />
+    <ClInclude Include="..\..\code\thirdparty\lpng162\pngstruct.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\crc32.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\deflate.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\gzguts.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\inffast.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\inffixed.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\inflate.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\inftrees.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\trees.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\zconf.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\zlib.h" />
+    <ClInclude Include="..\..\code\thirdparty\zlib-1.2.8\zutil.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lapi.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lauxlib.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lcode.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lctype.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\ldebug.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\ldo.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lfunc.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lgc.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\llex.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\llimits.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lmem.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lobject.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lopcodes.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lparser.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lstate.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lstring.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\ltable.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\ltm.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lua.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lua.hpp" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\luaconf.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lualib.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lundump.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lvm.h" />
+    <ClInclude Include="..\..\code\thirdparty\lua-5.2.2\src\lzio.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
