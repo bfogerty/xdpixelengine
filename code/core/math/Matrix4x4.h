@@ -25,10 +25,13 @@ public:
 
 	void Transpose();
 	void SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, float fZF);
+	void SetOrthoLH(float w, float h, float fZN, float fZF);
 	void Translate( Vector3 position );
 	void RotationY( float degrees );
 	void RotationZ( float degrees );
 	void UniformScale( float fScale );
+
+	void FromLookAt(Vector3 look);
 
 };
 

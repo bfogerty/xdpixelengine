@@ -14,6 +14,8 @@ public:
 	float mAspectRatio;
 	float mNear;
 	float mFar;
+	float mWidth;
+	float mHeight;
 	Color BackGroundColor;
 	unsigned int BuffersToClear;
 	unsigned int Depth;

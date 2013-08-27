@@ -24,6 +24,7 @@ void Input::Initialize()
 	mapKeyCodes[KeyCode::A] = 'A';
 	mapKeyCodes[KeyCode::S] = 'S';
 	mapKeyCodes[KeyCode::D] = 'D';
+	mapKeyCodes[KeyCode::LeftShift] = VK_LSHIFT;
 #endif
 }
 

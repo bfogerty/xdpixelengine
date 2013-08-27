@@ -18,6 +18,7 @@ void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 {
 	Matrix4x4 matProjection;
 	matProjection.SetPerspectiveFovLH(mFov * MathHelper::Deg2Rad, mAspectRatio, mNear, mFar);
+	//matProjection.SetOrthoLH(0.80f, 0.60f, mNear, mFar);
 	pRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
 
 	Matrix4x4 matView;

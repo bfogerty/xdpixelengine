@@ -21,6 +21,8 @@ public:
 	static float Magnitude(Quaternion quat);
 	static Quaternion Inverse(Quaternion quat);
 	static Matrix4x4 ToMatrix(Quaternion quat);
+	static Quaternion FromMatrix( Matrix4x4 matRot );
+	static Quaternion FromLook( Vector3 look );
 
 	float w;
 	Vector3 v;

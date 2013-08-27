@@ -14,6 +14,7 @@ public:
 		A,
 		S,
 		D,
+		LeftShift,
 	};
 };
 

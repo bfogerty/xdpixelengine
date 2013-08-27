@@ -160,4 +160,57 @@ Matrix4x4 Quaternion::ToMatrix(Quaternion quat)
 	return mat;
 }
 
+//-----------------------------------------------------------------------------------
+Quaternion Quaternion::FromMatrix( Matrix4x4 m )
+{
+	Quaternion q;
+
+	float tr = m.Get(0,0) + m.Get(1,1) + m.Get(2,2);
+
+	if( tr > 0 )
+	{
+		float s = sqrt( 1 + tr ) * 2.0f;
+		q.w = 0.25f * s;
+		q.v.x((m.Get(2,1) - m.Get(1,2))/(s));
+		q.v.y((m.Get(0,2) - m.Get(2,0))/(s));
+		q.v.z((m.Get(1,0) - m.Get(0,1))/(s));
+	}
+	else if( (m.Get(0,0) > m.Get(1,1) && (m.Get(0,0) > m.Get(2,2))))
+	{
+		float s = sqrt(1.0f + m.Get(0,0) - m.Get(1,1) - m.Get(2,2)) * 2.0f;
+		q.w = (m.Get(2,1) - m.Get(1,2)) / s;
+		q.v.x( 0.25f * s);
+		q.v.y((m.Get(0,1) + m.Get(1,0))/(s));
+		q.v.z((m.Get(0,2) + m.Get(2,0))/(s));
+	}
+	else if( m.Get(1,1) > m.Get(2,2))
+	{
+		float s = sqrt(1.0f + m.Get(1,1) - m.Get(0,0) - m.Get(2,2)) * 2.0f;
+		q.w = (m.Get(0,2) - m.Get(2,0)) / s;
+		q.v.x( (m.Get(0,1) + m.Get(1,0)) / s);
+		q.v.y(0.25f * s);
+		q.v.z((m.Get(1,2) + m.Get(2,1))/(s));
+	}
+	else
+	{
+		float s = sqrt(1.0f + m.Get(2,2) - m.Get(0,0) - m.Get(1,1)) * 2.0f;
+		q.w = (m.Get(1,0) - m.Get(0,1)) / s;
+		q.v.x( (m.Get(0,2) + m.Get(2,0)) / s);
+		q.v.y((m.Get(1,2) + m.Get(2,1)) / s);
+		q.v.z(0.25f * s);
+	}
+	return q;
+}
+
+//-----------------------------------------------------------------------------------
+Quaternion Quaternion::FromLook( Vector3 look )
+{
+	Quaternion q;
+	Matrix4x4 m;
+	m.FromLookAt(look);
+
+	q = FromMatrix(m);
+
+	return q;
+}
 

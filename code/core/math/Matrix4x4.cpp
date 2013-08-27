@@ -159,6 +159,19 @@ void Matrix4x4::SetPerspectiveFovLH(float fFovY, float fAspectRatio, float fZN, 
 }
 
 //-----------------------------------------------------------------------------------
+// http://msdn.microsoft.com/en-us/library/windows/desktop/bb204940(v=vs.85).aspx
+void Matrix4x4::SetOrthoLH(float w, float h, float fZN, float fZF)
+{
+	SetIdentity();
+
+	Set(0,0, 2/w);
+	Set(1,1, 2/h);
+	Set(2,2, 1/(fZF-fZN));
+	Set(2,3, fZN/(fZN-fZF));
+	Set(3,3, 1.00f);
+}
+
+//-----------------------------------------------------------------------------------
 void Matrix4x4::Translate( Vector3 position )
 {
 	Set(0,3, position.x());
@@ -202,3 +215,19 @@ void Matrix4x4::UniformScale( float fScale )
 	Set(1,1, fScale);
 	Set(2,2, fScale);
 }
+
+//-----------------------------------------------------------------------------------
+void Matrix4x4::FromLookAt( Vector3 look )
+{
+	Vector3 right = Vector3::Cross(look, Vector3::Up());
+	right.Normalize();
+
+	Vector3 up = Vector3::Cross(right, look);
+	up.Normalize();
+
+	SetRow(0, Vector4(right,0));
+	SetRow(1, Vector4(up,0));
+	SetRow(2, Vector4(look,0));
+}
+
+
