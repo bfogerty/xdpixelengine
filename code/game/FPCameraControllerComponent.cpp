@@ -13,7 +13,7 @@
 //-----------------------------------------------------------------------------------
 void FPCameraControllerComponent::OnAwake()
 {
-	Theta = 1.0f;
+	Theta = 1.00f;
 }
 
 //-----------------------------------------------------------------------------------
@@ -23,27 +23,40 @@ void FPCameraControllerComponent::OnUpdate()
 	float fCurY = mpGameObject->mpTransform->Position.y();
 	float fCurZ = mpGameObject->mpTransform->Position.z();
 
-	if( Input::Inst()->GeyKey(KeyCode::UpArrow) )
+	float fSpeed = 1.0f;
+	if( Input::Inst()->GeyKey(KeyCode::LeftShift) )
 	{
-		 fCurZ += (1.f * Time::GetInstance()->GetDeltaTime());
+		fSpeed = 5.0f;
 	}
 
-	if( Input::Inst()->GeyKey(KeyCode::DownArrow) )
+	if( Input::Inst()->GeyKey(KeyCode::UpArrow) ||
+		Input::Inst()->GeyKey(KeyCode::W) )
 	{
-		fCurZ -= (1.f * Time::GetInstance()->GetDeltaTime());
+		 fCurZ -= (fSpeed * Time::GetInstance()->GetDeltaTime());
 	}
 
-	if( Input::Inst()->GeyKey(KeyCode::LeftArrow) )
+	if( Input::Inst()->GeyKey(KeyCode::DownArrow) ||
+		Input::Inst()->GeyKey(KeyCode::S))
 	{
-		fCurX += (1.0f * Time::GetInstance()->GetDeltaTime());
+		fCurZ += (fSpeed * Time::GetInstance()->GetDeltaTime());
 	}
 
-	if( Input::Inst()->GeyKey(KeyCode::RightArrow) )
+	if( Input::Inst()->GeyKey(KeyCode::LeftArrow) ||
+		Input::Inst()->GeyKey(KeyCode::A))
 	{
-		fCurX -= (1.0f * Time::GetInstance()->GetDeltaTime());
+		fCurX -= (fSpeed * Time::GetInstance()->GetDeltaTime());
+		//Theta -= (fSpeed * Time::GetInstance()->GetDeltaTime());
 	}
 
-	/*
+	if( Input::Inst()->GeyKey(KeyCode::RightArrow) ||
+		Input::Inst()->GeyKey(KeyCode::D))
+	{
+		fCurX += (fSpeed * Time::GetInstance()->GetDeltaTime());
+		//Theta += (fSpeed * Time::GetInstance()->GetDeltaTime());
+	}
+
+	//Theta += 100.0f * Time::GetInstance()->GetDeltaTime();
+
 	if( Theta > 360.0f )
 	{
 		Theta = 1.0f;
@@ -52,7 +65,11 @@ void FPCameraControllerComponent::OnUpdate()
 	{
 		Theta = 360.0f;
 	}
-	*/
+	
+	Quaternion q = Quaternion::AxisAngle(Vector3::Up(), Theta);
+	Vector3 look = q * Vector3::Forward();
+	look.Normalize();
+
 
 	mpGameObject->mpTransform->Position = Vector3(fCurX, fCurY, fCurZ);
 	mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(Vector3::Up(), Theta);

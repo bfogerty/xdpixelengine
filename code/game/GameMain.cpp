@@ -83,7 +83,7 @@ void GameMain::OnAwake()
 
 
 
-
+	/*
 	pChildObj = new GameObject("Camera2");
 	camera = new Camera(pChildObj);
 	pChildObj->AddComponent(static_cast<Camera*>( camera ));
@@ -97,6 +97,7 @@ void GameMain::OnAwake()
 	camera->mFar = 10000.0f;
 	camera->BuffersToClear = PlatformRenderer::BT_DEPTH;
 	camera->Depth = 1;
+	*/
 	
 	//LoadLua();
 }
