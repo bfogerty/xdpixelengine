@@ -1,7 +1,8 @@
 
 global proc int GetFaceCountInObject( string $obj )
 { 
-   int $iFaceCount[] = `polyEvaluate -f $obj`; return $iFaceCount[0];
+   int $iFaceCount[] = `polyEvaluate -f $obj`; 
+   return $iFaceCount[0];
 } 
 
 global proc int GetVertexCountInObject( string $obj )
@@ -28,6 +29,23 @@ global proc vector[] GetVerticiesInObject( string $obj )
    return $v;
 } 
 
+global proc vector[] GetUVSInObjects( string $obj )
+{
+   select -r $obj;
+   changeSelectMode - object;
+   Triangulate;
+   int $iNumUVs = GetVertexCountInObject( $obj );
+   vector $uv[];
+   int $uvi = 0;
+   for( $i = 0; $i < $iNumUVs; ++$i )
+   {
+      float $vert[] = `getAttr ($obj+".uv["+$i+"]")`; 
+      $uv[$uvi] = <<$vert[0], $vert[1], 0>>; 
+      ++$uvi; 
+   }
+
+   return $uv;
+}
 
 global proc vector[] GetNormalsInObject( string $obj )
 { 
@@ -35,7 +53,9 @@ global proc vector[] GetNormalsInObject( string $obj )
    changeSelectMode -object; 
    Triangulate; 
    int $iNumFaces = GetFaceCountInObject( $obj ); 
-   vector $n[]; int $ni = 0; for( $i = 0; $i < $iNumFaces; ++$i ) 
+   vector $n[]; 
+   int $ni = 0; 
+   for( $i = 0; $i < $iNumFaces; ++$i ) 
    { 
       select -r ($obj+".f["+$i+"]"); 
       string $normalInfo[] = `polyInfo -fn`; 
@@ -47,7 +67,7 @@ global proc vector[] GetNormalsInObject( string $obj )
    } 
 
    return $n;
-} 
+}
 
 // Each vector contains the indicies into its verticies.
 // IE. <<1,3,2>> means vert 1, vert 3, vert 2.
@@ -71,31 +91,10 @@ global proc vector[] GetFacesInObject( string $obj )
       $f[$fi] = << $v1, $v2, $v3 >>; ++$fi; 
    }
    return $f;
-} 
-
-/*
-global proc vector VectorTimesMatrix( vector $v, matrix $m )
-{ 
-   float $v0 = 0.0;
-   float $v1 = 0.0;
-   float $v2 = 0.0;
-   $v0 = ($v.x * $m[0][0]) + ($v.y * $m[1][0]) + ($v.z * $m[2][0]);
-   $v1 = ($v.x * $m[0][1]) + ($v.y * $m[1][1]) + ($v.z * $m[2][1]);
-   $v2 = ($v.x * $m[0][2]) + ($v.y * $m[1][2]) + ($v.z * $m[2][2]);
-   vector r = <<$v0, $v1, $v2>>;
-   return r;
-}*/ 
+}  
 
 global proc matrix GetWorldMatrixOfObject( string $obj )
-{ 
-/*
-   float $f[] = `getAttr ($obj+".parentMatrix")`; 
-   matrix $m[4][4] = << $f[0], $f[1],   $f[2],    $f[3]; 
-                        $f[4], $f[5],   $f[6],    $f[7]; 
-                        $f[8], $f[9],   $f[10],   $f[11]; 
-                        $f[12], $f[13], $f[14],   $f[15] >>;
-*/
- 
+{  
    string $data[] = `listRelatives -p $obj`;
    string $transform = $data[0]; 
    float $f[] = `xform -q -ws -m $transform`;
@@ -133,6 +132,9 @@ proc ExportScene(string $fileName)
    int $iTotalVerts = 0; 
    int $iTotalFaces = 0; 
 
+   select -r $nodes;
+   Triangulate;
+
    for($n in $nodes) 
    { 
       $iTotalVerts += GetVertexCountInObject( $n ); 
@@ -142,10 +144,11 @@ proc ExportScene(string $fileName)
    fprint $f ("# Vertex Count: " + $iTotalVerts + "\n"); 
    fprint $f ("# Face Count: " + $iTotalFaces + "\n\n"); 
    vector $verts[]; 
-   vector $normals[]; 
+   vector $normals[];
    vector $faces[]; 
    $vi = 0; 
-   $ni = 0; 
+   $ni = 0;
+   $uvi = 0; 
 
    // Export all vertex information. 
    fprint $f ("# Vertex Information\n"); 
@@ -156,7 +159,7 @@ proc ExportScene(string $fileName)
 
       for( $i = 0; $i < size($localVerts); ++$i ) 
       { 
-        vector $v = TransformPoint( $localVerts[$i], $matWorld ); 
+        vector $v = TransformPoint( $localVerts[$i], $matWorld );
         $verts[$i] = $v; 
         fprint $f ("v " + $v.x + " " + $v.y + " " + $v.z + "\n"); 
       } 
@@ -164,36 +167,53 @@ proc ExportScene(string $fileName)
 
    fprint $f ("\n"); fprint $f ("# Normal Information\n"); 
    for ( $obj in $nodes ) 
-   { 
-      vector $localNormals[] = GetVerticiesInObject( $obj ); 
+   {
+      matrix $matWorld[4][4] = GetWorldMatrixOfObject( $obj );  
+      vector $localNormals[] = GetNormalsInObject( $obj );
       for( $i = 0; $i < size($localNormals); ++$i ) 
       { 
-         vector $normal = $localNormals[$i]; $normals[$i] = $normal; 
+         //vector $normal = $localNormals[$i];
+         vector $normal = TransformPoint( $localNormals[$i], $matWorld ); 
+         $normals[$i] = $normal; 
          fprint $f ("n " + $normal.x + " " + $normal.y + " " + $normal.z + "\n"); 
       } 
    } 
 
+   fprint $f ("\n"); fprint $f ("# UV Information\n"); 
+   for ( $obj in $nodes ) 
+   { 
+      vector $localUVs[] = GetUVSInObjects( $obj ); 
+      for( $i = 0; $i < size($localUVs); ++$i ) 
+      { 
+         vector $uv = $localUVs[$i]; 
+         $uvs[$i] = $uv; 
+         fprint $f ("vt " + $uv.x + " " + $uv.y + " " + $uv.z + "\n"); 
+      } 
+   }
+
    fprint $f ("\n"); 
    fprint $f ("# Face Information\n"); 
    int $iVC = 0; 
-   int $iNC = 0; 
+   int $iNC = 0;
    int $nbase = 0; 
    int $vbase = 0; 
    for ( $obj in $nodes ) 
    { 
       vector $localVerts[] = GetVerticiesInObject( $obj ); 
+      vector $localNormals[] = GetNormalsInObject( $obj ); 
       vector $faces[] = GetFacesInObject( $obj ); 
       for( $i = 0; $i < size($faces); ++$i ) 
       { 
          vector $fv = $faces[$i]; 
          vector $fvf = << $fv.x + $vbase, $fv.y + $vbase, $fv.z + $vbase >>; 
-         int $ni = $nbase + $i+1; 
-         fprint $f ("f " + $fvf.x + "\/\/" + $ni + " " + $fvf.y + "\/\/" + $ni + " " + $fvf.z + "\/\/" + $ni + "\n"); 
+         vector $nvf = << $fv.x + $nbase, $fv.y + $nbase, $fv.z + $nbase >>;
+         int $uv = 1;
+         fprint $f ("f " + $fvf.x + "\/" +$uv+ "\/" + $nvf.x + " " + $fvf.y + "\/" +$uv+ "\/" + $nvf.y + " " + $fvf.z + "\/"+$uv+"\/" + $nvf.z + "\n"); 
          ++$iVC; 
-         ++$iNC; 
+         ++$iNC;
       } 
 
-      $nbase += $iNC; 
+      $nbase += size($localNormals); 
       $vbase += size($localVerts); 
    } 
 
@@ -208,7 +228,6 @@ proc int onSave( string $filename, string $type )
    return true;
 } 
 
-//fileBrowser("onSave","Save As","OBJ", 1);
 string $result[] = `fileDialog2 -fileFilter "*.OBJ (*.obj)" -dialogStyle 2 -fileMode 0 -okc "Export"`;
 
 if ( size($result) > 0 )
