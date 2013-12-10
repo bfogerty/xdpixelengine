@@ -20,6 +20,8 @@ class DX9Renderer : public PlatformRenderer
 public:
 	DX9Renderer(RendererConfig config);
 
+	virtual void *GetDeviceContext();
+
 	virtual void Clear( unsigned int buffers, Color c );
 	virtual void BeginScene();
 	virtual void EndScene();

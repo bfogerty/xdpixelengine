@@ -45,8 +45,6 @@ void OpenGLRenderer::InitializeForWindows( RendererConfig config )
 
 	mpDev = wglCreateContext(mHdc);
 	wglMakeCurrent(mHdc, mpDev);
-
-	//FakeSceneSetup(config);
 }
 #endif
 
@@ -95,6 +93,8 @@ void OpenGLRenderer::Clear( unsigned int buffers, Color c)
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::BeginScene()
 {
+	glEnable( GL_DEPTH_TEST );
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(mMatProjection.mMatrix);
 

@@ -58,6 +58,12 @@ void DX9Renderer::FakeSceneSetup(RendererConfig config)
 	mpDev->SetRenderState( D3DRS_LIGHTING, FALSE );
 }
 
+//-----------------------------------------------------------------------------------
+void *DX9Renderer::GetDeviceContext()
+{
+	return (void*) mpDev;
+}
+
 struct CUSTOMVERT
 {
 	float x,y,z;

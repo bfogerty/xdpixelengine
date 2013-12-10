@@ -16,6 +16,10 @@ PlatformRenderer::~PlatformRenderer()
 
 }
 
+void *PlatformRenderer::GetDeviceContext()
+{
+	return 0;
+}
 
 // This needs to be factored out.
 void PlatformRenderer::FakeSceneSetup( RendererConfig config )

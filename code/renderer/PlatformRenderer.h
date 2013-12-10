@@ -40,6 +40,8 @@ public:
 	PlatformRenderer(RendererConfig config);
 	virtual ~PlatformRenderer();
 
+	virtual void *GetDeviceContext();
+
 	virtual void Clear( unsigned int buffers, Color c );
 	virtual void BeginScene();
 	virtual void EndScene();
