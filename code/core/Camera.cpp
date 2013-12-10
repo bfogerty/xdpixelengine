@@ -83,6 +83,7 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	{
 		pRenderer->BindTexture(pGameObject->pTexture);
 	}
+	
 
 	pRenderer->SetTransform(PlatformRenderer::TS_WORLD, 
 		pGameObject->mpTransform->mMatWorld);
@@ -91,11 +92,22 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 
 	//   ... Draw Here ...
 
+	if( pGameObject->pMaterial )
+	{
+		pGameObject->pMaterial->BindProgam();
+	}
+
 	int iNumberOfTriangles = pGameObject->mMesh->triangleData.size();
 	for( int i=0; i< iNumberOfTriangles; ++i )
 	{
 		pRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
 	}
+
+	if( pGameObject->pMaterial )
+	{
+		pGameObject->pMaterial->UnBindProgam();
+	}
+
 	pRenderer->EndScene();
 
 	// Unbind the texture if one was given.

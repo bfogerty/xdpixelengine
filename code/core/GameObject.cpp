@@ -10,6 +10,7 @@ GameObject::GameObject( string Name )
 
 	mMesh = new Mesh();
 	pTexture = 0;
+	pMaterial = 0;
 	
 }
 

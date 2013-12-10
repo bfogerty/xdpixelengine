@@ -16,7 +16,7 @@ Mesh::~Mesh()
 void Mesh::Build()
 {
 	int iTriangleIndicieCount = triangles.size();
-	for( int i=0; i< iTriangleIndicieCount; i += 3 )
+	for( int i=0; i < iTriangleIndicieCount; i += 3 )
 	{
 		TriangleData *pTri = new TriangleData();
 		pTri->verts[0] = *verticies[triangles[i + 0]];
@@ -29,19 +29,25 @@ void Mesh::Build()
 			pTri->colors[1] = *colors[i+1];
 			pTri->colors[2] = *colors[i+2];
 		}
+		else
+		{
+			pTri->colors[0] = Color(Color::WHITE);
+			pTri->colors[1] = Color(Color::WHITE);
+			pTri->colors[2] = Color(Color::WHITE);
+		}
 
 		if(uvs.size() > 0 )
 		{
-			pTri->uvs[0] = *uvs[i+0];
-			pTri->uvs[1] = *uvs[i+1];
-			pTri->uvs[2] = *uvs[i+2];
+			pTri->uvs[0] = *uvs[triangles[i + 0]];
+			pTri->uvs[1] = *uvs[triangles[i + 1]];
+			pTri->uvs[2] = *uvs[triangles[i + 2]];
 		}
 
 		if( normals.size() > 0)
 		{
-			pTri->normals[0] = *normals[i+0];
-			pTri->normals[1] = *normals[i+1];
-			pTri->normals[2] = *normals[i+2];
+			pTri->normals[0] = *normals[triangles[i + 0]];
+			pTri->normals[1] = *normals[triangles[i + 1]];
+			pTri->normals[2] = *normals[triangles[i + 2]];
 		}
 		else
 		{
