@@ -405,6 +405,12 @@
     <ClCompile Include="..\..\code\game\FPCameraControllerComponent.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\renderer\Material.cpp">
+      <Filter>Source Files\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\renderer\BitmapText.cpp">
+      <Filter>Source Files\renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\core\BaseObject.h">
@@ -640,6 +646,12 @@
     </ClInclude>
     <ClInclude Include="..\..\code\game\FPCameraControllerComponent.h">
       <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\renderer\Material.h">
+      <Filter>Header Files\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\renderer\BitmapText.h">
+      <Filter>Header Files\renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
