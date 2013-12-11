@@ -80,7 +80,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;C:\Program Files (x86)\Microsoft DirectX SDK (March 2009)\Include\;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\cg\include\Cg;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -88,7 +88,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;cg.lib;cgD3D9.lib;cgGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\cg\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
