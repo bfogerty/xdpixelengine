@@ -17,19 +17,20 @@
 void ObjLoaderTestComponent::OnAwake()
 {
 
-	this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/blade_blue.png");
-
 	Mesh *mesh = mpGameObject->mMesh;
 
-	Mesh *pMeshTest = ObjLoader::Load("./assets/models/tekka.obj");
-	//Mesh *pMeshTest = GameObject::CreatePrimitive( GameObject::EPrimitiveType::Torus )->mMesh;
+	//this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/blade_blue.png");
+	//Mesh *pMeshTest = ObjLoader::Load("./assets/models/tekka_op.obj");
+
+	//this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/Robot_Color.png");
+	//Mesh *pMeshTest = ObjLoader::Load("./assets/models/Robot2.obj");
+
+	this->mpGameObject->pTexture = ImageLoader::Load(this->texturePath);
+	Mesh *pMeshTest = ObjLoader::Load(this->modelPath);
+
 	mesh->Clone(pMeshTest);
 
 	mft = 0.0f;
-
-	fX = 0.0f;
-	fY = 0.15f;
-	fZ = 1.0f;
 }
 
 
@@ -45,7 +46,6 @@ void ObjLoaderTestComponent::OnUpdate()
 
 	this->mpGameObject->mpTransform->Scale = Vector3(0.05f,0.05f,0.05f);
 	this->mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(Vector3::Up(), fDegrees);
-	this->mpGameObject->mpTransform->Position = Vector3(fX,fY,fZ);
 
 	mft += Time::GetInstance()->GetDeltaTime() / 5;
 }

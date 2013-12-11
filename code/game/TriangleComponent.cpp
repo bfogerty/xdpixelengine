@@ -28,9 +28,9 @@ void TriangleComponent::OnAwake()
 	mesh->uvs.push_back(new Vector3(1.0f, 0.0f, 0.0f));
 	mesh->uvs.push_back(new Vector3(1.0f, 1.0f, 0.0f));
 
-	mesh->triangles.push_back(0);
-	mesh->triangles.push_back(1);
-	mesh->triangles.push_back(2);
+	mesh->triangles.push_back( new Face(0,0,0) );
+	mesh->triangles.push_back( new Face(0,0,0) );
+	mesh->triangles.push_back( new Face(0,0,0) );
 
 	mesh->Build();
 

@@ -15,6 +15,31 @@ public:
 	Vector3 normals[3];
 };
 
+class Face
+{
+public:
+	int VertexIndex;
+	int NormalIndex;
+	int UVIndex;
+	int ColorIndex;
+
+	Face( int vertexIndex, int normalIndex, int colorIndex)
+	{
+		VertexIndex = vertexIndex;
+		NormalIndex = normalIndex;
+		ColorIndex = colorIndex;
+		UVIndex = -1;
+	}
+
+	Face( int vertexIndex, int normalIndex, int colorIndex, int uvIndex )
+	{
+		VertexIndex = vertexIndex;
+		NormalIndex = normalIndex;
+		ColorIndex = colorIndex;
+		UVIndex = uvIndex;
+	}
+};
+
 class Mesh
 {
 
@@ -23,7 +48,7 @@ public:
 	~Mesh();
 
 	vector<Vector3*> verticies;
-	vector<int> triangles;
+	vector<Face*> triangles;
 	vector<Vector3*> normals;
 	vector<Color*> colors;
 	vector<Vector3*> uvs;

@@ -39,12 +39,10 @@ void RenderTestComponent::OnAwake()
 	mesh->uvs.push_back(new Vector3(0.0f, 1.0f, 0.0f));	
 	
 
-	mesh->triangles.push_back(0);
-	mesh->triangles.push_back(1);
-	mesh->triangles.push_back(2);
-	mesh->triangles.push_back(3);
-	mesh->triangles.push_back(4);
-	mesh->triangles.push_back(5);
+	for( int i=0; i< 6; ++i )
+	{
+		mesh->triangles.push_back(new Face(i,i,i,i) );
+	}
 
 	mesh->Build();
 

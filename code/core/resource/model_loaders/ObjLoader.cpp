@@ -48,9 +48,9 @@ Mesh *ObjLoader::Load(const char* strFileName)
 																	&v[1], &uv[1], &n[1],
 																	&v[2], &uv[2], &n[2]);
 
-			pMesh->triangles.push_back(v[0]-1);
-			pMesh->triangles.push_back(v[1]-1);
-			pMesh->triangles.push_back(v[2]-1);
+			pMesh->triangles.push_back( new Face(v[0]-1, n[0]-1, -1, uv[0]-1) );
+			pMesh->triangles.push_back( new Face(v[1]-1, n[1]-1, -1, uv[1]-1) );
+			pMesh->triangles.push_back( new Face(v[2]-1, n[2]-1, -1, uv[2]-1) );
 		}
 	}
 
