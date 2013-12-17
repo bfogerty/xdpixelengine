@@ -2,6 +2,8 @@
 #define __GAME_MAIN_COMPONENT__
 #include "GameObjectComponent.h"
 
+class TextComponent;
+
 class GameMain : public GameObjectComponent
 {
 public:
@@ -17,6 +19,9 @@ public:
 protected:
 
 	void LoadLua();
+
+	TextComponent *fpsText;
+	char fpsTextBuffer[10];
 
 };
 

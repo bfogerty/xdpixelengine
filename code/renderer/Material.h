@@ -4,6 +4,7 @@
 #include "cg.h"
 #include "cgD3D9.h"
 #include <vector>
+#include "boost\algorithm\string.hpp"
 using namespace std;
 
 class Material

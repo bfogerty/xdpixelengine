@@ -11,6 +11,9 @@ private:
 	float mfDeltaTime;
 
 	float mfStartTime;
+	float fpsTimeCounter;
+	int fpsCounter;
+	int fpsDisplayCount;
 
 	Time();
 
@@ -23,6 +26,8 @@ public:
 
 	float GetTime();
 	float GetDeltaTime();
+
+	int GetFPS();
 };
 
 #endif

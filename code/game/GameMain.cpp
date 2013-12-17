@@ -11,6 +11,7 @@
 
 #include "../game/RenderTestComponent.h"
 #include "../game/TriangleComponent.h"
+#include "../game/TextComponent.h"
 #include "../game/ObjLoaderTestComponent.h"
 #include "../game/FPCameraControllerComponent.h"
 
@@ -43,16 +44,31 @@ void GameMain::OnAwake()
 
 	// Add Game Specific logic below.
 	
-	GameObject *pChildObj = new GameObject("Robot");
+	GameObject *pChildObj = new GameObject("Empty");
+	
+	pChildObj = new GameObject("Robot");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj,"./assets/models/Robot2.obj", "./assets/textures/Robot_Color.png") ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	pChildObj->mpTransform->Position = Vector3(-0.04f,0.15f,1);
 
-	
 	pChildObj = new GameObject("TekkaMan");
 	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj,"./assets/models/tekka_op.obj", "./assets/textures/blade_blue.png") ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	pChildObj->mpTransform->Position = Vector3(0.04f,0.15f,1);
+
+	pChildObj = new GameObject("TitleText");
+	TextComponent *textComponent = new TextComponent(pChildObj);
+	pChildObj->AddComponent( static_cast<TextComponent*>( textComponent ) );
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+	pChildObj->mpTransform->Position = Vector3(-0.15f,0.30f,1);
+	textComponent->SetText("xdPixelEngine v0.01");
+
+	pChildObj = new GameObject("FPSText");
+	fpsText = new TextComponent(pChildObj);
+	pChildObj->AddComponent( static_cast<TextComponent*>( fpsText ) );
+	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+	pChildObj->mpTransform->Position = Vector3(-0.15f,0.25f,1);
+	fpsText->SetText("FPS: 30");
 
 	/*
 	GameObject *pChildObj = new GameObject("RenderTest1");
@@ -111,7 +127,8 @@ void GameMain::OnAwake()
 //-----------------------------------------------------------------------------------
 void GameMain::OnUpdate()
 {
-	
+	sprintf(fpsTextBuffer, "FPS: %d", Time::GetInstance()->GetFPS());
+	fpsText->SetText( fpsTextBuffer );
 }
 
 //-----------------------------------------------------------------------------------

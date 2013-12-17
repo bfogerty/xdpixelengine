@@ -111,14 +111,31 @@ void OpenGLRenderer::CreateTexture(Texture2D &texture)
 	OpenGLTexture2D *pTexture = static_cast<OpenGLTexture2D*>(&texture);
 
 	int wrap = 1;
+	
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glGenTextures(1, (GLuint*)&pTexture->iTextureID);
 	glBindTexture(GL_TEXTURE_2D, pTexture->iTextureID);
 
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)data);
+	// Begin New
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, 
+                   GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
+                   GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, pTexture->Width, 
+                pTexture->Height, 0, GL_RGB, GL_UNSIGNED_BYTE, 
+				pTexture->data);
+
+	// Being End
+
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, pTexture->Width, pTexture->Height, 0, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)pTexture->data);
+
 
 	//// build our texture mipmaps
-	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, pTexture->Width, pTexture->Height,
-		GL_RGB, GL_UNSIGNED_BYTE, pTexture->data );
+	//gluBuild2DMipmaps( GL_TEXTURE_2D, 3, pTexture->Width, pTexture->Height,
+	//	GL_RGB, GL_UNSIGNED_BYTE, pTexture->data );
 }
 
 //-----------------------------------------------------------------------------------

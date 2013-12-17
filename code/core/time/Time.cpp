@@ -9,6 +9,9 @@ Time::Time()
 	mfStartTime = 0.000f;
 	mfTime = 0.000f;
 	mfDeltaTime = 0.000f;
+	fpsTimeCounter = 0.000f;
+	fpsCounter = 0;
+	fpsDisplayCount = 0;
 }
 
 Time *Time::GetInstance()
@@ -30,6 +33,18 @@ void Time::End()
 {
 	mfDeltaTime = ( timeGetTime() - mfStartTime ) / 1000.0f;
 	mfTime += mfDeltaTime;
+
+	fpsTimeCounter += mfDeltaTime;
+	if( fpsTimeCounter < 1.0f )
+	{
+		++fpsCounter;
+	}
+	else
+	{
+		fpsTimeCounter = 0.0f;
+		fpsDisplayCount = fpsCounter;
+		fpsCounter = 0;
+	}
 }
 
 float Time::GetTime()
@@ -42,3 +57,7 @@ float Time::GetDeltaTime()
 	return mfDeltaTime;
 }
 
+int Time::GetFPS()
+{
+	return fpsDisplayCount;
+}

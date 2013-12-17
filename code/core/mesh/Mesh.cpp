@@ -25,9 +25,9 @@ void Mesh::Build()
 
 		if( colors.size() > 0 )
 		{
-			pTri->colors[0] = *colors[i+0];
-			pTri->colors[1] = *colors[i+1];
-			pTri->colors[2] = *colors[i+2];
+			pTri->colors[0] = *colors[ triangles[i+0]->ColorIndex ];
+			pTri->colors[1] = *colors[ triangles[i+1]->ColorIndex ];
+			pTri->colors[2] = *colors[ triangles[i+2]->ColorIndex ];
 		}
 		else
 		{
