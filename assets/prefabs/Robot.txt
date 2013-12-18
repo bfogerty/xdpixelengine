@@ -1,0 +1,13 @@
+{
+
+	"name" : "Robot",
+	"components" :
+	[
+		{
+			"name" : "ObjLoaderTestComponent",
+			"model" : "./assets/models/Robot2.obj",
+			"texture" : "./assets/textures/Robot_Color.png"
+		}
+	]
+
+}

@@ -1,0 +1,16 @@
+{
+
+	"name" : "TekkaMan",
+	"components" :
+	[
+		{
+			"name" : "ObjLoaderTestComponent",
+			"model" : "./assets/models/tekka_op.obj",
+			"texture" : "./assets/textures/blade_blue.png"
+		},
+		{
+			"name" : "MoverComponent"
+		}
+	]
+
+}
