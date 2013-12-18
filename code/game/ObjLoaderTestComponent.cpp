@@ -25,8 +25,8 @@ void ObjLoaderTestComponent::OnAwake()
 	//this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/Robot_Color.png");
 	//Mesh *pMeshTest = ObjLoader::Load("./assets/models/Robot2.obj");
 
-	this->mpGameObject->pTexture = ImageLoader::Load(this->texturePath);
-	Mesh *pMeshTest = ObjLoader::Load(this->modelPath);
+	this->mpGameObject->pTexture = ImageLoader::Load(this->texturePath.c_str());
+	Mesh *pMeshTest = ObjLoader::Load(this->modelPath.c_str());
 
 	mesh->Clone(pMeshTest);
 

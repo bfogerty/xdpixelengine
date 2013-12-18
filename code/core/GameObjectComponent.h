@@ -2,6 +2,7 @@
 #define __GAME_OBJECT_COMPONENT__
 
 #include "BaseObject.h"
+#include <map>
 
 // Forward Declarations
 class GameObject;
@@ -30,6 +31,12 @@ public:
 	virtual void OnRenderObject();
 	
 	virtual ~GameObjectComponent();
+
+	typedef GameObjectComponent* (*ComponentClassPointer)(GameObject *, std::map<std::string, std::string>);
+	static ComponentClassPointer GetClass( std::string className );
+
+protected:
+	static std::map<std::string, ComponentClassPointer> mapComponents;
 };
 
 #endif

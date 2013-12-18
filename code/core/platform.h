@@ -11,11 +11,11 @@
 // Renderer API
 //-----------------------------------------------------------------------------------
 #ifndef PS2_RELEASE
-	//#define COMPILE_DX9_RENDERER			1
+	#define COMPILE_DX9_RENDERER			1
 	#define COMPILE_OPENGL_RENDERER			1
 
-	//#define USE_DX9_RENDERER				1
-	#define USE_OPENGL_RENDERER				1
+	#define USE_DX9_RENDERER				1
+	//#define USE_OPENGL_RENDERER				1
 #endif
 
 #endif

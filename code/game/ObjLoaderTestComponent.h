@@ -3,12 +3,21 @@
 #include "GameObjectComponent.h"
 
 #include "../core/math/Matrix4x4.h"
+#include <map>
 
 class ObjLoaderTestComponent : public GameObjectComponent
 {
 public:
 
-	ObjLoaderTestComponent( GameObject *pGameObject, char* modelPath, char* texturePath ) : GameObjectComponent(pGameObject)
+	static GameObjectComponent* Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
+	{
+		std::string model = mapParams["model"];
+		std::string texture = mapParams["texture"];
+
+		return (GameObjectComponent*)new ObjLoaderTestComponent(pGameObject, model, texture);
+	}
+
+	ObjLoaderTestComponent( GameObject *pGameObject, std::string modelPath, std::string texturePath ) : GameObjectComponent(pGameObject)
 	{
 		this->modelPath = modelPath;
 		this->texturePath = texturePath;
@@ -19,8 +28,8 @@ public:
 
 protected:
 
-	char* modelPath;
-	char* texturePath;
+	std::string modelPath;
+	std::string texturePath;
 
 	float mft;
 	char mDir;

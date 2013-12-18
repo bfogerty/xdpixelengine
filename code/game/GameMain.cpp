@@ -4,6 +4,7 @@
 #include "../core/Transform.h"
 #include "../core/Camera.h"
 #include "../core/time/Time.h"
+#include "../core/resource/prefabLoader/PrefabLoader.h"
 
 #include "../renderer/RenderEngine.h"
 #include "../renderer/RendererConfig.h"
@@ -45,16 +46,20 @@ void GameMain::OnAwake()
 	// Add Game Specific logic below.
 	
 	GameObject *pChildObj = new GameObject("Empty");
-	
-	pChildObj = new GameObject("Robot");
-	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj,"./assets/models/Robot2.obj", "./assets/textures/Robot_Color.png") ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	pChildObj->mpTransform->Position = Vector3(-0.04f,0.15f,1);
 
-	pChildObj = new GameObject("TekkaMan");
-	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new ObjLoaderTestComponent(pChildObj,"./assets/models/tekka_op.obj", "./assets/textures/blade_blue.png") ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	pChildObj->mpTransform->Position = Vector3(0.04f,0.15f,1);
+	pChildObj = PrefabLoader::Load("./assets/prefabs/Robot.txt");
+	if( pChildObj )
+	{
+		mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+		pChildObj->mpTransform->Position = Vector3(-0.04f,0.15f,1);
+	}
+
+	pChildObj = PrefabLoader::Load("./assets/prefabs/TekkaMan.txt");
+	if( pChildObj )
+	{
+		mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
+		pChildObj->mpTransform->Position = Vector3(0.04f,0.15f,1);
+	}
 
 	pChildObj = new GameObject("TitleText");
 	TextComponent *textComponent = new TextComponent(pChildObj);
