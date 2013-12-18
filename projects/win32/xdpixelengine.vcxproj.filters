@@ -115,6 +115,15 @@
     <Filter Include="third_party\lua">
       <UniqueIdentifier>{5c74cc03-f9be-4d27-9b9f-d477ecb14181}</UniqueIdentifier>
     </Filter>
+    <Filter Include="third_party\jsonCpp">
+      <UniqueIdentifier>{3a6f8616-5930-49c8-a4e8-b4dec1dc954b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\resource\PrefabLoader">
+      <UniqueIdentifier>{88a497cc-2330-47ed-8dae-1391b4d369bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\resource\PrefabLoader">
+      <UniqueIdentifier>{70173ee7-c02c-493a-b1cd-04d98f27beb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\core\BaseObject.cpp">
@@ -411,6 +420,24 @@
     <ClCompile Include="..\..\code\renderer\BitmapText.cpp">
       <Filter>Source Files\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\game\TextComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_reader.cpp">
+      <Filter>third_party\jsonCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_value.cpp">
+      <Filter>third_party\jsonCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_writer.cpp">
+      <Filter>third_party\jsonCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\core\resource\prefabLoader\PrefabLoader.cpp">
+      <Filter>Source Files\core\resource\PrefabLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\MoverComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\core\BaseObject.h">
@@ -652,6 +679,18 @@
     </ClInclude>
     <ClInclude Include="..\..\code\renderer\BitmapText.h">
       <Filter>Header Files\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\TextComponent.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_batchallocator.h">
+      <Filter>third_party\jsonCpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\core\resource\prefabLoader\PrefabLoader.h">
+      <Filter>Header Files\core\resource\PrefabLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\MoverComponent.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

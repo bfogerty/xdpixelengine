@@ -44,11 +44,13 @@
     <OutDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\obj\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\jsoncpp-src-0.5.0\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\..\..\..\bin\win32\$(Configuration)\obj\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\jsoncpp-src-0.5.0\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -80,7 +82,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\cg\include\Cg;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\boost;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\cg\include\Cg;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\zlib-1.2.8;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty\lua-5.2.2\src;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\thirdparty;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\core;C:\Users\bfogerty\Documents\Development\xdpixelengine\code\renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -99,6 +101,7 @@
     <ClCompile Include="..\..\code\core\GameObject.cpp" />
     <ClCompile Include="..\..\code\core\GameObjectComponent.cpp" />
     <ClCompile Include="..\..\code\core\main.cpp" />
+    <ClCompile Include="..\..\code\core\resource\prefabLoader\PrefabLoader.cpp" />
     <ClCompile Include="..\..\code\core\Transform.cpp" />
     <ClCompile Include="..\..\code\core\math\MathHelper.cpp" />
     <ClCompile Include="..\..\code\core\math\Matrix4x4.cpp" />
@@ -116,6 +119,8 @@
     <ClCompile Include="..\..\code\core\resource\model_loaders\ObjLoader.cpp" />
     <ClCompile Include="..\..\code\core\input\Input.cpp" />
     <ClCompile Include="..\..\code\game\FPCameraControllerComponent.cpp" />
+    <ClCompile Include="..\..\code\game\MoverComponent.cpp" />
+    <ClCompile Include="..\..\code\game\TextComponent.cpp" />
     <ClCompile Include="..\..\code\renderer\BitmapText.cpp" />
     <ClCompile Include="..\..\code\renderer\Color.cpp" />
     <ClCompile Include="..\..\code\renderer\Material.cpp" />
@@ -128,6 +133,9 @@
     <ClCompile Include="..\..\code\game\ObjLoaderTestComponent.cpp" />
     <ClCompile Include="..\..\code\game\RenderTestComponent.cpp" />
     <ClCompile Include="..\..\code\game\TriangleComponent.cpp" />
+    <ClCompile Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_reader.cpp" />
+    <ClCompile Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_value.cpp" />
+    <ClCompile Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_writer.cpp" />
     <ClCompile Include="..\..\code\thirdparty\lpng162\png.c" />
     <ClCompile Include="..\..\code\thirdparty\lpng162\pngerror.c" />
     <ClCompile Include="..\..\code\thirdparty\lpng162\pngget.c" />
@@ -199,6 +207,7 @@
     <ClInclude Include="..\..\code\core\GameObject.h" />
     <ClInclude Include="..\..\code\core\GameObjectComponent.h" />
     <ClInclude Include="..\..\code\core\platform.h" />
+    <ClInclude Include="..\..\code\core\resource\prefabLoader\PrefabLoader.h" />
     <ClInclude Include="..\..\code\core\Transform.h" />
     <ClInclude Include="..\..\code\core\math\MathHelper.h" />
     <ClInclude Include="..\..\code\core\math\Matrix4x4.h" />
@@ -217,6 +226,8 @@
     <ClInclude Include="..\..\code\core\input\Input.h" />
     <ClInclude Include="..\..\code\core\input\Keycode.h" />
     <ClInclude Include="..\..\code\game\FPCameraControllerComponent.h" />
+    <ClInclude Include="..\..\code\game\MoverComponent.h" />
+    <ClInclude Include="..\..\code\game\TextComponent.h" />
     <ClInclude Include="..\..\code\renderer\BitmapText.h" />
     <ClInclude Include="..\..\code\renderer\Color.h" />
     <ClInclude Include="..\..\code\renderer\Material.h" />
@@ -230,6 +241,7 @@
     <ClInclude Include="..\..\code\game\ObjLoaderTestComponent.h" />
     <ClInclude Include="..\..\code\game\RenderTestComponent.h" />
     <ClInclude Include="..\..\code\game\TriangleComponent.h" />
+    <ClInclude Include="..\..\code\thirdparty\jsoncpp-src-0.5.0\src\lib_json\json_batchallocator.h" />
     <ClInclude Include="..\..\code\thirdparty\lpng162\png.h" />
     <ClInclude Include="..\..\code\thirdparty\lpng162\pngconf.h" />
     <ClInclude Include="..\..\code\thirdparty\lpng162\pngdebug.h" />
