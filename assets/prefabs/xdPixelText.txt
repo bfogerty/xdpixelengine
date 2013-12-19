@@ -1,0 +1,12 @@
+{
+
+	"name" : "xdPixelText",
+	"components" :
+	[
+		{
+			"name" : "TextComponent",
+			"text" : "xdPixelEngine v0.01"
+		}
+	]
+
+}

@@ -1,0 +1,11 @@
+{
+
+	"name" : "RenderTest",
+	"components" :
+	[
+		{
+			"name" : "RenderTestComponent"
+		}
+	]
+
+}

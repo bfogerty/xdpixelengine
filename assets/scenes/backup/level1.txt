@@ -1,0 +1,28 @@
+{
+	"name" : "Level1",
+	"objects" :
+	[
+		{
+			"name"	: "TekkaMan",
+			"prefab" : "./assets/prefabs/TekkaMan.txt",
+			"localPosition" : "0.04,0.15,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+		{
+			"name"	: "Robot",
+			"prefab" : "./assets/prefabs/Robot.txt",
+			"localPosition" : "-0.04,0.15,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+		{
+			"name"	: "xdPixelText",
+			"prefab" : "./assets/prefabs/xdPixelText.txt",
+			"localPosition" : "-0.15,0.30,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		}
+	]
+
+}
