@@ -1,4 +1,6 @@
-#include "PrefabLoader.h"
+#include "SceneLoader.h"
+#include "resource/prefabLoader/PrefabLoader.h"
+#include "../core/Transform.h"
 #include "GameObject.h"
 #include "GameObjectComponent.h"
 #include <string>
@@ -7,13 +9,9 @@
 #include <map>
 using namespace std;
 
-GameObject *PrefabLoader::Load(const char* strFileName)
+void SceneLoader::Load(const char* strFileName, GameObject *rootGameObject)
 {
-	return Load( strFileName, 0 );
-}
-
-GameObject *PrefabLoader::Load(const char* strFileName, GameObject *pGo)
-{
+	GameObject *pGo = 0;
 	Json::Value root;
 	Json::Reader reader;
 
@@ -21,17 +19,11 @@ GameObject *PrefabLoader::Load(const char* strFileName, GameObject *pGo)
 
 	if( !reader.parse( jsonText, root ) )
 	{
-		return 0;
+		return;
 	}
 
-	if( pGo == 0 )
-	{
-		Json::Value nameVal = root["name"];
-		std::string name = nameVal.asString();
-		pGo = new GameObject( name.c_str() );
-	}
 
-	Json::Value componentsVal = root["components"];
+	Json::Value componentsVal = root["objects"];
 	int componentCount = componentsVal.size();
 
 	for( int i=0; i< componentCount; ++i )
@@ -48,23 +40,34 @@ GameObject *PrefabLoader::Load(const char* strFileName, GameObject *pGo)
 			mapParams[memberName] = value;
 		}
 
-		AddComponent( pGo, mapParams );
+		CreateSceneObject( rootGameObject, mapParams );
 	}
-
-	return pGo;
 }
 
-GameObjectComponent * PrefabLoader::AddComponent( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
+void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, std::string> mapParams )
 {
 	std::string name = mapParams["name"];
+	std::string prefab = mapParams["prefab"];
+	std::string localPosition = mapParams["localPosition"];
 
-	GameObjectComponent *pComponent = GameObjectComponent::GetClass( name.c_str() )(pGameObject, mapParams);
-	pGameObject->AddComponent( pComponent );
+	float fX=0.0f;
+	float fY=0.0f;
+	float fZ=0.0f;
 
-	return pComponent;
+	const char *locationPositionBuffer = localPosition.c_str();
+	sscanf(locationPositionBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+
+	GameObject *pChild = new GameObject(name.c_str());
+	if( prefab.length() > 0 )
+	{
+		PrefabLoader::Load( prefab.c_str(), pChild);
+	}
+
+	parent->mpTransform->mChildren.push_back(pChild->mpTransform);
+	pChild->mpTransform->Position = *(new Vector3(fX, fY, fZ));
 }
 
-const char* PrefabLoader::ReadFileIntoString( const char* fileName )
+const char* SceneLoader::ReadFileIntoString( const char* fileName )
 {
 	char *buffer = 0;
 	fstream f;

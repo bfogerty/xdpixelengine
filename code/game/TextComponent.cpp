@@ -10,7 +10,7 @@
 #include "../core/math/MathHelper.h"
 
 //-----------------------------------------------------------------------------------
-void TextComponent::OnAwake()
+void TextComponent::Intialize()
 {
 	this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/ddrsmall.png");
 	int pixelWidthOfEachCharacter = 9;
@@ -23,15 +23,28 @@ void TextComponent::OnAwake()
 }
 
 //-----------------------------------------------------------------------------------
+void TextComponent::OnAwake()
+{
+
+}
+
+//-----------------------------------------------------------------------------------
 void TextComponent::OnUpdate()
 {
 	
 }
 
 //-----------------------------------------------------------------------------------
-void TextComponent::SetText(char *text)
-{		
-	int len = strlen(text);
+void TextComponent::SetText(std::string textstring)
+{
+	if( textString == textstring )
+	{
+		return;
+	}
+
+	this->textString = textstring;
+	const char *text = this->textString.c_str();
+	int len = textString.length();
 	Mesh *m = new Mesh();
 
 	float x = 0;

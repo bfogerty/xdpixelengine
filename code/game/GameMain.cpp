@@ -4,6 +4,7 @@
 #include "../core/Transform.h"
 #include "../core/Camera.h"
 #include "../core/time/Time.h"
+#include "../core/resource/sceneLoader/SceneLoader.h"
 #include "../core/resource/prefabLoader/PrefabLoader.h"
 
 #include "../renderer/RenderEngine.h"
@@ -47,26 +48,7 @@ void GameMain::OnAwake()
 	
 	GameObject *pChildObj = new GameObject("Empty");
 
-	pChildObj = PrefabLoader::Load("./assets/prefabs/Robot.txt");
-	if( pChildObj )
-	{
-		mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-		pChildObj->mpTransform->Position = Vector3(-0.04f,0.15f,1);
-	}
-
-	pChildObj = PrefabLoader::Load("./assets/prefabs/TekkaMan.txt");
-	if( pChildObj )
-	{
-		mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-		pChildObj->mpTransform->Position = Vector3(0.04f,0.15f,1);
-	}
-
-	pChildObj = new GameObject("TitleText");
-	TextComponent *textComponent = new TextComponent(pChildObj);
-	pChildObj->AddComponent( static_cast<TextComponent*>( textComponent ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	pChildObj->mpTransform->Position = Vector3(-0.15f,0.30f,1);
-	textComponent->SetText("xdPixelEngine v0.01");
+	SceneLoader::Load("./assets/scenes/main.txt", mpGameObject);
 
 	pChildObj = new GameObject("FPSText");
 	fpsText = new TextComponent(pChildObj);
@@ -74,22 +56,6 @@ void GameMain::OnAwake()
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	pChildObj->mpTransform->Position = Vector3(-0.15f,0.25f,1);
 	fpsText->SetText("FPS: 30");
-
-	/*
-	GameObject *pChildObj = new GameObject("RenderTest1");
-	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	
-
-	
-	pChildObj = new GameObject("RenderTest2");
-	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(pChildObj) ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	
-	pChildObj = new GameObject("Triangle");
-	pChildObj->AddComponent( static_cast<GameObjectComponent*>( new TriangleComponent(pChildObj) ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	*/
 
 	pChildObj = new GameObject("Camera");
 	Camera *camera = new Camera(pChildObj);

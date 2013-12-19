@@ -10,6 +10,8 @@ class PrefabLoader
 {
 public:
 	static GameObject* Load(const char* strFilename);
+	static GameObject* Load(const char* strFilename, GameObject *pGo);
+
 
 protected:
 	static const char* ReadFileIntoString( const char* fileName );

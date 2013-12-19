@@ -5,8 +5,6 @@
 #include "../core/time/Time.h"
 #include "./resource/image_loaders/ImageLoader.h"
 
-int RenderTestComponent::iID = 0;
-
 //-----------------------------------------------------------------------------------
 void RenderTestComponent::OnAwake()
 {
@@ -46,27 +44,24 @@ void RenderTestComponent::OnAwake()
 
 	mesh->Build();
 
-	id = iID;
-	++iID;
-
 	mpGameObject->mpTransform->Scale = Vector3(1,1,1);
+
+	firstTime = true;
 }
 
 //-----------------------------------------------------------------------------------
 void RenderTestComponent::OnUpdate()
 {
-	float fY = 3.0f;
-	if( id == 1 )
-	{
-		fY = -3.0f;
-	}
-	else if( id == 2 )
-	{
-		fY = -6.0f;
-	}
 
-	Vector3 vecStart(-7.0f, fY, 5.0f);
-	Vector3 vecEnd(7.0f, fY, 5.0f);
+	if( firstTime == true )
+	{
+		startPosition = this->mpGameObject->mpTransform->Position;
+		endPosition = startPosition + (Vector3::Right() * 20.0f);
+
+		firstTime = false;
+
+		return;
+	}
 
 	if( mT >= 1.0f )
 	{
@@ -76,7 +71,7 @@ void RenderTestComponent::OnUpdate()
 	float fAngle = (1.0f - mT)*0.0f + (mT * 359.0f);
 	mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(-Vector3::Forward(), fAngle);
 
-	Vector3 pos = vecStart * (1.0f - mT) + (vecEnd * mT);
+	Vector3 pos = startPosition * (1.0f - mT) + (endPosition * mT);
 	mpGameObject->mpTransform->Position = pos;
 
 

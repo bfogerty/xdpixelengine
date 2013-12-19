@@ -3,6 +3,8 @@
 
 #include "../game/ObjLoaderTestComponent.h"
 #include "../game/MoverComponent.h"
+#include "../game/TextComponent.h"
+#include "../game/RenderTestComponent.h"
 
 std::map<std::string, GameObjectComponent::ComponentClassPointer> GameObjectComponent::mapComponents;
 
@@ -12,6 +14,8 @@ GameObjectComponent::ComponentClassPointer GameObjectComponent::GetClass( std::s
 	{
 		mapComponents["ObjLoaderTestComponent"] = ObjLoaderTestComponent::Create;
 		mapComponents["MoverComponent"] = MoverComponent::Create;
+		mapComponents["TextComponent"] = TextComponent::Create;
+		mapComponents["RenderTestComponent"] = RenderTestComponent::Create;
 	}
 
 	return mapComponents[ className ];
