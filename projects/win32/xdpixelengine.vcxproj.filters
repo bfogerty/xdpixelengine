@@ -124,6 +124,12 @@
     <Filter Include="Header Files\core\resource\PrefabLoader">
       <UniqueIdentifier>{70173ee7-c02c-493a-b1cd-04d98f27beb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\resource\SceneLoader">
+      <UniqueIdentifier>{69fba913-625c-4442-8ee0-207e1d2e2694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\resource\SceneLoader">
+      <UniqueIdentifier>{bc0f2a39-8d80-4a44-8939-d76a5ab1a7c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\core\BaseObject.cpp">
@@ -438,6 +444,9 @@
     <ClCompile Include="..\..\code\game\MoverComponent.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\core\resource\sceneLoader\SceneLoader.cpp">
+      <Filter>Source Files\core\resource\SceneLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\core\BaseObject.h">
@@ -691,6 +700,9 @@
     </ClInclude>
     <ClInclude Include="..\..\code\game\MoverComponent.h">
       <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\core\resource\sceneLoader\SceneLoader.h">
+      <Filter>Header Files\core\resource\SceneLoader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

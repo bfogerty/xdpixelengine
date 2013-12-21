@@ -102,6 +102,7 @@
     <ClCompile Include="..\..\code\core\GameObjectComponent.cpp" />
     <ClCompile Include="..\..\code\core\main.cpp" />
     <ClCompile Include="..\..\code\core\resource\prefabLoader\PrefabLoader.cpp" />
+    <ClCompile Include="..\..\code\core\resource\sceneLoader\SceneLoader.cpp" />
     <ClCompile Include="..\..\code\core\Transform.cpp" />
     <ClCompile Include="..\..\code\core\math\MathHelper.cpp" />
     <ClCompile Include="..\..\code\core\math\Matrix4x4.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="..\..\code\core\GameObjectComponent.h" />
     <ClInclude Include="..\..\code\core\platform.h" />
     <ClInclude Include="..\..\code\core\resource\prefabLoader\PrefabLoader.h" />
+    <ClInclude Include="..\..\code\core\resource\sceneLoader\SceneLoader.h" />
     <ClInclude Include="..\..\code\core\Transform.h" />
     <ClInclude Include="..\..\code\core\math\MathHelper.h" />
     <ClInclude Include="..\..\code\core\math\Matrix4x4.h" />
