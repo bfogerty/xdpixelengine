@@ -1,0 +1,20 @@
+{
+
+	"name" : "Perspective Camera",
+	"components" :
+	[
+		{
+			"name" : "Camera",
+			"color" : "128,128,128,255",
+			"fov" : "45.0",
+			"near" : "0.01",
+			"far" : "10000.0",
+			"bufferclearcode" : "7",
+			"depth" : "1"	
+		},
+		{
+			"name" : "FPCameraControllerComponent"
+		}
+	]
+
+}
