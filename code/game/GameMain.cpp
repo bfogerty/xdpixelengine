@@ -57,6 +57,7 @@ void GameMain::OnAwake()
 	pChildObj->mpTransform->Position = Vector3(-0.15f,0.25f,1);
 	fpsText->SetText("FPS: 30");
 
+	/*
 	pChildObj = new GameObject("Camera");
 	Camera *camera = new Camera(pChildObj);
 	pChildObj->AddComponent(static_cast<Camera*>( camera ));
@@ -72,7 +73,7 @@ void GameMain::OnAwake()
 	camera->Depth = 0;
 
 	pChildObj->AddComponent(static_cast<FPCameraControllerComponent*>(new FPCameraControllerComponent(pChildObj)));
-
+	*/
 
 
 

@@ -1,10 +1,12 @@
 #include "GameObjectComponent.h"
 #include "GameObject.h"
 
+#include "Camera.h"
 #include "../game/ObjLoaderTestComponent.h"
 #include "../game/MoverComponent.h"
 #include "../game/TextComponent.h"
 #include "../game/RenderTestComponent.h"
+#include "../game/FPCameraControllerComponent.h"
 
 std::map<std::string, GameObjectComponent::ComponentClassPointer> GameObjectComponent::mapComponents;
 
@@ -16,6 +18,8 @@ GameObjectComponent::ComponentClassPointer GameObjectComponent::GetClass( std::s
 		mapComponents["MoverComponent"] = MoverComponent::Create;
 		mapComponents["TextComponent"] = TextComponent::Create;
 		mapComponents["RenderTestComponent"] = RenderTestComponent::Create;
+		mapComponents["Camera"] = Camera::Create;
+		mapComponents["FPCameraControllerComponent"] = FPCameraControllerComponent::Create;
 	}
 
 	return mapComponents[ className ];

@@ -6,6 +6,11 @@ class FPCameraControllerComponent : public GameObjectComponent
 {
 public:
 
+	static GameObjectComponent* Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
+	{
+		return (GameObjectComponent*)new FPCameraControllerComponent(pGameObject);
+	}
+
 	FPCameraControllerComponent( GameObject *pGameObject ) : GameObjectComponent(pGameObject)
 	{
 

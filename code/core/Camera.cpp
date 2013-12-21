@@ -5,6 +5,45 @@
 #include "../renderer/PlatformRenderer.h"
 
 //-----------------------------------------------------------------------------------
+GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
+{
+	std::string colorStr = mapParams["color"];
+	std::string fovStr = mapParams["fov"];
+	std::string nearStr = mapParams["near"];
+	std::string farStr = mapParams["far"];
+	std::string bufferClearCodeStr = mapParams["bufferclearcode"];
+	std::string depthStr = mapParams["depth"];
+
+	int r,g,b,a = 0;
+	float fov = 0.0f;
+	float n = 0.0f;
+	float f = 0.0f;
+	int bufferClearCode = 0;
+	int depth = 0;
+
+	sscanf( colorStr.c_str(), "%d,%d,%d,%d", &r,&g,&b,&a);
+	sscanf( fovStr.c_str(), "%f", &fov);
+	sscanf( nearStr.c_str(), "%f", &n);
+	sscanf( farStr.c_str(), "%f", &f);
+	sscanf( bufferClearCodeStr.c_str(), "%d", &bufferClearCode);
+	sscanf( depthStr.c_str(), "%d", &depth);
+
+	Camera *camera = new Camera(pGameObject);
+
+	camera->BackGroundColor = Color(Color::Color(r,g,b,a));
+	camera->mAspectRatio = RenderEngine::GetInstance()->GetRenderConfig()->GetAspectRatio();
+	camera->mFov = fov;
+	camera->mNear = n;
+	camera->mFar = f;
+	camera->BuffersToClear = bufferClearCode;
+	camera->Depth = depth;
+
+	return (GameObjectComponent*) camera;
+
+	//return (GameObjectComponent*)new ObjLoaderTestComponent(pGameObject, model, texture);
+}
+
+//-----------------------------------------------------------------------------------
 Camera::Camera( GameObject *pGameObject ) : GameObjectComponent(pGameObject)
 {
 	Depth = 0;

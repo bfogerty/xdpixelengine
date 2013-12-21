@@ -20,6 +20,8 @@ public:
 	unsigned int BuffersToClear;
 	unsigned int Depth;
 
+	static GameObjectComponent* Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams );
+
 	Camera( GameObject *pGameObject );
 
 	void RenderScene( PlatformRenderer *pRenderer, GameObject *pGameObject );
