@@ -22,6 +22,13 @@
 			"localPosition" : "-0.15,0.30,1.00",
 			"localRotation" : "0,0,0",
 			"localScale" : "0,0,0"
+		},
+		{
+			"name"	: "Camera",
+			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+			"localPosition" : "0.00,-0.20,0.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
 		}
 	]
 
