@@ -34,8 +34,8 @@ technique main_dx9
         {
                 Zenable = true;
                 ZWriteEnable = true;
-				//PolygonMode = int2(FrontAndBack, Wireframe);
-				PolygonMode = int2(Front, Solid);
+				PolygonMode = int2(FrontAndBack, Wireframe);
+				//PolygonMode = int2(Front, Solid);
 
                 VertexShader = compile vs_3_0 myvs( mvp );
 				PixelShader = compile ps_3_0 myps();
@@ -49,8 +49,8 @@ technique main_opengl
         {
                 Zenable = true;
                 ZWriteEnable = true;
-				//PolygonMode = int2(FrontAndBack, Wireframe);
-				PolygonMode = int2(Front, Solid);
+				PolygonMode = int2(FrontAndBack, Wireframe);
+				//PolygonMode = int2(Front, Solid);
 
 				VertexShader = compile glslv myvs( mvp );
 				PixelShader = compile glslf myps();
