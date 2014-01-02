@@ -477,6 +477,9 @@
     <ClCompile Include="..\..\code\game\MeshComponent.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\game\AutoRotateComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\core\BaseObject.h">
@@ -750,6 +753,9 @@
       <Filter>Header Files\core\config</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\game\MeshComponent.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\AutoRotateComponent.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>

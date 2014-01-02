@@ -120,6 +120,7 @@
     <ClCompile Include="..\..\code\core\resource\image_loaders\ImageLoader_PNG.cpp" />
     <ClCompile Include="..\..\code\core\resource\model_loaders\ObjLoader.cpp" />
     <ClCompile Include="..\..\code\core\input\Input.cpp" />
+    <ClCompile Include="..\..\code\game\AutoRotateComponent.cpp" />
     <ClCompile Include="..\..\code\game\FPCameraControllerComponent.cpp" />
     <ClCompile Include="..\..\code\game\FullScreenQuadComponent.cpp" />
     <ClCompile Include="..\..\code\game\MeshComponent.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="..\..\code\core\resource\model_loaders\ObjLoader.h" />
     <ClInclude Include="..\..\code\core\input\Input.h" />
     <ClInclude Include="..\..\code\core\input\Keycode.h" />
+    <ClInclude Include="..\..\code\game\AutoRotateComponent.h" />
     <ClInclude Include="..\..\code\game\FPCameraControllerComponent.h" />
     <ClInclude Include="..\..\code\game\FullScreenQuadComponent.h" />
     <ClInclude Include="..\..\code\game\MeshComponent.h" />
