@@ -9,6 +9,7 @@
 #include "../game/FPCameraControllerComponent.h"
 #include "../game/FullScreenQuadComponent.h"
 #include "../game/MeshComponent.h"
+#include "../game/AutoRotateComponent.h"
 
 std::map<std::string, GameObjectComponent::ComponentClassPointer> GameObjectComponent::mapComponents;
 
@@ -24,6 +25,7 @@ GameObjectComponent::ComponentClassPointer GameObjectComponent::GetClass( std::s
 		mapComponents["FPCameraControllerComponent"] = FPCameraControllerComponent::Create;
 		mapComponents["FullScreenQuadComponent"] = FullScreenQuadComponent::Create;
 		mapComponents["MeshComponent"] = MeshComponent::Create;
+		mapComponents["AutoRotateComponent"] = AutoRotateComponent::Create;
 	}
 
 	return mapComponents[ className ];

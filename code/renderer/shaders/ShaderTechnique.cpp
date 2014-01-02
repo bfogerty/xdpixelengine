@@ -21,7 +21,7 @@ ShaderTechnique::ShaderTechnique( CGtechnique technique )
 		}
 
 		++passCount;
-		ShaderPass *shaderPass = new ShaderPass( cgPass );
+		ShaderPass *shaderPass = new ShaderPass( cgPass ); 
 		passes[shaderPass->name] = shaderPass;
 		cgPass = cgGetNextPass(cgPass);
 	} while ( cgPass != 0 );

@@ -23,7 +23,7 @@ void MoverComponent::OnUpdate()
 	if( firstTime )
 	{
 		startPosition = this->mpGameObject->mpTransform->Position;
-		endPosition = startPosition + (Vector3::Up() * 0.30f);
+		endPosition = startPosition + (vecDir * magnitude);
 		firstTime = false;
 
 		return;
@@ -50,7 +50,7 @@ void MoverComponent::OnUpdate()
 	}
 	else
 	{
-		mft += Time::GetInstance()->GetSmoothDeltaTime();// GetDeltaTime();
+		mft += Time::GetInstance()->GetSmoothDeltaTime() * speed;// GetDeltaTime();
 	}
 	
 }
