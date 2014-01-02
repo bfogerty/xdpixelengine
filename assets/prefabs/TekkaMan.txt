@@ -4,7 +4,7 @@
 	"components" :
 	[
 		{
-			"name" : "ObjLoaderTestComponent",
+			"name" : "MeshComponent",
 			"model" : "./assets/models/tekka_op.obj",
 			"texture" : "./assets/textures/blade_blue.png"
 		},

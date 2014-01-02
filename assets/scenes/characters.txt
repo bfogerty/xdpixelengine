@@ -1,0 +1,42 @@
+{
+	"name" : "Level1",
+	"objects" :
+	[
+		{
+			"name"	: "Room0",
+			"prefab" : "./assets/prefabs/room0.txt",
+			"localPosition" : "0.00,-1.00,2.00",
+			"localRotation" : "0,180,0",
+			"localScale" : "60,60,60"
+		},
+		{
+			"name"	: "TekkaMan",
+			"prefab" : "./assets/prefabs/TekkaMan.txt",
+			"localPosition" : "2.00,0.00,1.00",
+			"localRotation" : "0,90,0",
+			"localScale" : "1,1,1"
+		},
+		//{
+		//	"name"	: "Robot",
+		//	"prefab" : "./assets/prefabs/Robot.txt",
+		//	"localPosition" : "-2.00,0.00,1.00",
+		//	"localRotation" : "0,0,0",
+		//	"localScale" : "1,1,1"
+		//},
+		{
+			"name"	: "xdPixelText",
+			"prefab" : "./assets/prefabs/xdPixelText.txt",
+			"localPosition" : "-0.15,0.30,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "1,1,1"
+		},
+		{
+			"name"	: "Camera",
+			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+			"localPosition" : "0.00,-2.00,10.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		}
+	]
+
+}

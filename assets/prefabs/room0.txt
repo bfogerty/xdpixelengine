@@ -1,0 +1,13 @@
+{
+
+	"name" : "Robot",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/room0.obj",
+			"texture" : "./assets/textures/Robot_Color.png"
+		}
+	]
+
+}

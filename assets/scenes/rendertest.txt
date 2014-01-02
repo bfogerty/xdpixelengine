@@ -1,0 +1,42 @@
+{
+	"name" : "RenderTest",
+	"objects" :
+	[
+		{
+			"name"	: "RenderTest1",
+			"prefab" : "./assets/prefabs/RenderTest.txt",
+			"localPosition" : "-10.00,3.00,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+		{
+			"name"	: "RenderTest2",
+			"prefab" : "./assets/prefabs/RenderTest.txt",
+			"localPosition" : "-10.00,0.00,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+		{
+			"name"	: "RenderTest3",
+			"prefab" : "./assets/prefabs/RenderTest.txt",
+			"localPosition" : "-10.00,-3.00,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+		//{
+		//	"name"	: "TitleText",
+		//	"prefab" : "./assets/prefabs/RenderTestTitleText.txt",
+		//	"localPosition" : "-0.55,0.55,1.00",
+		//	"localRotation" : "0,0,0",
+		//	"localScale" : "0,0,0"
+		//},
+		{
+			"name"	: "Camera",
+			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+			"localPosition" : "0.00,-0.20,0.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		}
+	]
+
+}
