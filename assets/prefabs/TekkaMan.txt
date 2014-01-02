@@ -9,7 +9,9 @@
 			"texture" : "./assets/textures/blade_blue.png"
 		},
 		{
-			"name" : "MoverComponent"
+			"name" : "AutoRotateComponent",
+			"axis" : "0,1,0",
+			"speed" : "0.10"
 		}
 	]
 

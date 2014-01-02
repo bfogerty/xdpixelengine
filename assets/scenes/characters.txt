@@ -5,24 +5,38 @@
 		{
 			"name"	: "Room0",
 			"prefab" : "./assets/prefabs/room0.txt",
-			"localPosition" : "0.00,-1.00,2.00",
+			"localPosition" : "0.00,-0.50,2.00",
 			"localRotation" : "0,180,0",
 			"localScale" : "60,60,60"
 		},
 		{
+			"name"	: "HorizontalPlatform0",
+			"prefab" : "./assets/prefabs/HorizontalPlatform.txt",
+			"localPosition" : "-1.0,4.00,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "10,10,10"
+		},
+		{
+			"name"	: "VerticalPlatform0",
+			"prefab" : "./assets/prefabs/VerticalPlatform.txt",
+			"localPosition" : "0.0,1.00,1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "10,10,10"
+		},
+		{
 			"name"	: "TekkaMan",
 			"prefab" : "./assets/prefabs/TekkaMan.txt",
-			"localPosition" : "2.00,0.00,1.00",
+			"localPosition" : "1.50,0.00,1.00",
 			"localRotation" : "0,90,0",
 			"localScale" : "1,1,1"
 		},
-		//{
-		//	"name"	: "Robot",
-		//	"prefab" : "./assets/prefabs/Robot.txt",
-		//	"localPosition" : "-2.00,0.00,1.00",
-		//	"localRotation" : "0,0,0",
-		//	"localScale" : "1,1,1"
-		//},
+		{
+			"name"	: "Robot",
+			"prefab" : "./assets/prefabs/Robot.txt",
+			"localPosition" : "-1.50,0.00,1.00",
+			"localRotation" : "0,180,0",
+			"localScale" : "1,1,1"
+		},
 		{
 			"name"	: "xdPixelText",
 			"prefab" : "./assets/prefabs/xdPixelText.txt",
