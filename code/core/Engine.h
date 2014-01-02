@@ -3,16 +3,13 @@
 
 #include "RendererConfig.h"
 #include "RenderEngine.h"
+#include "config/EngineConfig.h"
 
-struct EngineConfig
-{
-	char *WindowHandle;
-};
 
 class Engine
 {
 public:
-	Engine(EngineConfig config);
+	Engine();
 
 	void Update();
 
@@ -26,7 +23,6 @@ protected:
 
 	RenderEngine *pRenderEngine;
 	GameObject *mpRootGameObject;
-
 };
 
 #endif

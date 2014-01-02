@@ -8,8 +8,6 @@ using namespace std;
 
 HWND gHWND;
 HINSTANCE gHINSTANCE;
-const float SCREEN_WIDTH = 800;
-const float SCREEN_HEIGHT = 600;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -30,6 +28,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+	EngineConfig::LoadConfigFile();
+
 	gHINSTANCE = hInstance;
 
 	WNDCLASS wc;
@@ -47,13 +47,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine
 
 	RECT rcClientArea;
 	rcClientArea.left = 0;
-	rcClientArea.right = static_cast<LONG>(SCREEN_WIDTH);
+	rcClientArea.right = static_cast<LONG>(EngineConfig::renderConfig.ScreenWidth);
 	rcClientArea.top = 0;
-	rcClientArea.bottom = static_cast<LONG>(SCREEN_HEIGHT);
+	rcClientArea.bottom = static_cast<LONG>(EngineConfig::renderConfig.ScreenHeight);
 
-	AdjustWindowRect(&rcClientArea, WS_OVERLAPPEDWINDOW, false);
+	AdjustWindowRect(&rcClientArea, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, false);
 
-	gHWND = CreateWindow(wc.lpszClassName, "xdpixel", WS_OVERLAPPEDWINDOW,
+	gHWND = CreateWindow(wc.lpszClassName, "xdpixel", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU,
 		0,0,rcClientArea.right - rcClientArea.left, rcClientArea.bottom - rcClientArea.top
 		,NULL,NULL,gHINSTANCE,NULL);
 
@@ -66,9 +66,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine
 	ShowWindow(gHWND, nShowCmd);
 	UpdateWindow(gHWND);
 
-	EngineConfig engineConfig;
-	engineConfig.WindowHandle = (char*)(gHWND);
-	Engine *pEngine = new Engine(engineConfig);
+	EngineConfig::WindowHandle = (char*)(gHWND);
+	Engine *pEngine = new Engine();
 
 	int iLastTime = timeGetTime();
 	MSG msg;

@@ -133,14 +133,17 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 
 	if( pGameObject->pMaterial )
 	{
-		pGameObject->pMaterial->BindProgam();
+		Matrix4x4 *matView = pRenderer->GetTransform( PlatformRenderer::TS_VIEW );
+		Matrix4x4 *matProj = pRenderer->GetTransform( PlatformRenderer::TS_PROJECTION );
+		Matrix4x4 matWorld = pGameObject->mpTransform->mMatWorld;
+
+		Matrix4x4 matMvp = matWorld * *matView * *matProj;
+		//Matrix4x4 matMvp = *matProj * *matView * matWorld;
+		pGameObject->pMaterial->SetMVPMatrix( matMvp );
+		pGameObject->pMaterial->BindProgam( RenderMesh, pRenderer, pGameObject);
 	}
 
-	int iNumberOfTriangles = pGameObject->mMesh->triangleData.size();
-	for( int i=0; i< iNumberOfTriangles; ++i )
-	{
-		pRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
-	}
+	//RenderMesh(pRenderer, pGameObject);
 
 	if( pGameObject->pMaterial )
 	{
@@ -157,6 +160,16 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	{
 		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
 		RenderGameObject( pRenderer, pChild );
+	}
+}
+
+//-----------------------------------------------------------------------------------
+void Camera::RenderMesh( PlatformRenderer *pRenderer, GameObject *pGameObject )
+{
+	int iNumberOfTriangles = pGameObject->mMesh->triangleData.size();
+	for( int i=0; i< iNumberOfTriangles; ++i )
+	{
+		pRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
 	}
 }
 

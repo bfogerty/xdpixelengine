@@ -25,7 +25,8 @@ public:
 		Sphere,
 		Cylinder,
 		Torus,
-		Pyramid
+		Pyramid,
+		FullScreenQuad,
 	};
 
 	string mName;

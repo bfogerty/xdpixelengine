@@ -48,8 +48,10 @@ void Transform::BuildTranslationMatrix()
 void Transform::Update()
 {
 	matScale.SetIdentity();
-	matScale.UniformScale(Scale.x());
-	
+	matScale.Set(0,0, Scale.x());
+	matScale.Set(1,1, Scale.y());
+	matScale.Set(2,2, Scale.z());
+
 	matRotation.SetIdentity();
 	matRotation = Quaternion::ToMatrix(Rotation);
 

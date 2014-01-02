@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "config/EngineConfig.h"
 #include "GameObject.h"
 #include "GameObjectComponent.h"
 #include "Transform.h"
@@ -8,38 +9,24 @@
 #include <iostream>
 #include "input/Input.h"
 #include "../game/GameMain.h"
-//#include "../game/RenderTestComponent.h"
 
 using namespace std;
 
 unsigned int Engine::TotalFramesSinceStartup = 0;
 
-Engine::Engine(EngineConfig config) : pRenderEngine(0)
+Engine::Engine() : pRenderEngine(0)
 {
 	TotalFramesSinceStartup = 0;
 
-	// Test
-	//mpGameObject = new GameObject("Test");
-	//mpGameObject->AddComponent( static_cast<GameObjectComponent*>( new RenderTestComponent(mpGameObject) ) );
-
 	Matrix4x4 mat;
 
-	RendererConfig renderConfig;
-	renderConfig.FullScreen = false;
-	renderConfig.ScreenWidth = 800;
-	renderConfig.ScreenHeight = 600;
-	renderConfig.WindowHandle = config.WindowHandle;
+	//EngineConfig::renderConfig.FullScreen = false;
+	//EngineConfig::renderConfig.ScreenWidth = 800;
+	//EngineConfig::renderConfig.ScreenHeight = 600;
+	EngineConfig::renderConfig.WindowHandle = EngineConfig::WindowHandle;
 
-	// TODO: We shouldn't use a define to determine which
-	// Rendering API to use.  This should come from a config
-	// file when we have config file tech.
-#ifdef USE_DX9_RENDERER
-	renderConfig.RenderAPI = RendererConfig::DX9;
-#elif USE_OPENGL_RENDERER
-	renderConfig.RenderAPI = RendererConfig::OPENGL;
-#endif
 	
-	RenderEngine::GetInstance()->Initialize(renderConfig);
+	RenderEngine::GetInstance()->Initialize(EngineConfig::renderConfig);
 	
 	Input::Inst()->Initialize();
 

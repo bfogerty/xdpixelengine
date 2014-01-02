@@ -114,6 +114,46 @@ GameObject* GameObject::CreatePrimitive( EPrimitiveType type )
 		Mesh *pMeshTest = ObjLoader::Load("./assets/models/primitives/Pyramid.obj");
 		pGO->mMesh->Clone(pMeshTest);
 	}
+	else if( type == FullScreenQuad )
+	{
+		pGO = new GameObject("FullScreenQuad");
+		Mesh *mesh = new Mesh();
+		
+		mesh->verticies.push_back(new Vector3(-1,-1,1));
+		mesh->verticies.push_back(new Vector3(-1,1, 1));
+		mesh->verticies.push_back(new Vector3(1,1, 1));
+		mesh->verticies.push_back(new Vector3(-1,-1,1));
+		mesh->verticies.push_back(new Vector3(1,1, 1));
+		mesh->verticies.push_back(new Vector3(1,-1, 1));
+
+		mesh->colors.push_back(new Color(Color::RED));
+		mesh->colors.push_back(new Color(Color::RED));
+		mesh->colors.push_back(new Color(Color::RED));
+		mesh->colors.push_back(new Color(Color::RED));
+		mesh->colors.push_back(new Color(Color::RED));
+		mesh->colors.push_back(new Color(Color::RED));
+
+		mesh->uvs.push_back(new Vector3(0.0f, 0.0f, 0.0f));
+		mesh->uvs.push_back(new Vector3(1.0f, 0.0f, 0.0f));
+		mesh->uvs.push_back(new Vector3(1.0f, 1.0f, 0.0f));
+		mesh->uvs.push_back(new Vector3(0.0f, 0.0f, 0.0f));
+		mesh->uvs.push_back(new Vector3(1.0f, 1.0f, 0.0f));
+		mesh->uvs.push_back(new Vector3(0.0f, 1.0f, 0.0f));	
+
+		mesh->normals.push_back(new Vector3(0.0f, 0.0f, 1.0f));
+		mesh->normals.push_back(new Vector3(0.0f, 0.0f, 1.0f));
+		mesh->normals.push_back(new Vector3(0.0f, 0.0f, 1.0f));
+		mesh->normals.push_back(new Vector3(0.0f, 0.0f, 1.0f));
+		mesh->normals.push_back(new Vector3(0.0f, 0.0f, 1.0f));
+		mesh->normals.push_back(new Vector3(0.0f, 0.0f, 1.0f));
+
+		for( int i=0; i< 6; ++i )
+		{
+			mesh->triangles.push_back(new Face(i,i,i,i) );
+		}
+
+		pGO->mMesh->Clone(mesh);
+	}
 
 	return pGO;
 }

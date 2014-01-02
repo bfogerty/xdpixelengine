@@ -50,7 +50,7 @@ void MoverComponent::OnUpdate()
 	}
 	else
 	{
-		mft += Time::GetInstance()->GetDeltaTime();
+		mft += Time::GetInstance()->GetSmoothDeltaTime();// GetDeltaTime();
 	}
 	
 }

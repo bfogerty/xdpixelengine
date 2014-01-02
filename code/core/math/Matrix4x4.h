@@ -1,8 +1,15 @@
 #ifndef __MATRIX4X4__
 #define __MATRIX4X4__
 
+#include "platform.h"
+
 #include "Vector3.h"
 #include "Vector4.h"
+
+
+#ifdef COMPILE_DX9_RENDERER
+#include <d3d9.h>
+#endif
 
 class Matrix4x4
 {
@@ -32,6 +39,10 @@ public:
 	void UniformScale( float fScale );
 
 	void FromLookAt(Vector3 look);
+
+#ifdef COMPILE_DX9_RENDERER
+	D3DMATRIX ToD3DMatrix();
+#endif
 
 };
 

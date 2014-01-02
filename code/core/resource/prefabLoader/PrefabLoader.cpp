@@ -1,6 +1,7 @@
 #include "PrefabLoader.h"
 #include "GameObject.h"
 #include "GameObjectComponent.h"
+#include "../renderer/Material.h"
 #include <string>
 #include "json/json.h"
 #include <fstream>
@@ -60,6 +61,8 @@ GameObjectComponent * PrefabLoader::AddComponent( GameObject *pGameObject, std::
 
 	GameObjectComponent *pComponent = GameObjectComponent::GetClass( name.c_str() )(pGameObject, mapParams);
 	pGameObject->AddComponent( pComponent );
+
+	pGameObject->pMaterial = new Material("");
 
 	return pComponent;
 }

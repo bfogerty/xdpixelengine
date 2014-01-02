@@ -9,11 +9,16 @@ private:
 	static Time *mpInst;
 	float mfTime;
 	float mfDeltaTime;
+	float mfSmoothDeltaTime;
 
 	float mfStartTime;
 	float fpsTimeCounter;
 	int fpsCounter;
 	int fpsDisplayCount;
+
+	int tickCount;
+	int smoothSampleCount;
+	float sampleDeltaAccum;
 
 	Time();
 
@@ -26,6 +31,7 @@ public:
 
 	float GetTime();
 	float GetDeltaTime();
+	float GetSmoothDeltaTime();
 
 	int GetFPS();
 };

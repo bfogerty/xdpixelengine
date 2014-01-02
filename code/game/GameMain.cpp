@@ -1,3 +1,4 @@
+#include "config/EngineConfig.h"
 #include "GameMain.h"
 #include "../core/GameObject.h"
 #include "../core/mesh/Mesh.h"
@@ -48,7 +49,7 @@ void GameMain::OnAwake()
 	
 	GameObject *pChildObj = new GameObject("Empty");
 
-	SceneLoader::Load("./assets/scenes/main.txt", mpGameObject);
+	SceneLoader::Load( EngineConfig::startScene->filename.c_str() , mpGameObject);
 
 	pChildObj = new GameObject("FPSText");
 	fpsText = new TextComponent(pChildObj);

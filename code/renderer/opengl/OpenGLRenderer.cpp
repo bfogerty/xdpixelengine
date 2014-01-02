@@ -58,6 +58,7 @@ void OpenGLRenderer::FakeSceneSetup(RendererConfig config)
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::SetVertexData(TriangleData triangle)
 {
+	glBegin(GL_TRIANGLES);
 	for( int i=0; i<3; ++i)
 	{
 		// Color must come before vertex,
@@ -73,6 +74,7 @@ void OpenGLRenderer::SetVertexData(TriangleData triangle)
 
 		glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z());
 	}
+	glEnd();
 }
 
 //-----------------------------------------------------------------------------------
@@ -102,7 +104,7 @@ void OpenGLRenderer::BeginScene()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(matModelView.mMatrix);
 
-	glBegin(GL_TRIANGLES);
+	//glBegin(GL_TRIANGLES);
 }
 
 //-----------------------------------------------------------------------------------
@@ -127,15 +129,6 @@ void OpenGLRenderer::CreateTexture(Texture2D &texture)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, pTexture->Width, 
                 pTexture->Height, 0, GL_RGB, GL_UNSIGNED_BYTE, 
 				pTexture->data);
-
-	// Being End
-
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, pTexture->Width, pTexture->Height, 0, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)pTexture->data);
-
-
-	//// build our texture mipmaps
-	//gluBuild2DMipmaps( GL_TEXTURE_2D, 3, pTexture->Width, pTexture->Height,
-	//	GL_RGB, GL_UNSIGNED_BYTE, pTexture->data );
 }
 
 //-----------------------------------------------------------------------------------
@@ -146,7 +139,6 @@ void OpenGLRenderer::BindTexture( Texture2D *pTexture )
 		OpenGLTexture2D *pOpenGLTexture = static_cast<OpenGLTexture2D*>(pTexture);
 		glEnable( GL_TEXTURE_2D );
 		glBindTexture( GL_TEXTURE_2D, pOpenGLTexture->iTextureID);
-	
 	}
 	else
 	{
@@ -158,7 +150,7 @@ void OpenGLRenderer::BindTexture( Texture2D *pTexture )
 //-----------------------------------------------------------------------------------
 void OpenGLRenderer::EndScene()
 {
-	glEnd();
+	//glEnd();
 }
 
 //-----------------------------------------------------------------------------------

@@ -19,6 +19,8 @@ void FPCameraControllerComponent::OnAwake()
 //-----------------------------------------------------------------------------------
 void FPCameraControllerComponent::OnUpdate()
 {
+	float dt = Time::GetInstance()->GetSmoothDeltaTime();
+
 	float fCurX = mpGameObject->mpTransform->Position.x();
 	float fCurY = mpGameObject->mpTransform->Position.y();
 	float fCurZ = mpGameObject->mpTransform->Position.z();
@@ -32,26 +34,26 @@ void FPCameraControllerComponent::OnUpdate()
 	if( Input::Inst()->GeyKey(KeyCode::UpArrow) ||
 		Input::Inst()->GeyKey(KeyCode::W) )
 	{
-		 fCurZ -= (fSpeed * Time::GetInstance()->GetDeltaTime());
+		 fCurZ -= (fSpeed * dt);
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::DownArrow) ||
 		Input::Inst()->GeyKey(KeyCode::S))
 	{
-		fCurZ += (fSpeed * Time::GetInstance()->GetDeltaTime());
+		fCurZ += (fSpeed * dt);
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::LeftArrow) ||
 		Input::Inst()->GeyKey(KeyCode::A))
 	{
-		fCurX -= (fSpeed * Time::GetInstance()->GetDeltaTime());
+		fCurX -= (fSpeed * dt);
 		//Theta -= (fSpeed * Time::GetInstance()->GetDeltaTime());
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::RightArrow) ||
 		Input::Inst()->GeyKey(KeyCode::D))
 	{
-		fCurX += (fSpeed * Time::GetInstance()->GetDeltaTime());
+		fCurX += (fSpeed * dt);
 		//Theta += (fSpeed * Time::GetInstance()->GetDeltaTime());
 	}
 

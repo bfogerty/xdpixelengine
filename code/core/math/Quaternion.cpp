@@ -214,3 +214,38 @@ Quaternion Quaternion::FromLook( Vector3 look )
 	return q;
 }
 
+//-----------------------------------------------------------------------------------
+Quaternion Quaternion::FromEulerAngles( Vector3 angles )
+{
+	float p = angles.x() * MathHelper::Deg2Rad;
+	float h = angles.y() * MathHelper::Deg2Rad;
+	float r = angles.z() * MathHelper::Deg2Rad;
+
+	if( p == 0.000f )
+	{
+		p = 0.001f;
+	}
+
+	if( h == 0.000f )
+	{
+		h = 0.001f;
+	}
+
+	if( r == 0.000f )
+	{
+		r = 0.001f;
+	}
+
+	Quaternion qp;
+	qp.w = cos( p / 2) ; qp.v.x(sin( p/2 ));
+
+	Quaternion qh;
+	qh.w = cos( h / 2) ; qh.v.y(sin( h/2 ));
+
+	Quaternion qr;
+	qr.w = cos( r / 2) ; qr.v.z(sin( r/2 ));
+
+	Quaternion quatResult = qp * qh * qr;
+
+	return quatResult;
+}

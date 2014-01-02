@@ -229,5 +229,20 @@ void Matrix4x4::FromLookAt( Vector3 look )
 	SetRow(1, Vector4(up,0));
 	SetRow(2, Vector4(look,0));
 }
+ 
+#ifdef COMPILE_DX9_RENDERER
+//-----------------------------------------------------------------------------------
+D3DMATRIX Matrix4x4::ToD3DMatrix()
+{
+	Matrix4x4 m(*this);
+	m.Transpose();
 
+	D3DMATRIX d3dmat;
+	d3dmat._11 = m.mMatrix[0]; d3dmat._12 = m.mMatrix[1]; d3dmat._13 = m.mMatrix[2]; d3dmat._14 = m.mMatrix[3];
+	d3dmat._21 = m.mMatrix[4]; d3dmat._22 = m.mMatrix[5]; d3dmat._23 = m.mMatrix[6]; d3dmat._24 = m.mMatrix[7];
+	d3dmat._31 = m.mMatrix[8]; d3dmat._32 = m.mMatrix[9]; d3dmat._33 = m.mMatrix[10]; d3dmat._34 = m.mMatrix[11];
+	d3dmat._41 = m.mMatrix[12]; d3dmat._42 = m.mMatrix[13]; d3dmat._43 = m.mMatrix[14]; d3dmat._44 = m.mMatrix[15];
 
+	return d3dmat;
+}
+#endif

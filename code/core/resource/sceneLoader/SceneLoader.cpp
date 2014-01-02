@@ -49,6 +49,8 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	std::string name = mapParams["name"];
 	std::string prefab = mapParams["prefab"];
 	std::string localPosition = mapParams["localPosition"];
+	std::string localRotation = mapParams["localRotation"];
+	std::string localScale = mapParams["localScale"];
 
 	float fX=0.0f;
 	float fY=0.0f;
@@ -56,6 +58,15 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 
 	const char *locationPositionBuffer = localPosition.c_str();
 	sscanf(locationPositionBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+	Vector3 vecPosition(fX, fY, fZ);
+
+	const char *locationRotationBuffer = localRotation.c_str();
+	sscanf(locationRotationBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+	Vector3 vecRotation(fX, fY, fZ);
+
+	const char *locationScaleBuffer = localScale.c_str();
+	sscanf(locationScaleBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+	Vector3 vecScale(fX, fY, fZ);
 
 	GameObject *pChild = new GameObject(name.c_str());
 	if( prefab.length() > 0 )
@@ -64,7 +75,9 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	}
 
 	parent->mpTransform->mChildren.push_back(pChild->mpTransform);
-	pChild->mpTransform->Position = *(new Vector3(fX, fY, fZ));
+	pChild->mpTransform->Scale = vecScale;
+	pChild->mpTransform->Position = vecPosition;
+	pChild->mpTransform->Rotation = Quaternion::FromEulerAngles( vecRotation );
 }
 
 const char* SceneLoader::ReadFileIntoString( const char* fileName )

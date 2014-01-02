@@ -12,6 +12,13 @@ Time::Time()
 	fpsTimeCounter = 0.000f;
 	fpsCounter = 0;
 	fpsDisplayCount = 0;
+
+	tickCount = 0;
+
+	smoothSampleCount = 0;
+	sampleDeltaAccum = 0.000f;
+
+	mfSmoothDeltaTime = -1.0f;
 }
 
 Time *Time::GetInstance()
@@ -44,7 +51,20 @@ void Time::End()
 		fpsTimeCounter = 0.0f;
 		fpsDisplayCount = fpsCounter;
 		fpsCounter = 0;
+
+		++smoothSampleCount;
+		if( smoothSampleCount >= 10 )
+		{
+			mfSmoothDeltaTime = sampleDeltaAccum / (float)tickCount;
+			sampleDeltaAccum = 0.000f;
+			smoothSampleCount = 0;
+			tickCount = 0;
+		}
 	}
+
+	sampleDeltaAccum += mfDeltaTime;
+
+	++tickCount;
 }
 
 float Time::GetTime()
@@ -55,6 +75,16 @@ float Time::GetTime()
 float Time::GetDeltaTime()
 {
 	return mfDeltaTime;
+}
+
+float Time::GetSmoothDeltaTime()
+{
+	if( mfSmoothDeltaTime < 0.000f )
+	{
+		return GetDeltaTime();
+	}
+
+	return mfSmoothDeltaTime;
 }
 
 int Time::GetFPS()

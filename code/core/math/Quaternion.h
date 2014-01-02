@@ -23,6 +23,7 @@ public:
 	static Matrix4x4 ToMatrix(Quaternion quat);
 	static Quaternion FromMatrix( Matrix4x4 matRot );
 	static Quaternion FromLook( Vector3 look );
+	static Quaternion FromEulerAngles( Vector3 angles );
 
 	float w;
 	Vector3 v;
