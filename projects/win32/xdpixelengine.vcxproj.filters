@@ -130,6 +130,18 @@
     <Filter Include="Header Files\core\resource\SceneLoader">
       <UniqueIdentifier>{bc0f2a39-8d80-4a44-8939-d76a5ab1a7c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\renderer\shaders">
+      <UniqueIdentifier>{21cd595f-b06d-4c7c-a947-4d464bb4054c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\renderer\shaders">
+      <UniqueIdentifier>{cc05f3a7-c818-4ce0-8577-477dcdfc4893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\config">
+      <UniqueIdentifier>{eee2d672-f114-4f87-b115-b90ebff229fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\config">
+      <UniqueIdentifier>{cc244869-48bb-4fe3-96db-8ff1f4ab4a0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\core\BaseObject.cpp">
@@ -447,6 +459,24 @@
     <ClCompile Include="..\..\code\core\resource\sceneLoader\SceneLoader.cpp">
       <Filter>Source Files\core\resource\SceneLoader</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\renderer\shaders\ShaderProgram.cpp">
+      <Filter>Source Files\renderer\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\renderer\shaders\ShaderPass.cpp">
+      <Filter>Source Files\renderer\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\renderer\shaders\ShaderTechnique.cpp">
+      <Filter>Source Files\renderer\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\FullScreenQuadComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\core\config\EngineConfig.cpp">
+      <Filter>Source Files\core\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\MeshComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\core\BaseObject.h">
@@ -703,6 +733,24 @@
     </ClInclude>
     <ClInclude Include="..\..\code\core\resource\sceneLoader\SceneLoader.h">
       <Filter>Header Files\core\resource\SceneLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\renderer\shaders\ShaderProgram.h">
+      <Filter>Header Files\renderer\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\renderer\shaders\ShaderPass.h">
+      <Filter>Header Files\renderer\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\renderer\shaders\ShaderTechnique.h">
+      <Filter>Header Files\renderer\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\FullScreenQuadComponent.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\core\config\EngineConfig.h">
+      <Filter>Header Files\core\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\MeshComponent.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
