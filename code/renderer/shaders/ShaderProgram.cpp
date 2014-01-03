@@ -75,17 +75,6 @@ ShaderProgram::ShaderProgram( char* program )
 }
 
 //-----------------------------------------------------------------------------------
-/*
-void ShaderProgram::BindProgam(Matrix4x4 mapMVP, Material::RenderMethod renderMethod, PlatformRenderer* renderer, GameObject* gameObject)
-{
-	CGparameter mvpParam = cgGetNamedEffectParameter(myCgEffect, "mvp");
-	cgSetParameterValuefc(mvpParam, 16, mapMVP.mMatrix);
-
-	selectedTechnique->BindProgam(mapMVP, renderMethod, renderer, gameObject);
-}
-*/
-
-//-----------------------------------------------------------------------------------
 ShaderTechnique *ShaderProgram::GetTechnique()
 {
 	return selectedTechnique;
