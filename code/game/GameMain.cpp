@@ -51,12 +51,14 @@ void GameMain::OnAwake()
 
 	SceneLoader::Load( EngineConfig::startScene->filename.c_str() , mpGameObject);
 
+	/*
 	pChildObj = new GameObject("FPSText");
 	fpsText = new TextComponent(pChildObj);
 	pChildObj->AddComponent( static_cast<TextComponent*>( fpsText ) );
 	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
 	pChildObj->mpTransform->Position = Vector3(-0.15f,0.25f,1);
 	fpsText->SetText("FPS: 30");
+	*/
 
 	/*
 	pChildObj = new GameObject("Camera");
@@ -100,8 +102,8 @@ void GameMain::OnAwake()
 //-----------------------------------------------------------------------------------
 void GameMain::OnUpdate()
 {
-	sprintf(fpsTextBuffer, "FPS: %d", Time::GetInstance()->GetFPS());
-	fpsText->SetText( fpsTextBuffer );
+	//sprintf(fpsTextBuffer, "FPS: %d", Time::GetInstance()->GetFPS());
+	//fpsText->SetText( fpsTextBuffer );
 }
 
 //-----------------------------------------------------------------------------------

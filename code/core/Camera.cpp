@@ -3,6 +3,10 @@
 #include "math/MathHelper.h"
 #include "../renderer/RenderEngine.h"
 #include "../renderer/PlatformRenderer.h"
+#include "../renderer/shaders/ShaderProgram.h"
+#include "../renderer/shaders/ShaderTechnique.h"
+#include "../renderer/shaders/ShaderPass.h"
+#include "time/Time.h"
 
 //-----------------------------------------------------------------------------------
 GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
@@ -39,8 +43,6 @@ GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::stri
 	camera->Depth = depth;
 
 	return (GameObjectComponent*) camera;
-
-	//return (GameObjectComponent*)new ObjLoaderTestComponent(pGameObject, model, texture);
 }
 
 //-----------------------------------------------------------------------------------
@@ -120,7 +122,7 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	// Bind the GameObject's texture if it has one.
 	if(pGameObject->pTexture)
 	{
-		pRenderer->BindTexture(pGameObject->pTexture);
+		//pRenderer->BindTexture(pGameObject->pTexture);
 	}
 	
 
@@ -131,29 +133,38 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 
 	//   ... Draw Here ...
 
-	if( pGameObject->pMaterial )
-	{
-		Matrix4x4 *matView = pRenderer->GetTransform( PlatformRenderer::TS_VIEW );
-		Matrix4x4 *matProj = pRenderer->GetTransform( PlatformRenderer::TS_PROJECTION );
-		Matrix4x4 matWorld = pGameObject->mpTransform->mMatWorld;
+	Matrix4x4 *matView = pRenderer->GetTransform( PlatformRenderer::TS_VIEW );
+	Matrix4x4 *matProj = pRenderer->GetTransform( PlatformRenderer::TS_PROJECTION );
+	Matrix4x4 matWorld = pGameObject->mpTransform->mMatWorld;
 
-		Matrix4x4 matMvp = matWorld * *matView * *matProj;
-		//Matrix4x4 matMvp = *matProj * *matView * matWorld;
-		pGameObject->pMaterial->SetMVPMatrix( matMvp );
-		pGameObject->pMaterial->BindProgam( RenderMesh, pRenderer, pGameObject);
+	Matrix4x4 matMv = matWorld * *matView;
+	Matrix4x4 matMvp = matWorld * *matView * *matProj;
+	
+	Material *mat = pGameObject->pMaterial;
+	mat->SetFloat("__deltaTime", Time::GetInstance()->GetDeltaTime());
+	mat->SetFloat("__smoothDeltaTime", Time::GetInstance()->GetSmoothDeltaTime());
+	mat->SetMatrix("__model", matWorld);
+	mat->SetMatrix("__modelView", matMv);
+	mat->SetMatrix("__modelViewProjection", matMvp);
+
+	if( pGameObject->pTexture != 0 )
+	{
+		mat->SetTexture("decalSampler", pGameObject->pTexture);
 	}
 
-	//RenderMesh(pRenderer, pGameObject);
+	int passCount = mat->GetPassCount();
 
-	if( pGameObject->pMaterial )
+	for(int pass = 0; pass < passCount; ++pass)
 	{
-		pGameObject->pMaterial->UnBindProgam();
+		mat->BeginPass(pass);
+		RenderMesh(pRenderer, pGameObject);
+		mat->EndPass(pass);
 	}
 
 	pRenderer->EndScene();
 
 	// Unbind the texture if one was given.
-	pRenderer->BindTexture(0);
+	//pRenderer->BindTexture(0);
 
 	int iChildCount = pGameObject->mpTransform->mChildren.size();
 	for(int i=0; i< iChildCount; ++i)

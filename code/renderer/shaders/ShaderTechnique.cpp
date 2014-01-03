@@ -3,8 +3,7 @@
 #include "RenderEngine.h"
 #include "Material.h"
 
-struct IDirect3DDevice9;
-
+//-----------------------------------------------------------------------------------
 ShaderTechnique::ShaderTechnique( CGtechnique technique )
 {
 	this->technique = technique;
@@ -22,36 +21,26 @@ ShaderTechnique::ShaderTechnique( CGtechnique technique )
 
 		++passCount;
 		ShaderPass *shaderPass = new ShaderPass( cgPass ); 
-		passes[shaderPass->name] = shaderPass;
+		passes.push_back(shaderPass);
 		cgPass = cgGetNextPass(cgPass);
 	} while ( cgPass != 0 );
 }
 
-void ShaderTechnique::BindProgam(Matrix4x4 mapMVP, Material::RenderMethod renderMethod, PlatformRenderer* renderer, GameObject* gameObject)
+//-----------------------------------------------------------------------------------
+void ShaderTechnique::BeginPass(int index)
 {
-	bool validated = cgValidateTechnique( technique );
-	CGerror e = cgGetError();
-	const char* msg = cgGetLastErrorString(&e);
-
-	for( PassIterator it = passes.begin(); it != passes.end(); ++it)
-	{
-		ShaderPass *pass = (ShaderPass *)it->second;
-		pass->BeginPass();
-	}
-
-	renderMethod( renderer, gameObject );
+	passes[index]->BeginPass();
 }
 
-void ShaderTechnique::UnBindProgam()
+//-----------------------------------------------------------------------------------
+void ShaderTechnique::EndPass(int index)
 {
-	for( PassIterator it = passes.begin(); it != passes.end(); ++it)
-	{
-		ShaderPass *pass = (ShaderPass *)it->second;
-		pass->EndPass();
-	}	
+	passes[index]->EndPass();
 }
 
+//-----------------------------------------------------------------------------------
 int ShaderTechnique::GetPassCount()
 {
 	return passCount;
 }
+

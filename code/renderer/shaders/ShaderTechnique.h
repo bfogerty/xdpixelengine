@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <map>
+#include <string>
 #include "boost\algorithm\string.hpp"
 #include "../core/math/Matrix4x4.h"
 #include "../Material.h"
@@ -25,18 +26,18 @@ public:
 
 	ShaderTechnique(CGtechnique technique);
 
-	void BindProgam(Matrix4x4 mapMVP, Material::RenderMethod renderMethod, PlatformRenderer* renderer, GameObject* gameObject);
-	void UnBindProgam();
-
 	int GetPassCount();
+
+	void BeginPass(int index);
+	void EndPass(int index);
 
 	CGtechnique technique;
 	const char* name;
 
 protected:
 
-	map<const char*, ShaderPass*> passes;
-	typedef map<const char*, ShaderPass*>::iterator PassIterator;
+	vector<ShaderPass*> passes;
+	typedef vector<ShaderPass*>::iterator PassIterator;
 
 	int passCount;
 };

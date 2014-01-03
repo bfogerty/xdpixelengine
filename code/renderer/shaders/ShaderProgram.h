@@ -21,6 +21,7 @@
 using namespace std;
 
 class ShaderTechnique;
+class Texture2D;
 
 class ShaderProgram
 {
@@ -29,9 +30,15 @@ public:
 
 	ShaderProgram(char *program);
 
-	void BindProgam(Matrix4x4 mapMVP, Material::RenderMethod renderMethod, PlatformRenderer* renderer, GameObject* gameObject);
-	void UnBindProgam();
+	ShaderTechnique *GetTechnique();
+	int GetPassCount();
 
+	void SetFloat( const char* parameter, float val );
+	void SetVector3( const char* parameter, Vector3 val );
+	void SetVector4( const char* parameter, Vector4 val );
+	void SetMatrix( const char* parameter, Matrix4x4 matrix );
+
+	void SetTexture( const char* parameter, Texture2D *tex2D );
 
 	char *program;
 	CGcontext myCgContext;

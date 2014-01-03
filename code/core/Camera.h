@@ -27,7 +27,7 @@ public:
 	void RenderScene( PlatformRenderer *pRenderer, GameObject *pGameObject );
 	void RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObject );
 
-	static void RenderMesh( PlatformRenderer *pRenderer, GameObject *pGameObject );
+	void RenderMesh( PlatformRenderer *pRenderer, GameObject *pGameObject );
 
 	static bool SortByCameraDepth( Camera* c1, Camera *c2 );
 
