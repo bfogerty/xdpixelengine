@@ -6,7 +6,7 @@
 		{
 			"name" : "MeshComponent",
 			"model" : "./assets/models/room0.obj",
-			"texture" : "./assets/textures/Robot_Color.png"
+			"texture" : "./assets/textures/tile.png"
 		}
 	]
 

@@ -6,7 +6,7 @@
 		{
 			"name" : "MeshComponent",
 			"model" : "./assets/models/platform1.obj",
-			"texture" : "./assets/textures/blade_blue.png"
+			"texture" : "./assets/textures/red_with_border.png"
 		},
 		{
 			"name" : "MoverComponent",
