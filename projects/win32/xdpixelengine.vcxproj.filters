@@ -142,6 +142,12 @@
     <Filter Include="Source Files\core\config">
       <UniqueIdentifier>{cc244869-48bb-4fe3-96db-8ff1f4ab4a0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\resource\MaterialLoader">
+      <UniqueIdentifier>{850faab1-bc8f-40d7-8f85-354c5bb63dec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\resource\MaterialLoader">
+      <UniqueIdentifier>{aa52d4db-fb10-4878-80b6-cc4512731fe1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\core\BaseObject.cpp">
@@ -480,6 +486,15 @@
     <ClCompile Include="..\..\code\game\AutoRotateComponent.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\core\resource\materialLoader\MaterialLoader.cpp">
+      <Filter>Source Files\core\resource\MaterialLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\MaterialComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\FPSTextComponent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\core\BaseObject.h">
@@ -756,6 +771,15 @@
       <Filter>Header Files\game</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\game\AutoRotateComponent.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\core\resource\materialLoader\MaterialLoader.h">
+      <Filter>Header Files\core\resource\MaterialLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\MaterialComponent.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\game\FPSTextComponent.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>

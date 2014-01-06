@@ -102,6 +102,7 @@
     <ClCompile Include="..\..\code\core\GameObject.cpp" />
     <ClCompile Include="..\..\code\core\GameObjectComponent.cpp" />
     <ClCompile Include="..\..\code\core\main.cpp" />
+    <ClCompile Include="..\..\code\core\resource\materialLoader\MaterialLoader.cpp" />
     <ClCompile Include="..\..\code\core\resource\prefabLoader\PrefabLoader.cpp" />
     <ClCompile Include="..\..\code\core\resource\sceneLoader\SceneLoader.cpp" />
     <ClCompile Include="..\..\code\core\Transform.cpp" />
@@ -122,7 +123,9 @@
     <ClCompile Include="..\..\code\core\input\Input.cpp" />
     <ClCompile Include="..\..\code\game\AutoRotateComponent.cpp" />
     <ClCompile Include="..\..\code\game\FPCameraControllerComponent.cpp" />
+    <ClCompile Include="..\..\code\game\FPSTextComponent.cpp" />
     <ClCompile Include="..\..\code\game\FullScreenQuadComponent.cpp" />
+    <ClCompile Include="..\..\code\game\MaterialComponent.cpp" />
     <ClCompile Include="..\..\code\game\MeshComponent.cpp" />
     <ClCompile Include="..\..\code\game\MoverComponent.cpp" />
     <ClCompile Include="..\..\code\game\TextComponent.cpp" />
@@ -216,6 +219,7 @@
     <ClInclude Include="..\..\code\core\GameObject.h" />
     <ClInclude Include="..\..\code\core\GameObjectComponent.h" />
     <ClInclude Include="..\..\code\core\platform.h" />
+    <ClInclude Include="..\..\code\core\resource\materialLoader\MaterialLoader.h" />
     <ClInclude Include="..\..\code\core\resource\prefabLoader\PrefabLoader.h" />
     <ClInclude Include="..\..\code\core\resource\sceneLoader\SceneLoader.h" />
     <ClInclude Include="..\..\code\core\Transform.h" />
@@ -237,7 +241,9 @@
     <ClInclude Include="..\..\code\core\input\Keycode.h" />
     <ClInclude Include="..\..\code\game\AutoRotateComponent.h" />
     <ClInclude Include="..\..\code\game\FPCameraControllerComponent.h" />
+    <ClInclude Include="..\..\code\game\FPSTextComponent.h" />
     <ClInclude Include="..\..\code\game\FullScreenQuadComponent.h" />
+    <ClInclude Include="..\..\code\game\MaterialComponent.h" />
     <ClInclude Include="..\..\code\game\MeshComponent.h" />
     <ClInclude Include="..\..\code\game\MoverComponent.h" />
     <ClInclude Include="..\..\code\game\TextComponent.h" />
