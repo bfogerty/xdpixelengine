@@ -65,7 +65,6 @@ void RenderEngine::AddCamera(Camera *camera)
 {
 	Cameras.push_back(camera);
 	sort(Cameras.begin(), Cameras.end(), Camera::SortByCameraDepth);
-	
 }
 
 //-----------------------------------------------------------------------------------

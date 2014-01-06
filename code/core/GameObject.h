@@ -36,6 +36,7 @@ public:
 	Mesh *mMesh;
 	Texture2D *pTexture;
 	Material *pMaterial;
+	unsigned int Layer;
 
 	GameObject(string name);
 	virtual ~GameObject();
@@ -44,6 +45,9 @@ public:
 	void RemoveComponent( GameObjectComponent *component );
 
 	void OnUpdate();
+
+	unsigned int GetLayer() { return Layer; }
+	void SetLayer( unsigned int layer ) { this->Layer = layer; }
 
 	static GameObject* CreatePrimitive( EPrimitiveType type );
 };

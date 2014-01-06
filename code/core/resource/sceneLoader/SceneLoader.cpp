@@ -51,10 +51,12 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	std::string localPosition = mapParams["localPosition"];
 	std::string localRotation = mapParams["localRotation"];
 	std::string localScale = mapParams["localScale"];
+	std::string layerStr = mapParams["layer"];
 
 	float fX=0.0f;
 	float fY=0.0f;
 	float fZ=0.0f;
+	unsigned int layer = 0;
 
 	const char *locationPositionBuffer = localPosition.c_str();
 	sscanf(locationPositionBuffer, "%f,%f,%f", &fX, &fY, &fZ);
@@ -68,6 +70,9 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	sscanf(locationScaleBuffer, "%f,%f,%f", &fX, &fY, &fZ);
 	Vector3 vecScale(fX, fY, fZ);
 
+	const char *layerBuffer = layerStr.c_str();
+	sscanf(layerBuffer, "%d", &layer);
+
 	GameObject *pChild = new GameObject(name.c_str());
 	if( prefab.length() > 0 )
 	{
@@ -78,6 +83,7 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	pChild->mpTransform->Scale = vecScale;
 	pChild->mpTransform->Position = vecPosition;
 	pChild->mpTransform->Rotation = Quaternion::FromEulerAngles( vecRotation );
+	pChild->SetLayer( layer );
 }
 
 const char* SceneLoader::ReadFileIntoString( const char* fileName )

@@ -28,7 +28,7 @@ class ShaderProgram
 
 public:
 
-	ShaderProgram(char *program);
+	ShaderProgram( const char *program );
 
 	ShaderTechnique *GetTechnique();
 	int GetPassCount();
@@ -40,7 +40,7 @@ public:
 
 	void SetTexture( const char* parameter, Texture2D *tex2D );
 
-	char *program;
+	const char *program;
 	CGcontext myCgContext;
 	CGprofile myCgVertexProfile;
 	CGprogram myCgVertexProgram;

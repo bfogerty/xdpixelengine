@@ -19,12 +19,17 @@ void AutoRotateComponent::OnAwake()
 //-----------------------------------------------------------------------------------
 void AutoRotateComponent::OnUpdate()
 {
+	if( mft >= 1.0f )
+	{
+		mft= 0.0001f;
+	}
+
 	float theta = (1.0f - mft) * 0.0001f + (mft * 360.00f);
 
 	if( theta > 360.0f )
 	{
-		theta = 0.001f;
-		mft = 0.001f;
+		theta = 360.001f;
+		mft = 1.0f;
 	}
 
 	this->mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(vecAxis, theta);

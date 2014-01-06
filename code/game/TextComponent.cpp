@@ -3,23 +3,22 @@
 #include "../core/mesh/Mesh.h"
 #include "../core/Transform.h"
 #include "../core/time/Time.h"
-#include "./resource/image_loaders/ImageLoader.h"
+#include "./resource/materialLoader/MaterialLoader.h"
 
 #include "../core/math/Vector3.h"
 #include "../core/math/Quaternion.h"
 #include "../core/math/MathHelper.h"
 
 //-----------------------------------------------------------------------------------
-void TextComponent::Intialize()
+void TextComponent::Intialize( int pixelWidthOfEachCharacter, int pixelHeightOfEachCharacter, float characterScale, float kerning, float spaceBetweenCharacters )
 {
-	this->mpGameObject->pTexture = ImageLoader::Load("./assets/textures/ddrsmall.png");
-	int pixelWidthOfEachCharacter = 9;
-	pixelWidthPerCharacter = (float)(pixelWidthOfEachCharacter) / this->mpGameObject->pTexture->Width;
-	pixelHeightPerCharacter = 9.00000f / this->mpGameObject->pTexture->Height;
+	Texture2D *tex = mpGameObject->pMaterial->GetMainTextureEntry();
+	pixelWidthPerCharacter = (float)(pixelWidthOfEachCharacter) / tex->Width;
+	pixelHeightPerCharacter = pixelHeightOfEachCharacter / (float)(tex->Height);
 
-	characterScale = 0.02f;
-	kerning = 0.020f;
-	spaceBetweenCharacters = 0.025f;
+	this->characterScale = characterScale;
+	this->kerning = kerning;
+	this->spaceBetweenCharacters = spaceBetweenCharacters;
 }
 
 //-----------------------------------------------------------------------------------
@@ -37,7 +36,7 @@ void TextComponent::OnUpdate()
 //-----------------------------------------------------------------------------------
 void TextComponent::SetText(std::string textstring)
 {
-	if( textString == textstring )
+	if( this->textString == textstring )
 	{
 		return;
 	}

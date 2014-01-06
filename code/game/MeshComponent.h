@@ -12,15 +12,13 @@ public:
 	static GameObjectComponent* Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
 	{
 		std::string model = mapParams["model"];
-		std::string texture = mapParams["texture"];
 
-		return (GameObjectComponent*)new MeshComponent(pGameObject, model, texture);
+		return (GameObjectComponent*)new MeshComponent(pGameObject, model);
 	}
 
-	MeshComponent( GameObject *pGameObject, std::string modelPath, std::string texturePath ) : GameObjectComponent(pGameObject)
+	MeshComponent( GameObject *pGameObject, std::string modelPath ) : GameObjectComponent(pGameObject)
 	{
 		this->modelPath = modelPath;
-		this->texturePath = texturePath;
 	}
 
 	virtual void OnAwake();
@@ -29,7 +27,6 @@ public:
 protected:
 
 	std::string modelPath;
-	std::string texturePath;
 };
 
 #endif

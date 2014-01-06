@@ -6,10 +6,25 @@
 #include "./resource/texture2d/Texture2D.h"
 
 //-----------------------------------------------------------------------------------
-Material::Material( char* program )
+Material::Material( std::string name )
 {
-	shader = new ShaderProgram("./assets/shaders/samplecgfx.fx");
-	//shader = new ShaderProgram("./assets/shaders/quad.fx");
+	this->name = name;
+	mainTexture = 0;
+}
+
+//-----------------------------------------------------------------------------------
+Material::Material( std::string name, const char* shaderProgramFilePath )
+{
+	this->name = name;
+	mainTexture = 0;
+
+	SetShaderProgram( shaderProgramFilePath );
+}
+
+//-----------------------------------------------------------------------------------
+void Material::SetShaderProgram( const char *shaderProgramFilePath )
+{
+	shader = new ShaderProgram( shaderProgramFilePath );
 }
 
 //-----------------------------------------------------------------------------------
@@ -60,5 +75,39 @@ void Material::SetTexture( const char* parameter, Texture2D *tex2D )
 	shader->SetTexture( parameter, tex2D );
 }
 
+//-----------------------------------------------------------------------------------
+void Material::AddTextureEntry( std::string name, Texture2D *tex2D )
+{
+	if( textures.empty() )
+	{
+		mainTexture = tex2D;
+	}
 
+	textures[name] = tex2D;
+}
 
+//-----------------------------------------------------------------------------------
+Texture2D* Material::GetMainTextureEntry()
+{
+	return mainTexture;
+}
+
+//-----------------------------------------------------------------------------------
+Texture2D* Material::GetTextureEntry( std::string name )
+{
+	return textures[name];
+}
+
+//-----------------------------------------------------------------------------------
+void Material::ApplyTextures()
+{
+	if( textures.empty() )
+	{
+		return;
+	}
+
+	for( TextureIterator it = textures.begin(); it != textures.end(); ++it )
+	{
+		SetTexture(it->first.c_str(), it->second);
+	}
+}

@@ -17,6 +17,10 @@ GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::stri
 	std::string farStr = mapParams["far"];
 	std::string bufferClearCodeStr = mapParams["bufferclearcode"];
 	std::string depthStr = mapParams["depth"];
+	std::string typeStr = mapParams["type"];
+	std::string widthStr = mapParams["width"];
+	std::string heightStr = mapParams["height"];
+	std::string cullLayerMaskStr = mapParams["culllayermask"];
 
 	int r,g,b,a = 0;
 	float fov = 0.0f;
@@ -24,6 +28,9 @@ GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::stri
 	float f = 0.0f;
 	int bufferClearCode = 0;
 	int depth = 0;
+	float width;
+	float height;
+	unsigned int cullLayerMask;
 
 	sscanf( colorStr.c_str(), "%d,%d,%d,%d", &r,&g,&b,&a);
 	sscanf( fovStr.c_str(), "%f", &fov);
@@ -31,6 +38,9 @@ GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::stri
 	sscanf( farStr.c_str(), "%f", &f);
 	sscanf( bufferClearCodeStr.c_str(), "%d", &bufferClearCode);
 	sscanf( depthStr.c_str(), "%d", &depth);
+	sscanf( widthStr.c_str(), "%f", &width);
+	sscanf( heightStr.c_str(), "%f", &height);
+	sscanf( cullLayerMaskStr.c_str(), "%d", &cullLayerMask);
 
 	Camera *camera = new Camera(pGameObject);
 
@@ -41,6 +51,20 @@ GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::stri
 	camera->mFar = f;
 	camera->BuffersToClear = bufferClearCode;
 	camera->Depth = depth;
+	camera->mWidth = width;
+	camera->mHeight = height;
+	camera->CullLayerMask = cullLayerMask;
+
+	if( typeStr == "perspective" )
+	{
+		camera->CameraType = Perspective;
+	}
+	else
+	{
+		camera->CameraType = Orthogonal;
+	}
+
+	RenderEngine::GetInstance()->AddCamera(camera);
 
 	return (GameObjectComponent*) camera;
 }
@@ -50,15 +74,21 @@ Camera::Camera( GameObject *pGameObject ) : GameObjectComponent(pGameObject)
 {
 	Depth = 0;
 	BuffersToClear = PlatformRenderer::BT_COLOR | PlatformRenderer::BT_DEPTH | PlatformRenderer::BT_STENCIL;
-
-	RenderEngine::GetInstance()->AddCamera(this);
 }
 
 //-----------------------------------------------------------------------------------
 void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 {
 	Matrix4x4 matProjection;
-	matProjection.SetPerspectiveFovLH(mFov * MathHelper::Deg2Rad, mAspectRatio, mNear, mFar);
+
+	if( CameraType == Perspective )
+	{
+		matProjection.SetPerspectiveFovLH(mFov * MathHelper::Deg2Rad, mAspectRatio, mNear, mFar);
+	}
+	else
+	{
+		matProjection.SetOrthoLH(mWidth, mHeight, mNear, mFar);
+	}
 	//matProjection.SetOrthoLH(0.80f, 0.60f, mNear, mFar);
 	pRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
 
@@ -106,6 +136,11 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 		CanRenderGameObject = false;
 	}
 
+	if( !(pGameObject->GetLayer() & CullLayerMask) )
+	{
+		CanRenderGameObject = false;
+	}
+
 	// If we can't render the game object,
 	// we should try to render its children.
 	if( !CanRenderGameObject )
@@ -118,13 +153,10 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 		}
 		return;
 	}
-
-	// Bind the GameObject's texture if it has one.
-	if(pGameObject->pTexture)
-	{
-		//pRenderer->BindTexture(pGameObject->pTexture);
-	}
 	
+	Material *mat = pGameObject->pMaterial;
+	mat->ApplyTextures();
+
 
 	pRenderer->SetTransform(PlatformRenderer::TS_WORLD, 
 		pGameObject->mpTransform->mMatWorld);
@@ -140,11 +172,10 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	Matrix4x4 matMv = matWorld * *matView;
 	Matrix4x4 matMvp = matWorld * *matView * *matProj;
 	
-	Material *mat = pGameObject->pMaterial;
 	mat->SetFloat("__deltaTime", Time::GetInstance()->GetDeltaTime());
 	mat->SetFloat("__smoothDeltaTime", Time::GetInstance()->GetSmoothDeltaTime());
 	mat->SetMatrix("__model", matWorld);
-	mat->SetMatrix("__modelView", matMv);
+	mat->SetMatrix("__view", *matView);
 	mat->SetMatrix("__modelViewProjection", matMvp);
 
 	if( pGameObject->pTexture != 0 )
@@ -162,9 +193,6 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	}
 
 	pRenderer->EndScene();
-
-	// Unbind the texture if one was given.
-	//pRenderer->BindTexture(0);
 
 	int iChildCount = pGameObject->mpTransform->mChildren.size();
 	for(int i=0; i< iChildCount; ++i)
@@ -187,5 +215,6 @@ void Camera::RenderMesh( PlatformRenderer *pRenderer, GameObject *pGameObject )
 //-----------------------------------------------------------------------------------
 bool Camera::SortByCameraDepth( Camera* c1, Camera *c2 )
 {
-	return c1->Depth < c2->Depth;
+	bool val = c1->Depth < c2->Depth;
+	return val;
 }

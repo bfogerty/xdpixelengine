@@ -20,11 +20,7 @@ Engine::Engine() : pRenderEngine(0)
 
 	Matrix4x4 mat;
 
-	//EngineConfig::renderConfig.FullScreen = false;
-	//EngineConfig::renderConfig.ScreenWidth = 800;
-	//EngineConfig::renderConfig.ScreenHeight = 600;
 	EngineConfig::renderConfig.WindowHandle = EngineConfig::WindowHandle;
-
 	
 	RenderEngine::GetInstance()->Initialize(EngineConfig::renderConfig);
 	

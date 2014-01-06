@@ -10,6 +10,8 @@
 #include "../game/FullScreenQuadComponent.h"
 #include "../game/MeshComponent.h"
 #include "../game/AutoRotateComponent.h"
+#include "../game/MaterialComponent.h"
+#include "../game/FPSTextComponent.h"
 
 std::map<std::string, GameObjectComponent::ComponentClassPointer> GameObjectComponent::mapComponents;
 
@@ -26,6 +28,8 @@ GameObjectComponent::ComponentClassPointer GameObjectComponent::GetClass( std::s
 		mapComponents["FullScreenQuadComponent"] = FullScreenQuadComponent::Create;
 		mapComponents["MeshComponent"] = MeshComponent::Create;
 		mapComponents["AutoRotateComponent"] = AutoRotateComponent::Create;
+		mapComponents["MaterialComponent"] = MaterialComponent::Create;
+		mapComponents["FPSTextComponent"] = FPSTextComponent::Create;
 	}
 
 	return mapComponents[ className ];

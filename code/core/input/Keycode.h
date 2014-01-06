@@ -47,6 +47,7 @@ public:
 		Key_8,
 		Key_9,
 		LeftShift,
+		RightShift,
 	};
 };
 

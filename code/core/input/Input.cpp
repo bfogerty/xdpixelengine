@@ -61,6 +61,7 @@ void Input::Initialize()
 
 
 	mapKeyCodes[KeyCode::LeftShift] = VK_LSHIFT;
+	mapKeyCodes[KeyCode::RightShift] = VK_RSHIFT;
 #endif
 }
 

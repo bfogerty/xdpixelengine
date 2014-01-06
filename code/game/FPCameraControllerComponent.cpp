@@ -26,7 +26,8 @@ void FPCameraControllerComponent::OnUpdate()
 	float fCurZ = mpGameObject->mpTransform->Position.z();
 
 	float fSpeed = 1.0f;
-	if( Input::Inst()->GeyKey(KeyCode::LeftShift) )
+	if( Input::Inst()->GeyKey(KeyCode::LeftShift) ||
+		Input::Inst()->GeyKey(KeyCode::RightShift) )
 	{
 		fSpeed = 5.0f;
 	}

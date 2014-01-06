@@ -7,6 +7,7 @@
 #include "../core/time/Time.h"
 #include "../core/resource/sceneLoader/SceneLoader.h"
 #include "../core/resource/prefabLoader/PrefabLoader.h"
+#include "../core/resource/materialLoader/MaterialLoader.h"
 
 #include "../renderer/RenderEngine.h"
 #include "../renderer/RendererConfig.h"
@@ -44,6 +45,8 @@ void GameMain::OnAwake()
 {
 	// The root should always be at the center of the world.
 	mpGameObject->mpTransform->mMatWorld.Translate(Vector3(0.0f, 0.0f, 0.0f));
+
+	//Material *mat = MaterialLoader::Load("./assets/materials/normal.txt");
 
 	// Add Game Specific logic below.
 	

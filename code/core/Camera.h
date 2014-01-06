@@ -10,6 +10,12 @@ class Camera : public GameObjectComponent
 {
 public:
 
+	enum CameraType
+	{
+		Perspective = 0,
+		Orthogonal
+	};
+
 	float mFov;
 	float mAspectRatio;
 	float mNear;
@@ -19,6 +25,8 @@ public:
 	Color BackGroundColor;
 	unsigned int BuffersToClear;
 	unsigned int Depth;
+	CameraType CameraType;
+	unsigned int CullLayerMask;
 
 	static GameObjectComponent* Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams );
 

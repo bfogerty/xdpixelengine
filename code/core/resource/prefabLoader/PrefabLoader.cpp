@@ -62,8 +62,6 @@ GameObjectComponent * PrefabLoader::AddComponent( GameObject *pGameObject, std::
 	GameObjectComponent *pComponent = GameObjectComponent::GetClass( name.c_str() )(pGameObject, mapParams);
 	pGameObject->AddComponent( pComponent );
 
-	pGameObject->pMaterial = new Material("");
-
 	return pComponent;
 }
 

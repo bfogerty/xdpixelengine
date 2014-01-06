@@ -16,7 +16,7 @@
 
 
 //-----------------------------------------------------------------------------------
-ShaderProgram::ShaderProgram( char* program )
+ShaderProgram::ShaderProgram( const char* program )
 {
 	this->program = program;
 
