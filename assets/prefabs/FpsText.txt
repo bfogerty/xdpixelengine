@@ -1,6 +1,6 @@
 {
 
-	"name" : "xdPixelText",
+	"name" : "FpsText",
 	"components" :
 	[
 		{
@@ -8,8 +8,8 @@
 			"file" : "./assets/materials/text.txt"
 		},
 		{
-			"name" : "TextComponent",
-			"text" : "xdPixelEngine v0.01",
+			"name" : "FPSTextComponent",
+			"text" : "0",
 			"characterwidth" : "9",
 			"characterheight" : "9",
 			"characterscale" : "0.02",

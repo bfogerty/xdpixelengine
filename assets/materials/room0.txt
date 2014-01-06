@@ -1,0 +1,23 @@
+{
+	"name" : "room0",
+	"shader" : "./assets/shaders/toon.fx",
+	"parameters" :
+	[
+		{
+			"type"  : "texture2d",
+			"name"	: "decalSampler",
+			"value"  : "./assets/textures/grey_with_border.png"
+		},
+		{
+			"type"  : "texture2d",
+			"name"	: "rampSampler",
+			"value"  : "./assets/textures/ramp2.png"
+		},
+		{
+			"type"  : "float",
+			"name"	: "edge",
+			"value"  : "0.001"
+		}
+	]
+
+}

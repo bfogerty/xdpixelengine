@@ -1,0 +1,21 @@
+{
+	"name" : "Rotate",
+	"objects" :
+	[
+		{
+			"name"	: "TekkaMan",
+			"prefab" : "./assets/prefabs/TekkaMan.txt",
+			"localPosition" : "0.00,1.00,1.00",
+			"localRotation" : "0,90,0",
+			"localScale" : "1,1,1"
+		},
+		{
+			"name"	: "Camera",
+			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+			"localPosition" : "0.00,-2.00,6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		}
+	]
+
+}

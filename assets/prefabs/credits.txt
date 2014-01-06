@@ -1,6 +1,6 @@
 {
 
-	"name" : "xdPixelText",
+	"name" : "Credits",
 	"components" :
 	[
 		{
@@ -9,7 +9,7 @@
 		},
 		{
 			"name" : "TextComponent",
-			"text" : "xdPixelEngine v0.01",
+			"text" : "By: Brandon Fogerty",
 			"characterwidth" : "9",
 			"characterheight" : "9",
 			"characterscale" : "0.02",

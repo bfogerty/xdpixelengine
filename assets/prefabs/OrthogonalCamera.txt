@@ -1,0 +1,20 @@
+{
+
+	"name" : "Orthogonal Camera",
+	"components" :
+	[
+		{
+			"name" : "Camera",
+                        "type" : "orthogonal",
+			"color" : "128,128,128,255",
+			"near" : "0.01",
+			"far" : "10000.0",
+			"width" : "10.0",
+			"height" : "10.0",
+			"bufferclearcode" : "0",
+			"depth" : "2",
+                        "culllayermask" : "2"	
+		}
+	]
+
+}

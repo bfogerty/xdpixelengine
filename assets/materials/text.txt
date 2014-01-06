@@ -1,0 +1,13 @@
+{
+	"name" : "text",
+	"shader" : "./assets/shaders/samplecgfx.fx",
+	"parameters" :
+	[
+		{
+			"type"  : "texture2d",
+			"name"	: "decalSampler",
+			"value"  : "./assets/textures/ddrsmall.png"
+		}
+	]
+
+}

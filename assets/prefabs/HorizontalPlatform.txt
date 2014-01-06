@@ -5,8 +5,11 @@
 	[
 		{
 			"name" : "MeshComponent",
-			"model" : "./assets/models/platform1.obj",
-			"texture" : "./assets/textures/red_with_border.png"
+			"model" : "./assets/models/platform1.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/platform0.txt"
 		},
 		{
 			"name" : "MoverComponent",

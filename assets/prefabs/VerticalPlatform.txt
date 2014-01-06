@@ -1,12 +1,15 @@
 {
 
-	"name" : "HorizontalPlatform",
+	"name" : "VerticalPlatform",
 	"components" :
 	[
 		{
 			"name" : "MeshComponent",
-			"model" : "./assets/models/platform1.obj",
-			"texture" : "./assets/textures/blue_with_border.png"
+			"model" : "./assets/models/platform1.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/platform1.txt"
 		},
 		{
 			"name" : "MoverComponent",

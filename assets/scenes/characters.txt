@@ -7,49 +7,82 @@
 			"prefab" : "./assets/prefabs/room0.txt",
 			"localPosition" : "0.00,-0.50,2.00",
 			"localRotation" : "0,180,0",
-			"localScale" : "60,60,60"
+			"localScale" : "60,60,60",
+                        "layer" : "1"
 		},
 		{
 			"name"	: "HorizontalPlatform0",
 			"prefab" : "./assets/prefabs/HorizontalPlatform.txt",
 			"localPosition" : "-1.0,4.00,1.00",
 			"localRotation" : "0,0,0",
-			"localScale" : "10,10,10"
+			"localScale" : "10,10,10",
+                        "layer" : "1"
 		},
 		{
 			"name"	: "VerticalPlatform0",
 			"prefab" : "./assets/prefabs/VerticalPlatform.txt",
 			"localPosition" : "0.0,1.00,1.00",
 			"localRotation" : "0,0,0",
-			"localScale" : "10,10,10"
+			"localScale" : "10,10,10",
+                        "layer" : "1"
 		},
 		{
 			"name"	: "TekkaMan",
 			"prefab" : "./assets/prefabs/TekkaMan.txt",
 			"localPosition" : "1.50,0.00,1.00",
 			"localRotation" : "0,90,0",
-			"localScale" : "1,1,1"
+			"localScale" : "1,1,1",
+                        "layer" : "1"
 		},
 		{
 			"name"	: "Robot",
 			"prefab" : "./assets/prefabs/Robot.txt",
 			"localPosition" : "-1.50,0.00,1.00",
 			"localRotation" : "0,180,0",
-			"localScale" : "1,1,1"
+			"localScale" : "1,1,1",
+                        "layer" : "1"
 		},
 		{
 			"name"	: "xdPixelText",
 			"prefab" : "./assets/prefabs/xdPixelText.txt",
-			"localPosition" : "-2.00,0.00,-1.00",
+			"localPosition" : "-2.00,0.15,-1.00",
 			"localRotation" : "0,0,0",
-			"localScale" : "10,10,10"
+			"localScale" : "10,10,10",
+                        "layer" : "2"
 		},
 		{
-			"name"	: "Camera",
+			"name"	: "Credits",
+			"prefab" : "./assets/prefabs/credits.txt",
+			"localPosition" : "-1.50,-0.05,-1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "7,7,7",
+                        "layer" : "2"
+		},
+		{
+			"name"	: "FPS",
+			"prefab" : "./assets/prefabs/FpsText.txt",
+			"localPosition" : "-4.80,9.2,-1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "10,10,10",
+                        "layer" : "2"
+		},
+		{
+			"name"	: "PerspectiveCamera",
 			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+                        //"prefab" : "./assets/prefabs/OrthogonalCamera.txt",
 			"localPosition" : "0.00,-2.00,6.00",
 			"localRotation" : "0,0,0",
-			"localScale" : "0,0,0"
+			"localScale" : "0,0,0",
+                        "layer" : "1"
+		},
+                {
+			"name"	: "OthrongonalCamera",
+			//"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+                        "prefab" : "./assets/prefabs/OrthogonalCamera.txt",
+			"localPosition" : "0.00,-4.60,6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0",
+                        "layer" : "1"
 		}
 	]
 

@@ -5,8 +5,16 @@
 	[
 		{
 			"name" : "MeshComponent",
-			"model" : "./assets/models/Robot2.obj",
-			"texture" : "./assets/textures/Robot_Color.png"
+			"model" : "./assets/models/Robot2.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/robot.txt"
+		},
+		{
+			"name" : "AutoRotateComponent",
+			"axis" : "0,1,0",
+			"speed" : "0.10"
 		}
 	]
 

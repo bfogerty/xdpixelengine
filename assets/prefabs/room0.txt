@@ -5,8 +5,11 @@
 	[
 		{
 			"name" : "MeshComponent",
-			"model" : "./assets/models/room0.obj",
-			"texture" : "./assets/textures/tile.png"
+			"model" : "./assets/models/room0.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/room0.txt"
 		}
 	]
 

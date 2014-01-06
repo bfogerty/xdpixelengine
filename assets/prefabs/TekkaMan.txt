@@ -5,8 +5,11 @@
 	[
 		{
 			"name" : "MeshComponent",
-			"model" : "./assets/models/tekka_op.obj",
-			"texture" : "./assets/textures/blade_blue.png"
+			"model" : "./assets/models/tekka_op.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/tekkaman.txt"
 		},
 		{
 			"name" : "AutoRotateComponent",
