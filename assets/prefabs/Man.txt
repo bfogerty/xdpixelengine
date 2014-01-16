@@ -1,0 +1,26 @@
+{
+
+	"name" : "Man",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/man.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/white.txt"
+		},
+		{
+			"name" : "PlaneShadowComponent",
+			"model" : "./assets/models/man.obj",
+			"shader" : "./assets/materials/shadow.txt"
+		},
+		{
+			"name" : "AutoRotateComponent",
+			"axis" : "0,1,0",
+			"speed" : "0.10"
+		}
+	]
+
+}

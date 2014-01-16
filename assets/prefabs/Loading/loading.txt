@@ -1,0 +1,21 @@
+{
+
+	"name" : "xdPixelText",
+	"components" :
+	[
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/text.txt"
+		},
+		{
+			"name" : "TextComponent",
+			"text" : "LOADING...",
+			"characterwidth" : "9",
+			"characterheight" : "9",
+			"characterscale" : "0.02",
+			"kerning" : "0.020",
+			"spaceBetweenCharacters" : "0.020"
+		}
+	]
+
+}

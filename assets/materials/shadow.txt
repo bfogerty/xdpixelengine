@@ -1,0 +1,29 @@
+{
+	"name" : "Shadow",
+	//"shader" : "./assets/shaders/toon.fx",
+	"shader" : "./assets/shaders/planeprojector.fx",
+	"parameters" :
+	[
+		{
+			"type"  : "color",
+			"name"	: "meshColor",
+			"value"  : "0.00,0.00,0.00"
+		},
+		{
+			"type"  : "vector3",
+			"name"	: "planeNormal",
+			"value"  : "0.00,1.00,0.00"
+		},
+		{
+			"type"  : "vector3",
+			"name"	: "pointOnPlane",
+			"value"  : "1.50,0.00,1.00"
+		},
+		{
+			"type"  : "vector3",
+			"name"	: "offset",
+			"value"  : "0.00,-0.045,0.00"
+		}
+	]
+
+}

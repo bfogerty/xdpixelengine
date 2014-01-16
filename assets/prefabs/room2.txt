@@ -1,0 +1,16 @@
+{
+
+	"name" : "Room2",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/room2.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/room0.txt"
+		}
+	]
+
+}

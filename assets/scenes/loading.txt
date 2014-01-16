@@ -1,0 +1,23 @@
+{
+	"name" : "Loading",
+	"objects" :
+	[
+		{
+			"name"	: "xdPixelText",
+			"prefab" : "./assets/prefabs/Loading/LOADING.txt",
+			"localPosition" : "2.50,0.15,-1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "10,10,10",
+                        "layer" : "2"
+		},
+                {
+			"name"	: "OthrongonalCamera",
+                        "prefab" : "./assets/prefabs/Loading/OrthogonalCamera.txt",
+			"localPosition" : "0.00,-4.60,6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0",
+                        "layer" : "1"
+		}
+	]
+
+}

@@ -1,0 +1,41 @@
+{
+	"renderer" : 
+	[
+		{
+			"api" : "dx9",
+			"screenwidth" : "800",
+			"screenheight" : "600",
+			"fullscreen" : "0"
+		}
+	],
+
+	"scenes" :
+	[
+		{
+			"name"	: "CharacterTest",
+			"file" : "./assets/scenes/characters.txt"
+		},
+		{
+			"name"	: "Rotate",
+			"file" : "./assets/scenes/rotate.txt"
+		},
+		{
+			"name"	: "Rotate2",
+			"file" : "./assets/scenes/rotate2.txt"
+		},
+		{
+			"name"	: "RenderTest",
+			"file" : "./assets/scenes/rendertest.txt"
+		},
+		{
+			"name"	: "FullScreenQuadTest",
+			"file" : "./assets/scenes/quad.txt"
+		},
+		{
+			"name"	: "Loading",
+			"file" : "./assets/scenes/loading.txt"
+		}
+	],
+
+	"startscene" : "Rotate"
+}

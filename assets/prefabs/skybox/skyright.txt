@@ -1,0 +1,16 @@
+{
+
+	"name" : "SkyRight",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/PolyPlane.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/skybox/right.txt"
+		}
+	]
+
+}
