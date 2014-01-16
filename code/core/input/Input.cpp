@@ -1,5 +1,5 @@
 #include "Input.h"
-
+#include "../config/EngineConfig.h"
 
 Input *Input::mInst = 0;
 
@@ -62,6 +62,10 @@ void Input::Initialize()
 
 	mapKeyCodes[KeyCode::LeftShift] = VK_LSHIFT;
 	mapKeyCodes[KeyCode::RightShift] = VK_RSHIFT;
+
+	mapMouseKeyCodes[MouseKeyCode::Left] = VK_LBUTTON;
+	mapMouseKeyCodes[MouseKeyCode::Middle] = VK_MBUTTON;
+	mapMouseKeyCodes[MouseKeyCode::Right] = VK_RBUTTON;
 #endif
 }
 
@@ -74,4 +78,107 @@ bool Input::GeyKey( int key )
 #endif
 
 	return FALSE;
+}
+
+bool Input::GetMouseButton( int key )
+{
+
+#ifdef WIN_RELEASE
+	//return GetAsyncKeyState(mapMouseKeyCodes[key]) & 0x8000 != 0 ? TRUE : FALSE;
+	return (GetKeyState(mapMouseKeyCodes[key]) & 0x100) != 0;
+#endif
+
+	return FALSE;
+}
+
+Vector3 Input::FromClientToScreenSpace( Vector3 position )
+{
+#ifdef WIN_RELEASE
+	HWND hWnd = (HWND)EngineConfig::WindowHandle;
+	POINT pnt;
+	pnt.x = position.x();
+	pnt.y = position.y();
+	ClientToScreen(hWnd, &pnt);
+	position.x( pnt.x );
+	position.y( pnt.y );
+	position.z( 0.00f );
+#endif
+
+	return position;
+}
+
+Vector3 Input::FromScreenSpaceToClientSpace( Vector3 position )
+{
+#ifdef WIN_RELEASE
+	HWND hWnd = (HWND)EngineConfig::WindowHandle;
+	POINT pnt;
+	pnt.x = position.x();
+	pnt.y = position.y();
+	ScreenToClient(hWnd, &pnt);
+	position.x( pnt.x );
+	position.y( pnt.y );
+	position.z( 0.00f );
+#endif
+
+	return position;
+}
+
+Vector3 Input::GetMousePosition()
+{
+	Vector3 pos;
+
+#ifdef WIN_RELEASE
+	HWND hWnd = (HWND)EngineConfig::WindowHandle;
+	POINT mousePosition;
+	GetCursorPos(&mousePosition);
+	pos.x( mousePosition.x );
+	pos.y( mousePosition.y );
+	pos.z( 0.00f );
+#endif
+
+	return pos;
+}
+
+void Input::SetMousePosition( Vector3 position )
+{
+#ifdef WIN_RELEASE
+	HWND hWnd = (HWND)EngineConfig::WindowHandle;
+	POINT pnt;
+	pnt.x = position.x();
+	pnt.y = position.y();
+	SetCursorPos(pnt.x, pnt.y);
+#endif
+}
+
+Vector3 Input::GetWindowPositionInScreenSpace()
+{
+	Vector3 pos;
+
+#ifdef WIN_RELEASE
+	HWND hWnd = (HWND)EngineConfig::WindowHandle;
+	RECT r;
+	GetWindowRect(hWnd, &r);
+	pos.x( r.left );
+	pos.y( r.top );
+	pos.z( 0.00f );
+#endif
+
+	return pos;
+}
+
+void Input::ShowMouseCursor( bool show )
+{
+#ifdef WIN_RELEASE
+
+	if( !show )
+	{
+		while( ShowCursor( FALSE ) > 0 );
+	}
+	else
+	{
+		while( ShowCursor( TRUE ) < 0 );
+	}
+
+	//ShowCursor( show );
+#endif
 }

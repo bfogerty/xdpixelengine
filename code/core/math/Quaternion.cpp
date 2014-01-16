@@ -157,6 +157,10 @@ Matrix4x4 Quaternion::ToMatrix(Quaternion quat)
 	mat.Set(0,1, nxny*OMCT-n.z()*st);		mat.Set(1,1, ny2*OMCT+ct);				mat.Set(2,1, nynz*OMCT+n.x()*st);
 	mat.Set(0,2, nxnz*OMCT+n.y()*st);		mat.Set(1,2, nynz*OMCT-n.x()*st);		mat.Set(2,2, nz2*OMCT+ct);
 
+	mat.SetRow(0, mat.GetRow(0).GetNormalized() );
+	mat.SetRow(1, mat.GetRow(1).GetNormalized() );
+	mat.SetRow(2, mat.GetRow(2).GetNormalized() );
+
 	return mat;
 }
 
@@ -215,6 +219,31 @@ Quaternion Quaternion::FromLook( Vector3 look )
 }
 
 //-----------------------------------------------------------------------------------
+Quaternion Quaternion::GetNormalized()
+{
+	Quaternion quatResult = *this;
+	quatResult.Normalize();
+
+	return quatResult;
+	
+}
+
+//-----------------------------------------------------------------------------------
+void Quaternion::Normalize()
+{
+	float fMag = Quaternion::Magnitude( *this );
+
+	float x = v.x() / fMag;
+	float y = v.y() / fMag;
+	float z = v.z() / fMag;
+
+	this->w = w / fMag;
+	this->v.x(x);
+	this->v.x(y);
+	this->v.x(z);
+}
+
+//-----------------------------------------------------------------------------------
 Quaternion Quaternion::FromEulerAngles( Vector3 angles )
 {
 	float p = angles.x() * MathHelper::Deg2Rad;
@@ -245,7 +274,7 @@ Quaternion Quaternion::FromEulerAngles( Vector3 angles )
 	Quaternion qr;
 	qr.w = cos( r / 2) ; qr.v.z(sin( r/2 ));
 
-	Quaternion quatResult = qp * qh * qr;
+	Quaternion quatResult = qr * qh * qp;
 
 	return quatResult;
 }

@@ -83,6 +83,7 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	pChild->mpTransform->Scale = vecScale;
 	pChild->mpTransform->Position = vecPosition;
 	pChild->mpTransform->Rotation = Quaternion::FromEulerAngles( vecRotation );
+	pChild->mpTransform->Update();
 	pChild->SetLayer( layer );
 }
 

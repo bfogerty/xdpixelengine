@@ -53,7 +53,7 @@ void Time::End()
 		fpsCounter = 0;
 
 		++smoothSampleCount;
-		if( smoothSampleCount >= 10 )
+		if( smoothSampleCount >= 1 )
 		{
 			mfSmoothDeltaTime = sampleDeltaAccum / (float)tickCount;
 			sampleDeltaAccum = 0.000f;

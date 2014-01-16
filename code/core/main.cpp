@@ -67,6 +67,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine
 	UpdateWindow(gHWND);
 
 	EngineConfig::WindowHandle = (char*)(gHWND);
+	EngineConfig::ClientAreaOrigin.x(rcClientArea.left);
+	EngineConfig::ClientAreaOrigin.y(rcClientArea.top);
+	EngineConfig::ClientAreaWidthHeight.x(rcClientArea.right);
+	EngineConfig::ClientAreaWidthHeight.y(rcClientArea.bottom);
+
 	Engine *pEngine = new Engine();
 
 	int iLastTime = timeGetTime();

@@ -12,6 +12,7 @@
 #include "../game/AutoRotateComponent.h"
 #include "../game/MaterialComponent.h"
 #include "../game/FPSTextComponent.h"
+#include "../game/PlaneShadowComponent.h"
 
 std::map<std::string, GameObjectComponent::ComponentClassPointer> GameObjectComponent::mapComponents;
 
@@ -30,6 +31,7 @@ GameObjectComponent::ComponentClassPointer GameObjectComponent::GetClass( std::s
 		mapComponents["AutoRotateComponent"] = AutoRotateComponent::Create;
 		mapComponents["MaterialComponent"] = MaterialComponent::Create;
 		mapComponents["FPSTextComponent"] = FPSTextComponent::Create;
+		mapComponents["PlaneShadowComponent"] = PlaneShadowComponent::Create;
 	}
 
 	return mapComponents[ className ];

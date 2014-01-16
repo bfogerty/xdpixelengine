@@ -46,60 +46,9 @@ void GameMain::OnAwake()
 	// The root should always be at the center of the world.
 	mpGameObject->mpTransform->mMatWorld.Translate(Vector3(0.0f, 0.0f, 0.0f));
 
-	//Material *mat = MaterialLoader::Load("./assets/materials/normal.txt");
-
-	// Add Game Specific logic below.
-	
 	GameObject *pChildObj = new GameObject("Empty");
 
 	SceneLoader::Load( EngineConfig::startScene->filename.c_str() , mpGameObject);
-
-	/*
-	pChildObj = new GameObject("FPSText");
-	fpsText = new TextComponent(pChildObj);
-	pChildObj->AddComponent( static_cast<TextComponent*>( fpsText ) );
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-	pChildObj->mpTransform->Position = Vector3(-0.15f,0.25f,1);
-	fpsText->SetText("FPS: 30");
-	*/
-
-	/*
-	pChildObj = new GameObject("Camera");
-	Camera *camera = new Camera(pChildObj);
-	pChildObj->AddComponent(static_cast<Camera*>( camera ));
-	mpGameObject->mpTransform->mChildren.push_back(pChildObj->mpTransform);
-
-	pChildObj->mpTransform->Position = Vector3(0,-0.2f,0.0f);
-	camera->BackGroundColor = Color(Color::GRAY);
-	camera->mAspectRatio = RenderEngine::GetInstance()->GetRenderConfig()->GetAspectRatio();
-	camera->mFov = 45.0f;
-	camera->mNear = 0.01f;
-	camera->mFar = 10000.0f;
-	camera->BuffersToClear = PlatformRenderer::BT_COLOR | PlatformRenderer::BT_DEPTH | PlatformRenderer::BT_STENCIL;
-	camera->Depth = 0;
-
-	pChildObj->AddComponent(static_cast<FPCameraControllerComponent*>(new FPCameraControllerComponent(pChildObj)));
-	*/
-
-
-
-	/*
-	pChildObj = new GameObject("Camera2");
-	camera = new Camera(pChildObj);
-	pChildObj->AddComponent(static_cast<Camera*>( camera ));
-	pChildObj->mpTransform->SetParent(*mpGameObject->mpTransform);
-
-	pChildObj->mpTransform->Position = Vector3(0,-0.2f,0.0f);
-	camera->BackGroundColor = Color(Color::GRAY);
-	camera->mAspectRatio = RenderEngine::GetInstance()->GetRenderConfig()->GetAspectRatio();
-	camera->mFov = 45.0f;
-	camera->mNear = 0.01f;
-	camera->mFar = 10000.0f;
-	camera->BuffersToClear = PlatformRenderer::BT_DEPTH;
-	camera->Depth = 1;
-	*/
-	
-	//LoadLua();
 }
 
 //-----------------------------------------------------------------------------------

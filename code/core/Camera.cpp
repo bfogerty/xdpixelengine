@@ -92,6 +92,20 @@ void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 	//matProjection.SetOrthoLH(0.80f, 0.60f, mNear, mFar);
 	pRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
 
+	Matrix4x4 posMatrix;
+	posMatrix.Translate( mpGameObject->mpTransform->Position );
+	Matrix4x4 rotMatrix = Quaternion::ToMatrix(mpGameObject->mpTransform->Rotation);
+
+	Matrix4x4 matWorld = this->mpGameObject->mpTransform->mMatWorld;
+	//matWorld = posMatrix * rotMatrix;
+	pRenderer->SetTransform(PlatformRenderer::TS_WORLD, matWorld);
+
+	Matrix4x4 matView;
+	matView = Matrix4x4::TInverse(	this->mpGameObject->mpTransform->matPosition, 
+									this->mpGameObject->mpTransform->matRotation );
+	pRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);
+
+	/*
 	Matrix4x4 matView;
 	matView.SetIdentity();
 	matView = Quaternion::ToMatrix(mpGameObject->mpTransform->Rotation);
@@ -101,7 +115,9 @@ void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 
 	Matrix4x4 matWorld;
 	matWorld.SetIdentity();
-	pRenderer->SetTransform(PlatformRenderer::TS_WORLD, matWorld);
+	*/
+
+	
 }
 
 //-----------------------------------------------------------------------------------
@@ -176,6 +192,7 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	mat->SetFloat("__smoothDeltaTime", Time::GetInstance()->GetSmoothDeltaTime());
 	mat->SetMatrix("__model", matWorld);
 	mat->SetMatrix("__view", *matView);
+	mat->SetMatrix("__projection", *matProj);
 	mat->SetMatrix("__modelViewProjection", matMvp);
 
 	if( pGameObject->pTexture != 0 )

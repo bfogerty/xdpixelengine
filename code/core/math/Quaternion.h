@@ -14,6 +14,8 @@ public:
 	void Identity();
 	Quaternion operator *(Quaternion other);
 	Vector3 operator *(Vector3 v);
+	Quaternion GetNormalized();
+	void Normalize();
 
 	static Quaternion AxisAngle(Vector3 axis, float fAngle);
 	static Quaternion Negation(Quaternion quat);

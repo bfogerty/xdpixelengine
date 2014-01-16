@@ -12,6 +12,11 @@
 			"file" : "./assets/materials/robot.txt"
 		},
 		{
+			"name" : "PlaneShadowComponent",
+			"model" : "./assets/models/Robot2.obj",
+			"shader" : "./assets/materials/shadow.txt"
+		},
+		{
 			"name" : "AutoRotateComponent",
 			"axis" : "0,1,0",
 			"speed" : "0.10"

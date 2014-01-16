@@ -12,6 +12,11 @@
 			"file" : "./assets/materials/platform1.txt"
 		},
 		{
+			"name" : "PlaneShadowComponent",
+			"model" : "./assets/models/platform1.obj",
+			"shader" : "./assets/materials/shadow.txt"
+		},
+		{
 			"name" : "MoverComponent",
 			"direction" : "0,1,0",
 			"magnitude" : "2.0",

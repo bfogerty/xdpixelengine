@@ -1,6 +1,7 @@
 #ifndef __FP_CAMERA_CONTROLLER_COMPONENT__
 #define __FP_CAMERA_CONTROLLER_COMPONENT__
 #include "GameObjectComponent.h"
+#include "math/Vector3.h"
 
 class FPCameraControllerComponent : public GameObjectComponent
 {
@@ -21,7 +22,11 @@ public:
 
 protected:
 
-	float Theta;
+	float yaw;
+	float pitch;
+	Vector3 angles;
+
+	char buffer[300];
 };
 
 #endif

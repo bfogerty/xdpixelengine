@@ -26,6 +26,18 @@ Transform::~Transform()
 }
 
 //-----------------------------------------------------------------------------------
+Vector3 Transform::GetLookVector()
+{
+	Matrix4x4 mat = Quaternion::ToMatrix(Rotation);
+	mat.Transpose();
+	Vector4 v4 = mat.GetRow(2);
+	Vector3 look( v4.x(), v4.y(), v4.z() );
+	look.Normalize();
+
+	return look;
+}
+
+//-----------------------------------------------------------------------------------
 void Transform::SetPosition(Vector3 &vecPos)
 {
 	mMatWorld.Translate(vecPos);

@@ -1,5 +1,6 @@
 #include "FPCameraControllerComponent.h"
 
+#include "../core/config/EngineConfig.h"
 #include "../core/GameObject.h"
 #include "../core/mesh/Mesh.h"
 #include "../core/Transform.h"
@@ -10,20 +11,25 @@
 #include "../core/math/Quaternion.h"
 #include "../core/math/MathHelper.h"
 
+#include "windows.h"
+
 //-----------------------------------------------------------------------------------
 void FPCameraControllerComponent::OnAwake()
 {
-	Theta = 1.00f;
+	yaw = 0.001f;
+	pitch = 0.001f;
 }
 
 //-----------------------------------------------------------------------------------
 void FPCameraControllerComponent::OnUpdate()
 {
-	float dt = Time::GetInstance()->GetSmoothDeltaTime();
+	Vector3 camPos = this->mpGameObject->mpTransform->Position;
+	//Vector3 camLook = this->mpGameObject->mpTransform->GetLookVector();
 
-	float fCurX = mpGameObject->mpTransform->Position.x();
-	float fCurY = mpGameObject->mpTransform->Position.y();
-	float fCurZ = mpGameObject->mpTransform->Position.z();
+	Vector3 camLook =  this->mpGameObject->mpTransform->Rotation * Vector3(0,0.00f,1.0f);
+	Vector3 camLeft =  this->mpGameObject->mpTransform->Rotation * Vector3(1.0f,0.00f,0.0f);
+
+	float dt = Time::GetInstance()->GetSmoothDeltaTime();
 
 	float fSpeed = 1.0f;
 	if( Input::Inst()->GeyKey(KeyCode::LeftShift) ||
@@ -35,45 +41,69 @@ void FPCameraControllerComponent::OnUpdate()
 	if( Input::Inst()->GeyKey(KeyCode::UpArrow) ||
 		Input::Inst()->GeyKey(KeyCode::W) )
 	{
-		 fCurZ -= (fSpeed * dt);
+		camPos = camPos - (camLook *(fSpeed * dt));
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::DownArrow) ||
 		Input::Inst()->GeyKey(KeyCode::S))
 	{
-		fCurZ += (fSpeed * dt);
+		camPos = camPos + (camLook *(fSpeed * dt));
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::LeftArrow) ||
 		Input::Inst()->GeyKey(KeyCode::A))
 	{
-		fCurX -= (fSpeed * dt);
+		//fCurX -= (fSpeed * dt);
 		//Theta -= (fSpeed * Time::GetInstance()->GetDeltaTime());
+		camPos = camPos + (camLeft *(fSpeed * dt));
 	}
 
 	if( Input::Inst()->GeyKey(KeyCode::RightArrow) ||
 		Input::Inst()->GeyKey(KeyCode::D))
 	{
-		fCurX += (fSpeed * dt);
+		//fCurX += (fSpeed * dt);
 		//Theta += (fSpeed * Time::GetInstance()->GetDeltaTime());
+
+		camPos = camPos - (camLeft *(fSpeed * dt));
 	}
 
-	//Theta += 100.0f * Time::GetInstance()->GetDeltaTime();
-
-	if( Theta > 360.0f )
+	//bool down = GetAsyncKeyState(VK_RBUTTON) & 0x8000 != 0 ? TRUE : FALSE;
+	if( Input::Inst()->GetMouseButton( MouseKeyCode::Right ) )
 	{
-		Theta = 1.0f;
+		Input::Inst()->ShowMouseCursor( FALSE );
+
+		Vector3 origin;
+		origin.x( (EngineConfig::renderConfig.ScreenWidth / 2.00f));
+		origin.y( (EngineConfig::renderConfig.ScreenHeight / 2.00f));
+
+		Vector3 windowPos = Input::Inst()->GetWindowPositionInScreenSpace();
+		Vector3 realOrigin = windowPos + origin;
+
+		Vector3 currentPos = Input::Inst()->GetMousePosition();
+		Vector3 delta = currentPos - realOrigin;
+		
+		//sprintf( buffer, "cy=%f, oy=%f\n", currentPos.y(), origin.y());
+		//OutputDebugString( buffer );
+
+		float dx = delta.x();
+		float dy = delta.y();
+		if((abs(dx) > 0.01f || abs(dy) > 0.01f ))
+		{
+			yaw += (dx * 0.10f);
+			pitch += (dy * 0.10f);
+		}
+
+		Input::Inst()->SetMousePosition( realOrigin );
 	}
-	else if( Theta < 1.0f )
+	else
 	{
-		Theta = 360.0f;
+		Input::Inst()->ShowMouseCursor( TRUE );
 	}
-	
-	Quaternion q = Quaternion::AxisAngle(Vector3::Up(), Theta);
-	Vector3 look = q * Vector3::Forward();
-	look.Normalize();
 
+	angles.x(pitch);
+	angles.y(yaw);
+	angles.z(0.00f);
 
-	mpGameObject->mpTransform->Position = Vector3(fCurX, fCurY, fCurZ);
-	mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(Vector3::Up(), Theta);
+	mpGameObject->mpTransform->Position = camPos;
+	mpGameObject->mpTransform->Rotation = Quaternion::FromEulerAngles(angles);
 }

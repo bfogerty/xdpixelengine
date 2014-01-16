@@ -128,6 +128,7 @@
     <ClCompile Include="..\..\code\game\MaterialComponent.cpp" />
     <ClCompile Include="..\..\code\game\MeshComponent.cpp" />
     <ClCompile Include="..\..\code\game\MoverComponent.cpp" />
+    <ClCompile Include="..\..\code\game\PlaneShadowComponent.cpp" />
     <ClCompile Include="..\..\code\game\TextComponent.cpp" />
     <ClCompile Include="..\..\code\renderer\BitmapText.cpp" />
     <ClCompile Include="..\..\code\renderer\Color.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="..\..\code\game\MaterialComponent.h" />
     <ClInclude Include="..\..\code\game\MeshComponent.h" />
     <ClInclude Include="..\..\code\game\MoverComponent.h" />
+    <ClInclude Include="..\..\code\game\PlaneShadowComponent.h" />
     <ClInclude Include="..\..\code\game\TextComponent.h" />
     <ClInclude Include="..\..\code\renderer\BitmapText.h" />
     <ClInclude Include="..\..\code\renderer\Color.h" />

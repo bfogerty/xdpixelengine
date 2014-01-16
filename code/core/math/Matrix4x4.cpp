@@ -229,6 +229,32 @@ void Matrix4x4::FromLookAt( Vector3 look )
 	SetRow(1, Vector4(up,0));
 	SetRow(2, Vector4(look,0));
 }
+
+//-----------------------------------------------------------------------------------
+Matrix4x4 Matrix4x4::TInverse(Matrix4x4 posMat, Matrix4x4 rotMat)
+{
+	Matrix4x4 inv;
+	inv.SetIdentity();
+
+	Vector4 v0 = rotMat.GetRow(0);
+	Vector4 v1 = rotMat.GetRow(1);
+	Vector4 v2 = rotMat.GetRow(2);
+	Vector4 pos = posMat.GetRow(3);
+
+	inv.SetColumn(0, v0.GetNormalized());
+	inv.SetColumn(1, v1.GetNormalized());
+	inv.SetColumn(2, v2.GetNormalized());
+
+
+	float x = Vector4::Dot(pos, inv.GetColumn(0));
+	float y = Vector4::Dot(pos, inv.GetColumn(1));
+	float z = Vector4::Dot(pos, inv.GetColumn(2));
+	pos.x(x); pos.y(y); pos.z(z); pos.w(1.0f);
+	
+	inv.SetRow(3, pos);
+
+	return inv;
+}
  
 #ifdef COMPILE_DX9_RENDERER
 //-----------------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 		{
 			"type"  : "texture2d",
 			"name"	: "decalSampler",
-			"value"  : "./assets/textures/grey_with_border.png"
+			"value"  : "./assets/textures/tile1.png"
 		},
 		{
 			"type"  : "texture2d",

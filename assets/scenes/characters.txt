@@ -2,10 +2,18 @@
 	"name" : "Level1",
 	"objects" :
 	[
+                {
+			"name"	: "SkyBox_Right",
+			"prefab" : "./assets/prefabs/skybox/skyright.txt",
+			"localPosition" : "0.00,5.00,-10.00",
+			"localRotation" : "90,0,0",
+			"localScale" : "1,1,1",
+                        "layer" : "1"
+		},
 		{
 			"name"	: "Room0",
 			"prefab" : "./assets/prefabs/room0.txt",
-			"localPosition" : "0.00,-0.50,2.00",
+			"localPosition" : "0.00,2.50,2.00",
 			"localRotation" : "0,180,0",
 			"localScale" : "60,60,60",
                         "layer" : "1"
@@ -13,7 +21,7 @@
 		{
 			"name"	: "HorizontalPlatform0",
 			"prefab" : "./assets/prefabs/HorizontalPlatform.txt",
-			"localPosition" : "-1.0,4.00,1.00",
+			"localPosition" : "-1.0,4.00,2.50",
 			"localRotation" : "0,0,0",
 			"localScale" : "10,10,10",
                         "layer" : "1"

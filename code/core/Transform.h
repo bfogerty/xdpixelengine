@@ -39,6 +39,8 @@ public:
 	void SetPosition(Vector3 &vecPos);
 	void SetLocalPosition(Vector3 &vecPos);
 
+	Vector3 GetLookVector();
+
 	Transform* GetParent();
 	void SetParent(Transform *parent);
 

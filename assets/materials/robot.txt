@@ -16,7 +16,7 @@
 		{
 			"type"  : "float",
 			"name"	: "edge",
-			"value"  : "0.015"
+			"value"  : "0.025"
 		}
 	]
 

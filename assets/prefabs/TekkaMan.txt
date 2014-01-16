@@ -12,6 +12,11 @@
 			"file" : "./assets/materials/tekkaman.txt"
 		},
 		{
+			"name" : "PlaneShadowComponent",
+			"model" : "./assets/models/tekka_op.obj",
+			"shader" : "./assets/materials/shadow.txt"
+		},
+		{
 			"name" : "AutoRotateComponent",
 			"axis" : "0,1,0",
 			"speed" : "0.10"

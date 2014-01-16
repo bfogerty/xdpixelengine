@@ -4,6 +4,7 @@
 #include <map>
 #include "RendererConfig.h"
 #include "json/json.h"
+#include "../math/Vector3.h"
 using namespace std;
 
 class SceneData
@@ -42,6 +43,8 @@ public:
 	static RendererConfig renderConfig;
 	static map<std::string, SceneData*> scenes;
 	static SceneData *startScene;
+	static Vector3 ClientAreaOrigin;
+	static Vector3 ClientAreaWidthHeight;
 
 private:
 

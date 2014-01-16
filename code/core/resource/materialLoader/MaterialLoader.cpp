@@ -71,6 +71,18 @@ void MaterialLoader::SetShaderParam( Material* mat, std::map<std::string, std::s
 		sscanf( valString.c_str(), "%f", &floatVal );
 		mat->SetFloat( nameVal.c_str(), floatVal );
 	}
+	else if( typeVal == "color" )
+	{
+		float r,g,b;
+		sscanf( valString.c_str(), "%f,%f,%f", &r, &g, &b );
+		mat->SetVector3( nameVal.c_str(), Vector3(r,g,b) );
+	}
+	else if( typeVal == "vector3" )
+	{
+		float x,y,z;
+		sscanf( valString.c_str(), "%f,%f,%f", &x, &y, &z );
+		mat->SetVector3( nameVal.c_str(), Vector3(x,y,z) );
+	}
 }
 
 const char* MaterialLoader::ReadFileIntoString( const char* fileName )

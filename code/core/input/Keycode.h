@@ -51,4 +51,15 @@ public:
 	};
 };
 
+class MouseKeyCode
+{
+public:
+	enum MouseKeyCodes
+	{
+		Left = 0,
+		Middle,
+		Right
+	};
+};
+
 #endif

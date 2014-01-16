@@ -11,6 +11,9 @@ RendererConfig  EngineConfig::renderConfig;
 map<std::string, SceneData*> EngineConfig::scenes;
 SceneData* EngineConfig::startScene;
 
+Vector3 EngineConfig::ClientAreaOrigin;
+Vector3 EngineConfig::ClientAreaWidthHeight;
+
 //-----------------------------------------------------------------------------------
 EngineConfig::EngineConfig()
 {

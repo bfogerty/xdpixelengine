@@ -40,6 +40,8 @@ public:
 
 	void FromLookAt(Vector3 look);
 
+	static Matrix4x4 TInverse(Matrix4x4 posMat, Matrix4x4 rotMat);
+
 #ifdef COMPILE_DX9_RENDERER
 	D3DMATRIX ToD3DMatrix();
 #endif

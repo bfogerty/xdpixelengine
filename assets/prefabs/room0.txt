@@ -1,6 +1,6 @@
 {
 
-	"name" : "Robot",
+	"name" : "Room0",
 	"components" :
 	[
 		{
