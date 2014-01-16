@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "GameObjectComponent.h"
 #include "Color.h"
+#include <vector>
+using namespace std;
 
 class PlatformRenderer;
 
@@ -37,10 +39,16 @@ public:
 
 	void RenderMesh( PlatformRenderer *pRenderer, GameObject *pGameObject );
 
+	vector<GameObject*> GetRenderableGameObjectList( GameObject *pGameObject );
+	vector<GameObject*> GetRenderableGameObjectList( GameObject *pGameObject, vector<GameObject*> *gameObjectList );
+
 	static bool SortByCameraDepth( Camera* c1, Camera *c2 );
+
+	static bool SortByDistanceFromCamera( GameObject* g1, GameObject *g2 );
 
 protected:
 	void BuildMatricies(PlatformRenderer *pRenderer);
+	static Camera *ActiveCamera;
 
 };
 

@@ -50,6 +50,11 @@ public:
 	void SetLayer( unsigned int layer ) { this->Layer = layer; }
 
 	static GameObject* CreatePrimitive( EPrimitiveType type );
+	static vector<GameObject*> GetGameObjectList();
+
+
+protected:
+	static vector<GameObject*> GameObjectList;
 };
 
 #endif

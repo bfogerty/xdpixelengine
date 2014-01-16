@@ -2,6 +2,8 @@
 #include "Transform.h"
 #include "./resource/model_loaders/ObjLoader.h"
 
+vector<GameObject*> GameObject::GameObjectList;
+
 GameObject::GameObject( string Name )
 {
 	mName = Name;
@@ -12,6 +14,7 @@ GameObject::GameObject( string Name )
 	pTexture = 0;
 	pMaterial = 0;
 	
+	GameObjectList.push_back(this);
 }
 
 GameObject::~GameObject()
@@ -31,6 +34,8 @@ GameObject::~GameObject()
 	mMesh = 0;
 
 	pTexture = 0;
+
+	// TODO: Remove from GameObjectList
 }
 
 void GameObject::AddComponent( GameObjectComponent *component )
@@ -156,4 +161,9 @@ GameObject* GameObject::CreatePrimitive( EPrimitiveType type )
 	}
 
 	return pGO;
+}
+
+vector<GameObject*> GameObject::GetGameObjectList()
+{
+	return GameObjectList;
 }

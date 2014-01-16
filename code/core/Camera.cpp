@@ -7,6 +7,9 @@
 #include "../renderer/shaders/ShaderTechnique.h"
 #include "../renderer/shaders/ShaderPass.h"
 #include "time/Time.h"
+#include <vector>
+
+Camera *Camera::ActiveCamera;
 
 //-----------------------------------------------------------------------------------
 GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::string, std::string> mapParams )
@@ -103,36 +106,93 @@ void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 	Matrix4x4 matView;
 	matView = Matrix4x4::TInverse(	this->mpGameObject->mpTransform->matPosition, 
 									this->mpGameObject->mpTransform->matRotation );
-	pRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);
+	pRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);	
+}
 
-	/*
-	Matrix4x4 matView;
-	matView.SetIdentity();
-	matView = Quaternion::ToMatrix(mpGameObject->mpTransform->Rotation);
-	matView.SetRow(3, Vector4(mpGameObject->mpTransform->Position, 1.0f));
-	matView.Set(0,3, -matView.Get(0,3));
-	pRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);
+//-----------------------------------------------------------------------------------
+vector<GameObject*> Camera::GetRenderableGameObjectList( GameObject *pGameObject )
+{
+	vector<GameObject*> gameObjectList;
 
-	Matrix4x4 matWorld;
-	matWorld.SetIdentity();
-	*/
+	return GetRenderableGameObjectList( pGameObject, &gameObjectList );
+}
+
+//-----------------------------------------------------------------------------------
+vector<GameObject*> Camera::GetRenderableGameObjectList( GameObject *pGameObject, vector<GameObject*> *gameObjectList )
+{
+
+	bool CanRenderGameObject = true;
+	if( !pGameObject->mMesh || 
+		pGameObject->mMesh->verticies.size() <= 0)
+	{
+		CanRenderGameObject = false;
+	}
+
+	if( !(pGameObject->GetLayer() & CullLayerMask) )
+	{
+		CanRenderGameObject = false;
+	}
 
 	
+	// Is the object behind the camera?
+	/*
+	Vector3 camFwd = this->mpGameObject->mpTransform->Rotation * Vector3(0,0,-1.00f);
+	camFwd.Normalize();
+	Vector3 fromCamToGo = pGameObject->mpTransform->Position - this->mpGameObject->mpTransform->Position;
+	fromCamToGo.Normalize();
+
+	float d = Vector3::Dot(fromCamToGo, camFwd);
+	if( d <= 0.00f )
+	{
+		CanRenderGameObject = false;
+	}
+	*/
+
+	// If we can't render the game object,
+	// we should try to render its children.
+	if( CanRenderGameObject )
+	{
+		gameObjectList->push_back(pGameObject);
+	}
+	
+	int iChildCount = pGameObject->mpTransform->mChildren.size();
+	for(int i=0; i< iChildCount; ++i)
+	{
+		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
+		GetRenderableGameObjectList( pChild, gameObjectList );
+	}
+
+	return *gameObjectList;
 }
 
 //-----------------------------------------------------------------------------------
 void Camera::RenderScene( PlatformRenderer *pRenderer, GameObject *pGameObject )
 {
+	ActiveCamera = this;
+
 	if( !pRenderer )
 	{
+		ActiveCamera = 0;
+
 		return;
 	}
+
+	GameObject *root = pGameObject;
+	// Build Array of GameObjects to Render sorted from back to front
+	vector<GameObject*> renderObjects = GetRenderableGameObjectList(root);
+	std::sort(renderObjects.begin(), renderObjects.end(), SortByDistanceFromCamera);
 
 	BuildMatricies( pRenderer );
 
 	pRenderer->Clear( BuffersToClear, BackGroundColor);
 
-	RenderGameObject( pRenderer, pGameObject );
+	for( vector<GameObject*>::iterator it = renderObjects.begin(); it != renderObjects.end(); ++it )
+	{
+		GameObject *renderObj = *it;
+		RenderGameObject( pRenderer, renderObj );
+	}
+
+	ActiveCamera = 0;
 }
 
 //-----------------------------------------------------------------------------------
@@ -145,31 +205,6 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 		return;
 	}
 
-	// Can we render the game object?
-	if( !pGameObject->mMesh || 
-		pGameObject->mMesh->verticies.size() <= 0 )
-	{
-		CanRenderGameObject = false;
-	}
-
-	if( !(pGameObject->GetLayer() & CullLayerMask) )
-	{
-		CanRenderGameObject = false;
-	}
-
-	// If we can't render the game object,
-	// we should try to render its children.
-	if( !CanRenderGameObject )
-	{
-		int iChildCount = pGameObject->mpTransform->mChildren.size();
-		for(int i=0; i< iChildCount; ++i)
-		{
-			GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
-			RenderGameObject( pRenderer, pChild );
-		}
-		return;
-	}
-	
 	Material *mat = pGameObject->pMaterial;
 	mat->ApplyTextures();
 
@@ -210,13 +245,6 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	}
 
 	pRenderer->EndScene();
-
-	int iChildCount = pGameObject->mpTransform->mChildren.size();
-	for(int i=0; i< iChildCount; ++i)
-	{
-		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
-		RenderGameObject( pRenderer, pChild );
-	}
 }
 
 //-----------------------------------------------------------------------------------
@@ -234,4 +262,17 @@ bool Camera::SortByCameraDepth( Camera* c1, Camera *c2 )
 {
 	bool val = c1->Depth < c2->Depth;
 	return val;
+}
+
+//-----------------------------------------------------------------------------------
+bool Camera::SortByDistanceFromCamera( GameObject* g1, GameObject *g2 )
+{
+	Vector3 camPos = ActiveCamera->mpGameObject->mpTransform->Position;
+	Vector3 fromCamToG1 = g1->mpTransform->Position - camPos;
+	Vector3 fromCamToG2 = g2->mpTransform->Position - camPos;
+
+	float g1Dist = Vector3::Distance(camPos, fromCamToG1);
+	float g2Dist = Vector3::Distance(camPos, fromCamToG2);
+
+	return g1Dist > g2Dist;
 }
