@@ -104,7 +104,7 @@ technique main_dx9
                 VertexShader = compile vs_3_0 myvs( __model, __modelViewProjection, __deltaTime, edge );
 				PixelShader = compile ps_3_0 myps(decalSampler);
         }
-		
+
 		pass p1
         {
                 Zenable = true;

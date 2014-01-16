@@ -2,10 +2,11 @@
 	"name" : "Rotate",
 	"objects" :
 	[
+
 		{
 			"name"	: "Room2",
 			"prefab" : "./assets/prefabs/room2.txt",
-			"localPosition" : "0.00,2.50,2.00",
+			"localPosition" : "0.00,2.40,2.00",
 			"localRotation" : "0,180,0",
 			"localScale" : "60,60,60",
                         "layer" : "1"
