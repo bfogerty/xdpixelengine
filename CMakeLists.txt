@@ -4,6 +4,9 @@ project( xdPixelEngine )
 
 SET(GCC_COVERAGE_COMPILE_FLAGS "-v")
 
+set(CPUArchitecture "x86" CACHE STRING "The CPU architecture to compile for.")
+set_property (CACHE CPUArchitecture PROPERTY STRINGS x86 x64)
+
 set(SRC src)
 set(CORE_SRC src/core)
 set(GAME_SRC src/game)
@@ -191,9 +194,15 @@ list(SORT game_src)
 list(SORT renderer_src)
 list(SORT external_src)
 
-link_directories(src/external/directx/x86/)
+if(${CPUArchitecture} MATCHES "x86")
+    link_directories(src/external/directx/x86/)
+    link_directories(src/external/windows_sdk/10.0.16299.0/um/x86)
+else()
+    link_directories(src/external/directx/x64/)
+    link_directories(src/external/windows_sdk/10.0.16299.0/um/x64)
+endif()
+
 link_directories(src/external/cg/lib/)
-link_directories(src/external/windows_sdk/10.0.16299.0/um/x86)
 
 # add the executable
 add_executable(xdPixelEngine WIN32 ${main_src} ${core_src} ${game_src} ${renderer_src} ${external_src})
@@ -205,4 +214,11 @@ target_link_libraries(xdPixelEngine cgGL)
 target_link_libraries(xdPixelEngine winMM)
 target_link_libraries(xdPixelEngine OpenGL32)
 target_link_libraries(xdPixelEngine GlU32)
-#target_link_libraries(xdPixelEngine d3dx9)
+
+# Set the Visual Studio debug working directory
+set_target_properties(xdPixelEngine PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "$(ProjectDir)/../")
+
+# Set the Visual Studio default startup project to xdPixelEngine.
+# https://stackoverflow.com/questions/7304625/how-do-i-change-the-startup-project-of-a-visual-studio-solution-via-cmake/37994396
+#set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT xdPixelEngine)
+SET(CMAKE_DEFAULT_STARTUP_PROJECT xdPixelEngine)
