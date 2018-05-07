@@ -13,11 +13,11 @@ public:
 		std::string speed = mapParams["speed"];
 
 		float x,y,z;
-		sscanf(axis.c_str(), "%f,%f,%f", &x, &y, &z);
+		sscanf_s(axis.c_str(), "%f,%f,%f", &x, &y, &z);
 		Vector3 vecAxis(x,y,z);
 
 		float s;
-		sscanf(speed.c_str(), "%f", &s);
+		sscanf_s(speed.c_str(), "%f", &s);
 
 
 		return (GameObjectComponent*)new AutoRotateComponent(pGameObject, vecAxis, s);

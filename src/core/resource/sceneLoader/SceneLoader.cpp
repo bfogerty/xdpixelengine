@@ -59,19 +59,19 @@ void SceneLoader::CreateSceneObject( GameObject *parent, std::map<std::string, s
 	unsigned int layer = 0;
 
 	const char *locationPositionBuffer = localPosition.c_str();
-	sscanf(locationPositionBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+	sscanf_s(locationPositionBuffer, "%f,%f,%f", &fX, &fY, &fZ);
 	Vector3 vecPosition(fX, fY, fZ);
 
 	const char *locationRotationBuffer = localRotation.c_str();
-	sscanf(locationRotationBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+	sscanf_s(locationRotationBuffer, "%f,%f,%f", &fX, &fY, &fZ);
 	Vector3 vecRotation(fX, fY, fZ);
 
 	const char *locationScaleBuffer = localScale.c_str();
-	sscanf(locationScaleBuffer, "%f,%f,%f", &fX, &fY, &fZ);
+	sscanf_s(locationScaleBuffer, "%f,%f,%f", &fX, &fY, &fZ);
 	Vector3 vecScale(fX, fY, fZ);
 
 	const char *layerBuffer = layerStr.c_str();
-	sscanf(layerBuffer, "%d", &layer);
+	sscanf_s(layerBuffer, "%d", &layer);
 
 	GameObject *pChild = new GameObject(name.c_str());
 	if( prefab.length() > 0 )
@@ -93,8 +93,8 @@ const char* SceneLoader::ReadFileIntoString( const char* fileName )
 	fstream f;
 	f.open( fileName );
 	f.seekg(0, std::ios::end);
-	int len = f.tellg();
-	buffer = new char[len];
+	std::streamoff len = f.tellg();
+	buffer = new char[(unsigned int)len];
 	f.seekg(0, std::ios::beg);
 	f.read(buffer,len);
 	f.close();

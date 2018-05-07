@@ -68,25 +68,25 @@ void MaterialLoader::SetShaderParam( Material* mat, std::map<std::string, std::s
 	else if( typeVal == "int" )
 	{
 		int val = 0;
-		sscanf( valString.c_str(), "%d", &val );
+		sscanf_s( valString.c_str(), "%d", &val );
 		mat->SetInt( nameVal.c_str(), val );
 	}
 	else if( typeVal == "float" )
 	{
 		float floatVal = 0.0f;
-		sscanf( valString.c_str(), "%f", &floatVal );
+		sscanf_s( valString.c_str(), "%f", &floatVal );
 		mat->SetFloat( nameVal.c_str(), floatVal );
 	}
 	else if( typeVal == "color" )
 	{
 		float r,g,b;
-		sscanf( valString.c_str(), "%f,%f,%f", &r, &g, &b );
+		sscanf_s( valString.c_str(), "%f,%f,%f", &r, &g, &b );
 		mat->SetVector3( nameVal.c_str(), Vector3(r,g,b) );
 	}
 	else if( typeVal == "vector3" )
 	{
 		float x,y,z;
-		sscanf( valString.c_str(), "%f,%f,%f", &x, &y, &z );
+		sscanf_s( valString.c_str(), "%f,%f,%f", &x, &y, &z );
 		mat->SetVector3( nameVal.c_str(), Vector3(x,y,z) );
 	}
 	else if( typeVal == "string" )
@@ -101,8 +101,8 @@ const char* MaterialLoader::ReadFileIntoString( const char* fileName )
 	fstream f;
 	f.open( fileName );
 	f.seekg(0, std::ios::end);
-	int len = f.tellg();
-	buffer = new char[len];
+	std::streamoff len = f.tellg();
+	buffer = new char[(unsigned int)len];
 	f.seekg(0, std::ios::beg);
 	f.read(buffer,len);
 	f.close();

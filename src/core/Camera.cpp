@@ -38,15 +38,15 @@ GameObjectComponent* Camera::Create( GameObject *pGameObject, std::map<std::stri
 	float height;
 	unsigned int cullLayerMask;
 
-	sscanf( colorStr.c_str(), "%d,%d,%d,%d", &r,&g,&b,&a);
-	sscanf( fovStr.c_str(), "%f", &fov);
-	sscanf( nearStr.c_str(), "%f", &n);
-	sscanf( farStr.c_str(), "%f", &f);
-	sscanf( bufferClearCodeStr.c_str(), "%d", &bufferClearCode);
-	sscanf( depthStr.c_str(), "%d", &depth);
-	sscanf( widthStr.c_str(), "%f", &width);
-	sscanf( heightStr.c_str(), "%f", &height);
-	sscanf( cullLayerMaskStr.c_str(), "%d", &cullLayerMask);
+	sscanf_s( colorStr.c_str(), "%d,%d,%d,%d", &r,&g,&b,&a);
+	sscanf_s( fovStr.c_str(), "%f", &fov);
+	sscanf_s( nearStr.c_str(), "%f", &n);
+	sscanf_s( farStr.c_str(), "%f", &f);
+	sscanf_s( bufferClearCodeStr.c_str(), "%d", &bufferClearCode);
+	sscanf_s( depthStr.c_str(), "%d", &depth);
+	sscanf_s( widthStr.c_str(), "%f", &width);
+	sscanf_s( heightStr.c_str(), "%f", &height);
+	sscanf_s( cullLayerMaskStr.c_str(), "%d", &cullLayerMask);
 
 	Camera *camera = new Camera(pGameObject);
 

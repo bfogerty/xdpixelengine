@@ -32,6 +32,6 @@ void FPSTextComponent::OnAwake()
 void FPSTextComponent::OnUpdate()
 {
 	char fpsBuffer[5];
-	sprintf(fpsBuffer, "%d", Time::GetInstance()->GetFPS());
+	sprintf_s(fpsBuffer, "%d", Time::GetInstance()->GetFPS());
 	textComponent->SetText( fpsBuffer );
 }

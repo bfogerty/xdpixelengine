@@ -71,8 +71,8 @@ const char* PrefabLoader::ReadFileIntoString( const char* fileName )
 	fstream f;
 	f.open( fileName );
 	f.seekg(0, std::ios::end);
-	int len = f.tellg();
-	buffer = new char[len];
+	std::streamoff len = f.tellg();
+	buffer = new char[(unsigned int)len];
 	f.seekg(0, std::ios::beg);
 	f.read(buffer,len);
 	f.close();

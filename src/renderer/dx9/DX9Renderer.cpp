@@ -113,7 +113,6 @@ void DX9Renderer::SetVertexDataViaSystemMemory(TriangleData triangle)
 void* DX9Renderer::CreateVertexBuffer(unsigned int triangleCount)
 {
 	LPDIRECT3DVERTEXBUFFER9 pVertexBuffer = NULL;
-	CUSTOMVERT *pVerts;
 
 	const unsigned int bufferSizeInBytes = triangleCount * sizeof(CUSTOMVERT) * 3;
 

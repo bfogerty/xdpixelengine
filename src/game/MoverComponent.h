@@ -14,14 +14,14 @@ public:
 		std::string speed = mapParams["speed"];
 
 		float x,y,z;
-		sscanf(dir.c_str(), "%f,%f,%f", &x, &y, &z);
+		sscanf_s(dir.c_str(), "%f,%f,%f", &x, &y, &z);
 		Vector3 vecDir(x,y,z);
 
 		float m;
-		sscanf(magnitude.c_str(), "%f", &m);
+		sscanf_s(magnitude.c_str(), "%f", &m);
 
 		float s;
-		sscanf(speed.c_str(), "%f", &s);
+		sscanf_s(speed.c_str(), "%f", &s);
 
 
 		return (GameObjectComponent*)new MoverComponent(pGameObject, vecDir, m, s);

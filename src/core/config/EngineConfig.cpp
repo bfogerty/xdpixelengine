@@ -73,16 +73,16 @@ void EngineConfig::LoadRenderSettings(Json::Value root, Json::Reader reader)
 			}
 			else if( memberName == "screenwidth" )
 			{
-				sscanf(value.c_str(), "%d", &EngineConfig::renderConfig.ScreenWidth);
+				sscanf_s(value.c_str(), "%d", &EngineConfig::renderConfig.ScreenWidth);
 			}
 			else if( memberName == "screenheight" )
 			{
-				sscanf(value.c_str(), "%d", &EngineConfig::renderConfig.ScreenHeight);
+				sscanf_s(value.c_str(), "%d", &EngineConfig::renderConfig.ScreenHeight);
 			}
 			else if( memberName == "fullscreen" )
 			{
 				int bfullScreen = 0;
-				sscanf(value.c_str(), "%d", &bfullScreen);
+				sscanf_s(value.c_str(), "%d", &bfullScreen);
 
 				EngineConfig::renderConfig.FullScreen = (bool) bfullScreen;
 			}
@@ -135,8 +135,8 @@ const char* EngineConfig::ReadFileIntoString( const char* fileName )
 	fstream f;
 	f.open( fileName );
 	f.seekg(0, std::ios::end);
-	int len = f.tellg();
-	buffer = new char[len];
+	std::streamoff len = f.tellg();
+	buffer = new char[(unsigned int)len];
 	f.seekg(0, std::ios::beg);
 	f.read(buffer,len);
 	f.close();

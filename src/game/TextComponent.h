@@ -25,11 +25,11 @@ public:
 		float cKerning = 0.0f;
 		float cSpace = 0.0f;
 
-		sscanf(characterWidth.c_str(), "%d", &cWidth);
-		sscanf(characterHeight.c_str(), "%d", &cHeight);
-		sscanf(characterScale.c_str(), "%f", &cScale);
-		sscanf(characterKerning.c_str(), "%f", &cKerning);
-		sscanf(spaceBetweenCharacters.c_str(), "%f", &cSpace);
+		sscanf_s(characterWidth.c_str(), "%d", &cWidth);
+		sscanf_s(characterHeight.c_str(), "%d", &cHeight);
+		sscanf_s(characterScale.c_str(), "%f", &cScale);
+		sscanf_s(characterKerning.c_str(), "%f", &cKerning);
+		sscanf_s(spaceBetweenCharacters.c_str(), "%f", &cSpace);
 
 
 		TextComponent *component = new TextComponent(pGameObject, cWidth, cHeight, cSpace, cKerning, cSpace);

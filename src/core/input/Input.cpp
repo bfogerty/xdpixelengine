@@ -85,7 +85,7 @@ bool Input::GeyKeyDown( int key )
 #ifdef WIN_RELEASE
 
 	//return GetAsyncKeyState( VK_LEFT ) & 0x8000 != 0 ? TRUE : FALSE;
-	return GetAsyncKeyState( mapKeyCodes[key] ) & 0x0001 != 0 ? TRUE : FALSE;
+	return (GetAsyncKeyState( mapKeyCodes[key] ) & 0x0001) != 0 ? TRUE : FALSE;
 #endif
 
 	return FALSE;
