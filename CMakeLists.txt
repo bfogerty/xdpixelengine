@@ -66,6 +66,10 @@ file(GLOB core_src
     "${CORE_SRC}/resource/materialLoader/MaterialLoader.h"
     "${CORE_SRC}/resource/model_loaders/ObjLoader.cpp"
     "${CORE_SRC}/resource/model_loaders/ObjLoader.h"
+    "${CORE_SRC}/resource/model_loaders/AbmData.cpp"
+    "${CORE_SRC}/resource/model_loaders/AbmData.h"
+    "${CORE_SRC}/resource/model_loaders/AbmLoader.cpp"
+    "${CORE_SRC}/resource/model_loaders/AbmLoader.h"
     "${CORE_SRC}/resource/prefabLoader/PrefabLoader.cpp"
     "${CORE_SRC}/resource/prefabLoader/PrefabLoader.h"
     "${CORE_SRC}/resource/sceneLoader/SceneLoader.cpp"
@@ -81,6 +85,8 @@ file(GLOB core_src
 )
 
 file(GLOB game_src
+    "${GAME_SRC}/AbmComponent.cpp"
+    "${GAME_SRC}/AbmComponent.h"
     "${GAME_SRC}/AutoRotateComponent.cpp"
     "${GAME_SRC}/AutoRotateComponent.h"
     "${GAME_SRC}/FPCameraControllerComponent.cpp"
@@ -114,6 +120,8 @@ file(GLOB renderer_src
     "${RENDERER_SRC}/BitmapText.h"
     "${RENDERER_SRC}/Color.cpp"
     "${RENDERER_SRC}/Color.h"
+    "${RENDERER_SRC}/DebugGfx.cpp"
+    "${RENDERER_SRC}/DebugGfx.h"
     "${RENDERER_SRC}/Material.cpp"
     "${RENDERER_SRC}/Material.h"
     "${RENDERER_SRC}/PlatformRenderer.cpp"

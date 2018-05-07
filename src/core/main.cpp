@@ -86,24 +86,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine
 			DispatchMessage(&msg);
 		}
 		else
-		{
-			int iCurrentTime = timeGetTime();
-			float fElapsedTime = static_cast<float>((iCurrentTime - iLastTime));
-			
+		{	
 			pEngine->Update();
 
+			
 			if( GetKeyState(VK_ESCAPE) & 0x8000 )
 			{
 				PostQuitMessage(0);
 			}
-
-			iLastTime = iCurrentTime;
+			
 		}
 
 	}
 
 	delete pEngine;
-	pEngine = NULL;
+	pEngine = 0;
 
 	return (int)msg.wParam;
 }

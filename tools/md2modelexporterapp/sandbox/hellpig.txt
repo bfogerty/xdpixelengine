@@ -1,0 +1,70 @@
+{
+    "ModelFileName": "hellpig.md2",
+    "Clips": [
+        {
+            "Name": "static",
+            "StartFrame": 0,
+            "EndFrame": 0
+        },
+        {
+            "Name": "run",
+            "StartFrame": 1,
+            "EndFrame": 15
+        },
+        {
+            "Name": "run_with_horns",
+            "StartFrame": 16,
+            "EndFrame": 30
+        },
+        {
+            "Name": "junk1",
+            "StartFrame": 31,
+            "EndFrame": 31
+        },
+        {
+            "Name": "freakout1",
+            "StartFrame": 32,
+            "EndFrame": 49
+        },
+        {
+            "Name": "junk2",
+            "StartFrame": 50,
+            "EndFrame": 50
+        },
+        {
+            "Name": "freakout2",
+            "StartFrame": 51,
+            "EndFrame": 69
+        },
+        {
+            "Name": "junk3",
+            "StartFrame": 70,
+            "EndFrame": 70
+        },
+        {
+            "Name": "roll",
+            "StartFrame": 71,
+            "EndFrame": 134
+        },
+        {
+            "Name": "junk4",
+            "StartFrame": 135,
+            "EndFrame": 135
+        },
+        {
+            "Name": "die",
+            "StartFrame": 136,
+            "EndFrame": 164
+        },
+        {
+            "Name": "junk5",
+            "StartFrame": 165,
+            "EndFrame": 165
+        },
+        {
+            "Name": "jump",
+            "StartFrame": 166,
+            "EndFrame": 181
+        }
+    ]
+}

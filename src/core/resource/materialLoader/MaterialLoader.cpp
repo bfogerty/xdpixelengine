@@ -65,6 +65,12 @@ void MaterialLoader::SetShaderParam( Material* mat, std::map<std::string, std::s
 		Texture2D* tex2d = ImageLoader::Load( texturePath );
 		mat->AddTextureEntry( nameVal, tex2d );
 	}
+	else if( typeVal == "int" )
+	{
+		int val = 0;
+		sscanf( valString.c_str(), "%d", &val );
+		mat->SetInt( nameVal.c_str(), val );
+	}
 	else if( typeVal == "float" )
 	{
 		float floatVal = 0.0f;
@@ -82,6 +88,10 @@ void MaterialLoader::SetShaderParam( Material* mat, std::map<std::string, std::s
 		float x,y,z;
 		sscanf( valString.c_str(), "%f,%f,%f", &x, &y, &z );
 		mat->SetVector3( nameVal.c_str(), Vector3(x,y,z) );
+	}
+	else if( typeVal == "string" )
+	{
+		mat->SetString(nameVal.c_str(), valString.c_str());
 	}
 }
 

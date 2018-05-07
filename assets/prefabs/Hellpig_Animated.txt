@@ -1,0 +1,16 @@
+{
+
+	"name" : "TekkaMan",
+	"components" :
+	[
+		{
+			"name" : "AbmComponent",
+			"model" : "./assets/models/hellpig.abm"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/hellpig.txt"
+		}
+	]
+
+}

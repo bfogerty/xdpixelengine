@@ -27,12 +27,37 @@ void PlatformRenderer::FakeSceneSetup( RendererConfig config )
 
 }
 
-void PlatformRenderer::SetVertexData(TriangleData triangle)
+void PlatformRenderer::SetVertexData(Mesh *pMesh)
+{
+
+}
+
+void* PlatformRenderer::CreateVertexBuffer(unsigned int triangleCount)
+{
+	return NULL;
+}
+
+void PlatformRenderer::FreeVertexBuffer(void* pVertexBuffer)
+{
+
+}
+
+void PlatformRenderer::UploadMeshToGPU(Mesh *pMesh)
+{
+
+}
+
+void PlatformRenderer::DrawMesh(Mesh *pMesh)
 {
 
 }
 
 void PlatformRenderer::Clear( unsigned int buffers, Color c )
+{
+
+}
+
+void PlatformRenderer::UpdateMatricies()
 {
 
 }

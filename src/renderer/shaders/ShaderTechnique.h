@@ -10,6 +10,9 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "core/math/Matrix4x4.h"
+#include "renderer/Material.h"
+#include "renderer/PlatformRenderer.h"
 
 using namespace std;
 

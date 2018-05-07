@@ -1,0 +1,16 @@
+{
+
+	"name" : "Wave",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/Ocean.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/Wave.txt"
+		}
+	]
+
+}

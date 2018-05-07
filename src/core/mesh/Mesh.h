@@ -43,17 +43,21 @@ public:
 class Mesh
 {
 
+protected:
+	void *m_pVertexBuffer;
+
 public:
 	Mesh();
 	~Mesh();
 
-	vector<Vector3*> verticies;
+	vector<Vector3> verticies;
 	vector<Face*> triangles;
 	vector<Vector3*> normals;
 	vector<Color*> colors;
 	vector<Vector3*> uvs;
 
 	TriangleData *GetTriangleData(int iTriangle);
+	void* GetVertexBuffer() { return m_pVertexBuffer; }
 	void Build();
 
 	void Clone(Mesh *pSrcMesh);

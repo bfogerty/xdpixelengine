@@ -38,6 +38,20 @@ GameObject::~GameObject()
 	// TODO: Remove from GameObjectList
 }
 
+GameObject* GameObject::Find(std::string name)
+{
+	for(vector<GameObject*>::iterator it = GameObjectList.begin(); it != GameObjectList.end(); ++it)
+	{
+		GameObject *obj = *it;
+		if( name == obj->mName )
+		{
+			return obj;
+		}
+	}
+
+	return 0;
+}
+
 void GameObject::AddComponent( GameObjectComponent *component )
 {
 	for( unsigned int i=0; i< mComponents.size(); ++i )
@@ -124,12 +138,12 @@ GameObject* GameObject::CreatePrimitive( EPrimitiveType type )
 		pGO = new GameObject("FullScreenQuad");
 		Mesh *mesh = new Mesh();
 		
-		mesh->verticies.push_back(new Vector3(-1,-1,1));
-		mesh->verticies.push_back(new Vector3(-1,1, 1));
-		mesh->verticies.push_back(new Vector3(1,1, 1));
-		mesh->verticies.push_back(new Vector3(-1,-1,1));
-		mesh->verticies.push_back(new Vector3(1,1, 1));
-		mesh->verticies.push_back(new Vector3(1,-1, 1));
+		mesh->verticies.push_back( Vector3(-1,-1,1));
+		mesh->verticies.push_back( Vector3(-1,1, 1));
+		mesh->verticies.push_back( Vector3(1,1, 1));
+		mesh->verticies.push_back( Vector3(-1,-1,1));
+		mesh->verticies.push_back( Vector3(1,1, 1));
+		mesh->verticies.push_back( Vector3(1,-1, 1));
 
 		mesh->colors.push_back(new Color(Color::RED));
 		mesh->colors.push_back(new Color(Color::RED));

@@ -52,6 +52,8 @@ public:
 	static GameObject* CreatePrimitive( EPrimitiveType type );
 	static vector<GameObject*> GetGameObjectList();
 
+	static GameObject* Find(std::string name);
+
 
 protected:
 	static vector<GameObject*> GameObjectList;

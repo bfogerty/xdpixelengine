@@ -14,12 +14,12 @@ void RenderTestComponent::OnAwake()
 	Mesh *mesh = mpGameObject->mMesh;
 
 	// DirectX Version
-	mesh->verticies.push_back(new Vector3(-1,-1,10));
-	mesh->verticies.push_back(new Vector3(-1,1, 10));
-	mesh->verticies.push_back(new Vector3(1,1, 10));
-	mesh->verticies.push_back(new Vector3(-1,-1,10));
-	mesh->verticies.push_back(new Vector3(1,1, 10));
-	mesh->verticies.push_back(new Vector3(1,-1, 10));
+	mesh->verticies.push_back( Vector3(-1,-1,10));
+	mesh->verticies.push_back( Vector3(-1,1, 10));
+	mesh->verticies.push_back( Vector3(1,1, 10));
+	mesh->verticies.push_back( Vector3(-1,-1,10));
+	mesh->verticies.push_back( Vector3(1,1, 10));
+	mesh->verticies.push_back( Vector3(1,-1, 10));
 
 	mesh->colors.push_back(new Color(Color::GREEN));
 	mesh->colors.push_back(new Color(Color::BLUE));
@@ -44,7 +44,7 @@ void RenderTestComponent::OnAwake()
 
 	mesh->Build();
 
-	mpGameObject->mpTransform->Scale = Vector3(1,1,1);
+	mpGameObject->mpTransform->scale = Vector3(1,1,1);
 
 	firstTime = true;
 }
@@ -55,7 +55,7 @@ void RenderTestComponent::OnUpdate()
 
 	if( firstTime == true )
 	{
-		startPosition = this->mpGameObject->mpTransform->Position;
+		startPosition = this->mpGameObject->mpTransform->position;
 		endPosition = startPosition + (Vector3::Right() * 20.0f);
 
 		firstTime = false;
@@ -69,10 +69,10 @@ void RenderTestComponent::OnUpdate()
 	}
 
 	float fAngle = (1.0f - mT)*0.0f + (mT * 359.0f);
-	mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(-Vector3::Forward(), fAngle);
+	mpGameObject->mpTransform->rotation = Quaternion::AxisAngle(-Vector3::Forward(), fAngle);
 
 	Vector3 pos = startPosition * (1.0f - mT) + (endPosition * mT);
-	mpGameObject->mpTransform->Position = pos;
+	mpGameObject->mpTransform->position = pos;
 
 
 	if( mT >= 1.0f )

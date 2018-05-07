@@ -1,0 +1,9 @@
+{
+	"name" : "Wave",
+	"shader" : "./assets/shaders/Wave.fx",
+	"parameters" :
+	[
+
+	]
+
+}

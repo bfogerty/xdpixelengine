@@ -35,10 +35,12 @@ public:
 	ShaderTechnique *GetTechnique();
 	int GetPassCount();
 
+	void SetInt( const char* parameter, int val );
 	void SetFloat( const char* parameter, float val );
 	void SetVector3( const char* parameter, Vector3 val );
 	void SetVector4( const char* parameter, Vector4 val );
 	void SetMatrix( const char* parameter, Matrix4x4 matrix );
+	void SetString( const char* parameter, const char* val );
 
 	void SetTexture( const char* parameter, Texture2D *tex2D );
 

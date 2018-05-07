@@ -1,0 +1,21 @@
+{
+
+	"name" : "QuakeModelAnimated",
+	"components" :
+	[
+		{
+			"name" : "AbmComponent",
+			"model" : "./assets/models/male.abm"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/QuakeModel.txt"
+		},
+		{
+			"name" : "PlaneShadowComponent",
+			"gameobject" : "QuakeModelAnimated",
+			"shader" : "./assets/materials/shadow_tekka_animated.txt"
+		}
+	]
+
+}

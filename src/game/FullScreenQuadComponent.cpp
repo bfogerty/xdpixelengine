@@ -13,8 +13,8 @@
 void FullScreenQuadComponent::OnAwake()
 {
 	GameObject *quad = GameObject::CreatePrimitive(GameObject::FullScreenQuad);
-	quad->mpTransform->Position = Vector3(0,-10000,0);
+	quad->mpTransform->position = Vector3(0,-10000,0);
 
 	this->mpGameObject->mMesh->Clone(quad->mMesh);
-	this->mpGameObject->mpTransform->Position = Vector3(0,0,0);
+	this->mpGameObject->mpTransform->position = Vector3(0,0,0);
 }

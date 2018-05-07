@@ -20,6 +20,7 @@ public:
 
 	Vector3();
 	Vector3( float x, float y, float z );
+	//Vector3( const Vector3 &rhs );
 	~Vector3();
 
 	float x() { return data[X];}
@@ -35,6 +36,8 @@ public:
 	Vector3 operator+(Vector3 vec);
 	Vector3 operator-(Vector3 vec);
 	Vector3 operator*(float fScale);
+
+	//Vector3& operator=( const Vector3 &rhs );
 
 	Vector3 Scale( float fScalar );
 	float Magnitude();

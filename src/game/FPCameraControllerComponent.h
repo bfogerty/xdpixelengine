@@ -25,6 +25,7 @@ protected:
 	float yaw;
 	float pitch;
 	Vector3 angles;
+	bool justPressed;
 
 	char buffer[300];
 };

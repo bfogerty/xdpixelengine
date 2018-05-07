@@ -29,10 +29,12 @@ public:
 	void BeginPass(int index);
 	void EndPass(int index);
 
+	void SetInt( const char* parameter, int val );
 	void SetFloat( const char* parameter, float val );
 	void SetVector3( const char* parameter, Vector3 val );
 	void SetVector4( const char* parameter, Vector4 val );
 	void SetMatrix( const char* parameter, Matrix4x4 val );
+	void SetString( const char* parameter, const char* val );
 
 	void SetTexture( const char* parameter, Texture2D *tex2D );
 

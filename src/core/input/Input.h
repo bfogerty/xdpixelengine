@@ -18,6 +18,7 @@ public:
 	void Initialize();
 
 	bool GeyKey(int key);
+	bool Input::GeyKeyDown( int key );
 	bool GetMouseButton( int key );
 
 	Vector3 FromClientToScreenSpace( Vector3 position );

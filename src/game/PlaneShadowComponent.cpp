@@ -19,13 +19,13 @@
 void PlaneShadowComponent::OnAwake()
 {
 	shadowGameObject = new GameObject("Shadow");
-	shadowGameObject->AddComponent(new MeshComponent(shadowGameObject, this->modelPath));
+	//shadowGameObject->AddComponent(new MeshComponent(shadowGameObject, this->modelPath));
 	shadowGameObject->AddComponent( new MaterialComponent(shadowGameObject, this->shaderPath) );
 	shadowGameObject->SetLayer( this->mpGameObject->GetLayer() );
 
-	shadowGameObject->mpTransform->Scale = mpGameObject->mpTransform->Scale;
-	shadowGameObject->mpTransform->Position = mpGameObject->mpTransform->Position;
-	shadowGameObject->mpTransform->Rotation = mpGameObject->mpTransform->Rotation;
+	shadowGameObject->mpTransform->scale = mpGameObject->mpTransform->scale;
+	shadowGameObject->mpTransform->position = mpGameObject->mpTransform->position;
+	shadowGameObject->mpTransform->rotation = mpGameObject->mpTransform->rotation;
 	shadowGameObject->mpTransform->Update();
 
 	this->mpGameObject->mpTransform->mChildren.push_back(shadowGameObject->mpTransform);
@@ -36,7 +36,14 @@ void PlaneShadowComponent::OnAwake()
 //-----------------------------------------------------------------------------------
 void PlaneShadowComponent::OnUpdate()
 {
-	shadowGameObject->mpTransform->Scale = mpGameObject->mpTransform->Scale;
-	shadowGameObject->mpTransform->Position = mpGameObject->mpTransform->Position;
-	shadowGameObject->mpTransform->Rotation = mpGameObject->mpTransform->Rotation;
+	if (gameObjectReference == NULL)
+	{
+		return;
+	}
+
+	shadowGameObject->mMesh->Clone(gameObjectReference->mMesh);
+
+	shadowGameObject->mpTransform->scale = mpGameObject->mpTransform->scale;
+	shadowGameObject->mpTransform->position = mpGameObject->mpTransform->position;
+	shadowGameObject->mpTransform->rotation = mpGameObject->mpTransform->rotation;
 }

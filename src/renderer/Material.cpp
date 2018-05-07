@@ -46,6 +46,12 @@ void Material::EndPass(int index)
 }
 
 //-----------------------------------------------------------------------------------
+void Material::SetInt( const char* parameter, int val )
+{
+	shader->SetInt(parameter, val);
+}
+
+//-----------------------------------------------------------------------------------
 void Material::SetFloat( const char* parameter, float val )
 {
 	shader->SetFloat(parameter, val);
@@ -73,6 +79,12 @@ void Material::SetMatrix( const char* parameter, Matrix4x4 val )
 void Material::SetTexture( const char* parameter, Texture2D *tex2D )
 {
 	shader->SetTexture( parameter, tex2D );
+}
+
+//-----------------------------------------------------------------------------------
+void Material::SetString( const char* parameter, const char* val )
+{
+	shader->SetString( parameter, val );
 }
 
 //-----------------------------------------------------------------------------------

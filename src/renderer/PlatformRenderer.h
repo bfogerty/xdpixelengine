@@ -16,6 +16,7 @@ class Vector3;
 class TriangleData;
 class Matrix4x4;
 class Texture2D;
+class Mesh;
 
 class PlatformRenderer
 {
@@ -43,11 +44,17 @@ public:
 	virtual void *GetDeviceContext();
 
 	virtual void Clear( unsigned int buffers, Color c );
+	virtual void UpdateMatricies();
 	virtual void BeginScene();
 	virtual void EndScene();
 	virtual void Present();
 
-	virtual void SetVertexData(TriangleData triangle);
+	virtual void* CreateVertexBuffer(unsigned int triangleCount);
+	virtual void FreeVertexBuffer(void* pVertexBuffer);
+	virtual void UploadMeshToGPU(Mesh *pMesh);
+	virtual void DrawMesh(Mesh *pMesh);
+
+	virtual void SetVertexData(Mesh *pMesh);
 	virtual void CreateTexture(Texture2D &texture){ }
 	virtual void BindTexture( Texture2D *pTexture ){};
 
@@ -56,6 +63,8 @@ public:
 
 	virtual Matrix4x4* GetTransform( MATRIX_TRANSFORM_STATE_TYPE ts);
 	virtual void SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat);
+
+	virtual void DrawDebugLine(Vector3 *start, Vector3 *end, Color *color) {};
 
 protected:
 	float mfAspectRatio;

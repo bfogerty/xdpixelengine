@@ -1,0 +1,105 @@
+{
+    "ModelFileName": "male.md2",
+    "Clips": [
+        {
+            "Name": "stand",
+            "StartFrame": 0,
+            "EndFrame": 39
+        },
+        {
+            "Name": "run",
+            "StartFrame": 40,
+            "EndFrame": 45
+        },
+        {
+            "Name": "attack",
+            "StartFrame": 46,
+            "EndFrame": 53
+        },
+        {
+            "Name": "pain1",
+            "StartFrame": 54,
+            "EndFrame": 57
+        },
+        {
+            "Name": "pain2",
+            "StartFrame": 58,
+            "EndFrame": 61
+        },
+        {
+            "Name": "pain3",
+            "StartFrame": 62,
+            "EndFrame": 65
+        },
+        {
+            "Name": "jump",
+            "StartFrame": 66,
+            "EndFrame": 71
+        },
+        {
+            "Name": "flipoff",
+            "StartFrame": 72,
+            "EndFrame": 83
+        },
+        {
+            "Name": "salute",
+            "StartFrame": 84,
+            "EndFrame": 94
+        },
+        {
+            "Name": "taunt",
+            "StartFrame": 95,
+            "EndFrame": 111
+        },
+        {
+            "Name": "wave",
+            "StartFrame": 112,
+            "EndFrame": 122
+        },
+        {
+            "Name": "point",
+            "StartFrame": 123,
+            "EndFrame": 134
+        },
+        {
+            "Name": "crstand",
+            "StartFrame": 135,
+            "EndFrame": 153
+        },
+        {
+            "Name": "crwalk",
+            "StartFrame": 154,
+            "EndFrame": 159
+        },
+        {
+            "Name": "crattack",
+            "StartFrame": 160,
+            "EndFrame": 168
+        },
+        {
+            "Name": "crpain",
+            "StartFrame": 169,
+            "EndFrame": 172
+        },
+        {
+            "Name": "crdeath",
+            "StartFrame": 173,
+            "EndFrame": 177
+        },
+        {
+            "Name": "death1",
+            "StartFrame": 178,
+            "EndFrame": 183
+        },
+        {
+            "Name": "death2",
+            "StartFrame": 184,
+            "EndFrame": 189
+        },
+        {
+            "Name": "deathh3",
+            "StartFrame": 190,
+            "EndFrame": 197
+        }
+    ]
+}

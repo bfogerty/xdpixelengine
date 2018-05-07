@@ -1,7 +1,7 @@
 {
 	"name" : "TekkaMan",
-	"shader" : "./assets/shaders/toon.fx",
-	//"shader" : "./assets/shaders/samplecgfx.fx",
+	//"shader" : "./assets/shaders/toon.fx",
+	"shader" : "./assets/shaders/samplecgfx.fx",
 	"parameters" :
 	[
 		{
@@ -12,12 +12,12 @@
 		{
 			"type"  : "texture2d",
 			"name"	: "rampSampler",
-			"value"  : "./assets/textures/ramp2.png"
+			"value"  : "./assets/textures/ramp.png"
 		},
 		{
 			"type"  : "float",
 			"name"	: "edge",
-			"value"  : "0.035"
+			"value"  : "0.75"
 		}
 	]
 

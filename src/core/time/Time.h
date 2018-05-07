@@ -13,6 +13,7 @@ private:
 
 	float mfStartTime;
 	float fpsTimeCounter;
+	float lastTime;
 	int fpsCounter;
 	int fpsDisplayCount;
 

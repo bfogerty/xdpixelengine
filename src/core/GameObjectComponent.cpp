@@ -1,18 +1,19 @@
-#include "GameObjectComponent.h"
-#include "GameObject.h"
+#include "core/GameObjectComponent.h"
+#include "core/GameObject.h"
 
-#include "Camera.h"
-#include "../game/ObjLoaderTestComponent.h"
-#include "../game/MoverComponent.h"
-#include "../game/TextComponent.h"
-#include "../game/RenderTestComponent.h"
-#include "../game/FPCameraControllerComponent.h"
-#include "../game/FullScreenQuadComponent.h"
-#include "../game/MeshComponent.h"
-#include "../game/AutoRotateComponent.h"
-#include "../game/MaterialComponent.h"
-#include "../game/FPSTextComponent.h"
-#include "../game/PlaneShadowComponent.h"
+#include "core/Camera.h"
+#include "game/ObjLoaderTestComponent.h"
+#include "game/MoverComponent.h"
+#include "game/TextComponent.h"
+#include "game/RenderTestComponent.h"
+#include "game/FPCameraControllerComponent.h"
+#include "game/FullScreenQuadComponent.h"
+#include "game/MeshComponent.h"
+#include "game/AutoRotateComponent.h"
+#include "game/MaterialComponent.h"
+#include "game/FPSTextComponent.h"
+#include "game/PlaneShadowComponent.h"
+#include "game/AbmComponent.h"
 
 std::map<std::string, GameObjectComponent::ComponentClassPointer> GameObjectComponent::mapComponents;
 
@@ -32,6 +33,7 @@ GameObjectComponent::ComponentClassPointer GameObjectComponent::GetClass( std::s
 		mapComponents["MaterialComponent"] = MaterialComponent::Create;
 		mapComponents["FPSTextComponent"] = FPSTextComponent::Create;
 		mapComponents["PlaneShadowComponent"] = PlaneShadowComponent::Create;
+		mapComponents["AbmComponent"] = AbmComponent::Create;
 	}
 
 	return mapComponents[ className ];

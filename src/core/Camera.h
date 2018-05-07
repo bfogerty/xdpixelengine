@@ -1,7 +1,7 @@
 #ifndef __CAMERA__
 #define __CAMERA__
-#include "Core/GameObject.h"
-#include "Core/GameObjectComponent.h"
+#include "core/GameObject.h"
+#include "core/GameObjectComponent.h"
 #include "renderer/Color.h"
 #include <vector>
 using namespace std;

@@ -246,9 +246,9 @@ Matrix4x4 Matrix4x4::TInverse(Matrix4x4 posMat, Matrix4x4 rotMat)
 	inv.SetColumn(2, v2.GetNormalized());
 
 
-	float x = Vector4::Dot(pos, inv.GetColumn(0));
-	float y = Vector4::Dot(pos, inv.GetColumn(1));
-	float z = Vector4::Dot(pos, inv.GetColumn(2));
+	float x = Vector4::Dot(-pos, inv.GetColumn(0));
+	float y = Vector4::Dot(-pos, inv.GetColumn(1));
+	float z = Vector4::Dot(-pos, inv.GetColumn(2));
 	pos.x(x); pos.y(y); pos.z(z); pos.w(1.0f);
 	
 	inv.SetRow(3, pos);

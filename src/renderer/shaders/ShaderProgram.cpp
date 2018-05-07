@@ -92,6 +92,13 @@ int ShaderProgram::GetPassCount()
 }
 
 //-----------------------------------------------------------------------------------
+void ShaderProgram::SetInt( const char* parameter, int val )
+{
+	CGparameter param = cgGetNamedEffectParameter(myCgEffect, parameter);
+	cgSetParameterValueir(param, 1, &val);
+}
+
+//-----------------------------------------------------------------------------------
 void ShaderProgram::SetFloat( const char* parameter, float val )
 {
 	CGparameter param = cgGetNamedEffectParameter(myCgEffect, parameter);
@@ -128,6 +135,13 @@ void ShaderProgram::SetMatrix( const char* parameter, Matrix4x4 matrix )
 {
 	CGparameter param = cgGetNamedEffectParameter(myCgEffect, parameter);
 	cgSetParameterValuefc(param, 16, matrix.mMatrix);
+}
+
+//-----------------------------------------------------------------------------------
+void ShaderProgram::SetString( const char* parameter, const char* val )
+{
+	CGparameter param = cgGetNamedEffectParameter(myCgEffect, parameter);
+	cgSetStringParameterValue( param, val);
 }
 
 //-----------------------------------------------------------------------------------

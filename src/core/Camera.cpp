@@ -1,12 +1,13 @@
-#include "Camera.h"
-#include "Transform.h"
-#include "math/MathHelper.h"
-#include "../renderer/RenderEngine.h"
-#include "../renderer/PlatformRenderer.h"
-#include "../renderer/shaders/ShaderProgram.h"
-#include "../renderer/shaders/ShaderTechnique.h"
-#include "../renderer/shaders/ShaderPass.h"
-#include "time/Time.h"
+#include "core/Camera.h"
+#include "core/Transform.h"
+#include "core/math/MathHelper.h"
+#include "renderer/RenderEngine.h"
+#include "renderer/PlatformRenderer.h"
+#include "renderer/shaders/ShaderProgram.h"
+#include "renderer/shaders/ShaderTechnique.h"
+#include "renderer/shaders/ShaderPass.h"
+#include "renderer/DebugGfx.h"
+#include "core/time/Time.h"
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -98,16 +99,16 @@ void Camera::BuildMatricies(PlatformRenderer *pRenderer)
 	pRenderer->SetTransform(PlatformRenderer::TS_PROJECTION, matProjection);
 
 	Matrix4x4 posMatrix;
-	posMatrix.Translate( mpGameObject->mpTransform->Position );
-	Matrix4x4 rotMatrix = Quaternion::ToMatrix(mpGameObject->mpTransform->Rotation);
+	posMatrix.Translate( -mpGameObject->mpTransform->position );
+	Matrix4x4 rotMatrix = Quaternion::ToMatrix(mpGameObject->mpTransform->rotation);
 
-	Matrix4x4 matWorld = this->mpGameObject->mpTransform->mMatWorld;
+	Matrix4x4 matWorld = this->mpGameObject->mpTransform->worldMatrix;
 	//matWorld = posMatrix * rotMatrix;
 	pRenderer->SetTransform(PlatformRenderer::TS_WORLD, matWorld);
 
 	Matrix4x4 matView;
-	matView = Matrix4x4::TInverse(	this->mpGameObject->mpTransform->matPosition, 
-									this->mpGameObject->mpTransform->matRotation );
+	matView = Matrix4x4::TInverse(	this->mpGameObject->mpTransform->translationMatrix, 
+									this->mpGameObject->mpTransform->rotationMatrix );
 	pRenderer->SetTransform(PlatformRenderer::TS_VIEW, matView);	
 }
 
@@ -137,18 +138,20 @@ vector<GameObject*> Camera::GetRenderableGameObjectList( GameObject *pGameObject
 
 	
 	// Is the object behind the camera?
-	/*
-	Vector3 camFwd = this->mpGameObject->mpTransform->Rotation * Vector3(0,0,-1.00f);
-	camFwd.Normalize();
-	Vector3 fromCamToGo = pGameObject->mpTransform->Position - this->mpGameObject->mpTransform->Position;
-	fromCamToGo.Normalize();
-
-	float d = Vector3::Dot(fromCamToGo, camFwd);
-	if( d <= 0.00f )
+	if( CameraType == Perspective )
 	{
-		CanRenderGameObject = false;
+		Vector3 camFwd = this->mpGameObject->mpTransform->rotation * Vector3(0,0,1.00f);
+		camFwd.Normalize();
+		Vector3 camPos = this->mpGameObject->mpTransform->position;
+		Vector3 fromCamToGo = pGameObject->mpTransform->position - camPos;
+		fromCamToGo.Normalize();
+
+		float d = Vector3::Dot(fromCamToGo, camFwd);
+		if( d <= 0.00f )
+		{
+			CanRenderGameObject = false;
+		} 
 	}
-	*/
 
 	// If we can't render the game object,
 	// we should try to render its children.
@@ -160,7 +163,7 @@ vector<GameObject*> Camera::GetRenderableGameObjectList( GameObject *pGameObject
 	int iChildCount = pGameObject->mpTransform->mChildren.size();
 	for(int i=0; i< iChildCount; ++i)
 	{
-		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
+		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->gameObject;
 		GetRenderableGameObjectList( pChild, gameObjectList );
 	}
 
@@ -194,6 +197,11 @@ void Camera::RenderScene( PlatformRenderer *pRenderer, GameObject *pGameObject )
 		RenderGameObject( pRenderer, renderObj );
 	}
 
+	if( ActiveCamera->CameraType == Perspective )
+	{
+		DebugGfx::Render(pRenderer);
+	}
+
 	ActiveCamera = 0;
 }
 
@@ -212,19 +220,19 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 
 
 	pRenderer->SetTransform(PlatformRenderer::TS_WORLD, 
-		pGameObject->mpTransform->mMatWorld);
-
-	pRenderer->BeginScene();
+		pGameObject->mpTransform->worldMatrix);
 
 	//   ... Draw Here ...
+	pRenderer->UpdateMatricies();
 
 	Matrix4x4 *matView = pRenderer->GetTransform( PlatformRenderer::TS_VIEW );
 	Matrix4x4 *matProj = pRenderer->GetTransform( PlatformRenderer::TS_PROJECTION );
-	Matrix4x4 matWorld = pGameObject->mpTransform->mMatWorld;
+	Matrix4x4 matWorld = pGameObject->mpTransform->worldMatrix;
 
 	Matrix4x4 matMv = matWorld * *matView;
 	Matrix4x4 matMvp = matWorld * *matView * *matProj;
 	
+	mat->SetFloat("__time", Time::GetInstance()->GetTime());
 	mat->SetFloat("__deltaTime", Time::GetInstance()->GetDeltaTime());
 	mat->SetFloat("__smoothDeltaTime", Time::GetInstance()->GetSmoothDeltaTime());
 	mat->SetMatrix("__model", matWorld);
@@ -242,20 +250,23 @@ void Camera::RenderGameObject( PlatformRenderer *pRenderer, GameObject *pGameObj
 	for(int pass = 0; pass < passCount; ++pass)
 	{
 		mat->BeginPass(pass);
+		pRenderer->BeginScene();
 		RenderMesh(pRenderer, pGameObject);
+		pRenderer->EndScene();
 		mat->EndPass(pass);
 	}
-
-	pRenderer->EndScene();
 }
 
 //-----------------------------------------------------------------------------------
 void Camera::RenderMesh( PlatformRenderer *pRenderer, GameObject *pGameObject )
 {
-	int iNumberOfTriangles = pGameObject->mMesh->triangleData.size();
-	for( int i=0; i< iNumberOfTriangles; ++i )
+	if (pGameObject->mMesh->GetVertexBuffer() == NULL)
 	{
-		pRenderer->SetVertexData(*pGameObject->mMesh->GetTriangleData(i));
+		pRenderer->SetVertexData(pGameObject->mMesh);
+	}
+	else
+	{
+		pRenderer->DrawMesh(pGameObject->mMesh);
 	}
 }
 
@@ -269,9 +280,9 @@ bool Camera::SortByCameraDepth( Camera* c1, Camera *c2 )
 //-----------------------------------------------------------------------------------
 bool Camera::SortByDistanceFromCamera( GameObject* g1, GameObject *g2 )
 {
-	Vector3 camPos = ActiveCamera->mpGameObject->mpTransform->Position;
-	Vector3 fromCamToG1 = g1->mpTransform->Position - camPos;
-	Vector3 fromCamToG2 = g2->mpTransform->Position - camPos;
+	Vector3 camPos = ActiveCamera->mpGameObject->mpTransform->position;
+	Vector3 fromCamToG1 = g1->mpTransform->position - camPos;
+	Vector3 fromCamToG2 = g2->mpTransform->position - camPos;
 
 	float g1Dist = Vector3::Distance(camPos, fromCamToG1);
 	float g2Dist = Vector3::Distance(camPos, fromCamToG2);

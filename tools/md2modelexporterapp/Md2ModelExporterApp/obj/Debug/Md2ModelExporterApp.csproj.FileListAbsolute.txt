@@ -1,0 +1,7 @@
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\bin\Debug\Md2ModelExporterApp.exe.config
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\bin\Debug\Md2ModelExporterApp.exe
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\bin\Debug\Md2ModelExporterApp.pdb
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\obj\Debug\Md2ModelExporterApp.csprojResolveAssemblyReference.cache
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\obj\Debug\Md2ModelExporterApp.exe
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\obj\Debug\Md2ModelExporterApp.pdb
+C:\Users\bfogerty\Documents\Development\xdpixelengine\tools\Md2ModelExporterApp\Md2ModelExporterApp\bin\Debug\LitJson.dll

@@ -1,0 +1,23 @@
+{
+	"name" : "AdditiveBlending",
+	"shader" : "./assets/shaders/BlendTextures.fx",
+	"parameters" :
+	[
+		{
+			"type"  : "texture2d",
+			"name"	: "texSampler1",
+			"value"  : "./assets/textures/tile2.png"
+		},
+		{
+			"type"  : "texture2d",
+			"name"	: "texSampler2",
+			"value"  : "./assets/textures/ramp2.png"
+		},
+		{
+			"type"  : "int",
+			"name"	: "op",
+			"value"  : "2"
+		}
+	]
+
+}

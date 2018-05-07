@@ -62,13 +62,13 @@ void TextComponent::SetText(std::string textstring)
 
 		float to = (text[i] - '!') * pixelWidthPerCharacter;
 
-		m->verticies.push_back( new Vector3( x,y,z   ) );
-		m->verticies.push_back( new Vector3( x,y+characterScale,z ) );
-		m->verticies.push_back( new Vector3( x+characterScale,y+characterScale,z ) );
+		m->verticies.push_back(Vector3( x,y,z   ) );
+		m->verticies.push_back(Vector3( x,y+characterScale,z ) );
+		m->verticies.push_back(Vector3( x+characterScale,y+characterScale,z ) );
 
-		m->verticies.push_back( new Vector3( x+characterScale,y+characterScale,z ) );
-		m->verticies.push_back( new Vector3( x+characterScale,y,z ) );
-		m->verticies.push_back( new Vector3( x,y,z ) );
+		m->verticies.push_back(Vector3( x+characterScale,y+characterScale,z ) );
+		m->verticies.push_back(Vector3( x+characterScale,y,z ) );
+		m->verticies.push_back(Vector3( x,y,z ) );
 		
 		
 

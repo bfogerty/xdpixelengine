@@ -1,14 +1,15 @@
-#include "Engine.h"
-#include "config/EngineConfig.h"
-#include "GameObject.h"
-#include "GameObjectComponent.h"
-#include "Transform.h"
-#include "math/Vector3.h"
-#include "time/Time.h"
-#include "math/Matrix4x4.h"
+#include "core/Engine.h"
+#include "core/config/EngineConfig.h"
+#include "core/GameObject.h"
+#include "core/GameObjectComponent.h"
+#include "core/Transform.h"
+#include "core/math/Vector3.h"
+#include "core/time/Time.h"
+#include "core/math/Matrix4x4.h"
+#include "core/input/Input.h"
+#include "renderer/DebugGfx.h"
+#include "game/GameMain.h"
 #include <iostream>
-#include "input/Input.h"
-#include "../game/GameMain.h"
 
 using namespace std;
 
@@ -29,6 +30,8 @@ Engine::Engine() : pRenderEngine(0)
 	mpRootGameObject = new GameObject("root");
 	mpRootGameObject->AddComponent( static_cast<GameObjectComponent*>( new GameMain(mpRootGameObject) ) );
 
+	DebugGfx::Initialize(mpRootGameObject);
+
 }
 
 Engine::~Engine()
@@ -43,6 +46,7 @@ void Engine::Update()
 
 	if( mpRootGameObject != 0 )
 	{
+		DebugGfx::Reset();
 		UpdateGameObject(mpRootGameObject);
 		RenderEngine::GetInstance()->Render(mpRootGameObject);
 	}
@@ -65,7 +69,7 @@ void Engine::UpdateGameObject( GameObject *pGameObject )
 	int iChildCount = pGameObject->mpTransform->mChildren.size();
 	for(int i=0; i< iChildCount; ++i)
 	{
-		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->mpGameObject;
+		GameObject *pChild = pGameObject->mpTransform->mChildren[i]->gameObject;
 		UpdateGameObject(pChild);
 	}
 }

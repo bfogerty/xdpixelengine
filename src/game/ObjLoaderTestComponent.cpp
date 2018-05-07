@@ -44,8 +44,8 @@ void ObjLoaderTestComponent::OnUpdate()
 
 	float fDegrees = (mft*360.0f);
 
-	this->mpGameObject->mpTransform->Scale = Vector3(0.05f,0.05f,0.05f);
-	this->mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(Vector3::Up(), fDegrees);
+	this->mpGameObject->mpTransform->scale = Vector3(0.05f,0.05f,0.05f);
+	this->mpGameObject->mpTransform->rotation = Quaternion::AxisAngle(Vector3::Up(), fDegrees);
 
 	mft += Time::GetInstance()->GetSmoothDeltaTime() / 5; //GetDeltaTime() / 5;
 }

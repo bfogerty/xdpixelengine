@@ -3,14 +3,14 @@ struct VS_INPUT
       float4 position  : POSITION;
       float4 normal    : NORMAL;
       float4 color    : COLOR;
-	float2 uv : TEXCOORD0;
+	    float2 uv : TEXCOORD0;
 };
 
 struct VS_OUTPUT
 {
       float4 color   : COLOR0;
       float4 position  : POSITION;
-	float2 uv : TEXCOORD0;
+      float2 uv : TEXCOORD0;
 };
 
 VS_OUTPUT myvs( uniform float4x4 Model, uniform float4x4 ModelViewProj, uniform float deltaTime, const VS_INPUT vin)
@@ -20,7 +20,7 @@ VS_OUTPUT myvs( uniform float4x4 Model, uniform float4x4 ModelViewProj, uniform 
         float4 position = mul(ModelViewProj, vin.position);
         vout.position = position;
 
-	vout.uv = vin.uv;
+        vout.uv = vin.uv;
 
         return vout;
 }
@@ -52,7 +52,7 @@ technique main_dx9
                 Zenable = true;
                 ZWriteEnable = true;
 				//PolygonMode = int2(FrontAndBack, Wireframe);
-				PolygonMode = int2(Front, Solid);
+				//PolygonMode = int2(Front, Solid);
 
                 VertexShader = compile vs_3_0 myvs( __model, __modelViewProjection, __deltaTime );
 				PixelShader = compile ps_3_0 myps(decalSampler);
@@ -67,7 +67,7 @@ technique main_opengl
                 Zenable = true;
                 ZWriteEnable = true;
 				//PolygonMode = int2(FrontAndBack, Wireframe);
-				PolygonMode = int2(Front, Solid);
+				//PolygonMode = int2(Front, Solid);
 
 				VertexShader = compile glslv myvs( __model, __modelViewProjection, __deltaTime );
 				PixelShader = compile glslf myps(decalSampler);

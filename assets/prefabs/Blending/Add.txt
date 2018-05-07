@@ -1,0 +1,16 @@
+{
+
+	"name" : "Add",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/PolyPlane.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/AdditiveBlend.txt"
+		}
+	]
+
+}

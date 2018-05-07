@@ -16,9 +16,9 @@ void TriangleComponent::OnAwake()
 
 	Mesh *mesh = mpGameObject->mMesh;
 
-	mesh->verticies.push_back(new Vector3(-1,0,10));
-	mesh->verticies.push_back(new Vector3(0,1, 10));
-	mesh->verticies.push_back(new Vector3(1,0, 10));
+	mesh->verticies.push_back(Vector3(-1,0,10));
+	mesh->verticies.push_back(Vector3(0,1, 10));
+	mesh->verticies.push_back(Vector3(1,0, 10));
 
 	mesh->colors.push_back(new Color(Color::RED));
 	mesh->colors.push_back(new Color(Color::RED));
@@ -51,11 +51,11 @@ void TriangleComponent::OnUpdate()
 
 	if( mDir == 1 )
 	{
-		mpGameObject->mpTransform->Position = Vector3::Lerp(Vector3(0,-3,0), Vector3(0,3,0), mft);
+		mpGameObject->mpTransform->position = Vector3::Lerp(Vector3(0,-3,0), Vector3(0,3,0), mft);
 	}
 	else
 	{
-		mpGameObject->mpTransform->Position = Vector3::Lerp( Vector3(0,3,0), Vector3(0,-3,0), mft);
+		mpGameObject->mpTransform->position = Vector3::Lerp( Vector3(0,3,0), Vector3(0,-3,0), mft);
 	}
 
 	if( mft == 1.0f )

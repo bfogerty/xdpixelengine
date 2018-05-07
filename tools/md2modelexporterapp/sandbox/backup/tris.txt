@@ -1,0 +1,105 @@
+{
+    "model": "tris.md2",
+    "clips": [
+        {
+            "name": "stand",
+            "startframe": "0",
+            "endframe": "39"
+        },
+        {
+            "name": "run",
+            "startframe": "40",
+            "endframe": "45"
+        },
+        {
+            "name": "attack",
+            "startframe": "46",
+            "endframe": "53"
+        },
+        {
+            "name": "pain",
+            "startframe": "54",
+            "endframe": "65"
+        },
+        {
+            "name": "jump",
+            "startframe": "66",
+            "endframe": "71"
+        },
+        {
+            "name": "flipoff",
+            "startframe": "72",
+            "endframe": "83"
+        },
+        {
+            "name": "salute",
+            "startframe": "84",
+            "endframe": "94"
+        },
+        {
+            "name": "taunt",
+            "startframe": "95",
+            "endframe": "111"
+        },
+        {
+            "name": "wave",
+            "startframe": "112",
+            "endframe": "122"
+        },
+        {
+            "name": "point",
+            "startframe": "123",
+            "endframe": "134"
+        },
+        {
+            "name": "crstand",
+            "startframe": "135",
+            "endframe": "153"
+        },
+        {
+            "name": "crwalk",
+            "startframe": "154",
+            "endframe": "160"
+        },
+        {
+            "name": "crattack",
+            "startframe": "160",
+            "endframe": "168"
+        },
+        {
+            "name": "crpain",
+            "startframe": "169",
+            "endframe": "172"
+        },
+        {
+            "name": "crdeath",
+            "startframe": "173",
+            "endframe": "177"
+        },
+        {
+            "name": "deathha",
+            "startframe": "178",
+            "endframe": "183"
+        },
+        {
+            "name": "deathhb",
+            "startframe": "184",
+            "endframe": "189"
+        },
+        {
+            "name": "deathhc",
+            "startframe": "190",
+            "endframe": "196"
+        },
+        {
+            "name": "skinref",
+            "startframe": "198",
+            "endframe": "198"
+        },
+        {
+            "name": "exploded",
+            "startframe": "199",
+            "endframe": "199"
+        }
+    ]
+}

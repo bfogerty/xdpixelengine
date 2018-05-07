@@ -1,0 +1,40 @@
+{
+	"name" : "Rotate",
+	"objects" :
+	[
+
+
+		{
+			"name"	: "TekkaMan",
+			"prefab" : "./assets/prefabs/Blending/Add.txt",
+			"localPosition" : "0.00,0.00,20.00",
+			"localRotation" : "-90,0,0",
+			"localScale" : "1,1,1",
+			"layer" : "1"
+		},
+		{
+			"name"	: "FPS",
+			"prefab" : "./assets/prefabs/FpsText.txt",
+			"localPosition" : "-4.80,9.2,-1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "10,10,10",
+                        "layer" : "2"
+		},
+		{
+			"name"	: "PerspectiveCamera",
+			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+			"localPosition" : "0.00,2.00,-6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+                {
+			"name"	: "OthrongonalCamera",
+                        "prefab" : "./assets/prefabs/OrthogonalCamera.txt",
+			"localPosition" : "0.00,4.60,-6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0",
+                        "layer" : "1"
+		}
+	]
+
+}

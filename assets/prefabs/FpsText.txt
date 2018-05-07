@@ -17,5 +17,4 @@
 			"spaceBetweenCharacters" : "0.020"
 		}
 	]
-
 }

@@ -22,7 +22,7 @@ void MoverComponent::OnUpdate()
 {
 	if( firstTime )
 	{
-		startPosition = this->mpGameObject->mpTransform->Position;
+		startPosition = this->mpGameObject->mpTransform->position;
 		endPosition = startPosition + (vecDir * magnitude);
 		firstTime = false;
 
@@ -36,11 +36,11 @@ void MoverComponent::OnUpdate()
 
 	if( mDir == 1 )
 	{
-		mpGameObject->mpTransform->Position = Vector3::Lerp(startPosition, endPosition, mft);
+		mpGameObject->mpTransform->position = Vector3::Lerp(startPosition, endPosition, mft);
 	}
 	else
 	{
-		mpGameObject->mpTransform->Position = Vector3::Lerp( endPosition, startPosition, mft);
+		mpGameObject->mpTransform->position = Vector3::Lerp( endPosition, startPosition, mft);
 	}
 
 	if( mft == 1.0f )

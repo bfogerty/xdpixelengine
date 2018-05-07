@@ -1,0 +1,21 @@
+{
+
+	"name" : "TekkaManAnimated",
+	"components" :
+	[
+		{
+			"name" : "AbmComponent",
+			"model" : "./assets/models/tekka.abm"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/tekkaman.txt"
+		},
+		{
+			"name" : "PlaneShadowComponent",
+			"gameobject" : "TekkaManAnimated",
+			"shader" : "./assets/materials/shadow_tekka_animated.txt"
+		}
+	]
+
+}

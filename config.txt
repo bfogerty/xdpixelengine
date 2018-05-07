@@ -3,6 +3,7 @@
 	[
 		{
 			"api" : "dx9",
+			//"api" : "opengl",
 			"screenwidth" : "800",
 			"screenheight" : "600",
 			"fullscreen" : "0"
@@ -32,10 +33,30 @@
 			"file" : "./assets/scenes/quad.txt"
 		},
 		{
+			"name"	: "AdditiveBlending",
+			"file" : "./assets/scenes/AdditiveBlending.txt"
+		},
+		{
+			"name"	: "Wave",
+			"file" : "./assets/scenes/Wave.txt"
+		},
+		{
+			"name"	: "TekkaAnimation",
+			"file" : "./assets/scenes/Tekkaman_animation.txt"
+		},
+		{
+			"name"	: "HellpigAnimation",
+			"file" : "./assets/scenes/Hellpig_animation.txt"
+		},
+		{
+			"name"	: "QuakeAnimation",
+			"file" : "./assets/scenes/Quake_animation.txt"
+		},
+		{
 			"name"	: "Loading",
 			"file" : "./assets/scenes/loading.txt"
 		}
 	],
 
-	"startscene" : "Rotate"
+	"startscene" : "TekkaAnimation"
 }

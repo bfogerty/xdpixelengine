@@ -1,6 +1,6 @@
 {
 	"name" : "room0",
-	"shader" : "./assets/shaders/toon.fx",
+	"shader" : "./assets/shaders/samplecgfx.fx",
 	"parameters" :
 	[
 		{

@@ -44,7 +44,7 @@ int LuaTest(lua_State *pLuaState)
 void GameMain::OnAwake()
 {
 	// The root should always be at the center of the world.
-	mpGameObject->mpTransform->mMatWorld.Translate(Vector3(0.0f, 0.0f, 0.0f));
+	mpGameObject->mpTransform->worldMatrix.Translate(Vector3(0.0f, 0.0f, 0.0f));
 
 	GameObject *pChildObj = new GameObject("Empty");
 

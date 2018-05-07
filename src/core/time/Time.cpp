@@ -19,6 +19,8 @@ Time::Time()
 	sampleDeltaAccum = 0.000f;
 
 	mfSmoothDeltaTime = -1.0f;
+
+	lastTime = 0.0f;
 }
 
 Time *Time::GetInstance()
@@ -33,12 +35,29 @@ Time *Time::GetInstance()
 
 void Time::Start()
 {
-	mfStartTime = static_cast<float>(timeGetTime());
+	//timeBeginPeriod(1);
+	//mfStartTime = static_cast<float>(timeGetTime());
+	//timeEndPeriod(1);
 }
 
 void Time::End()
 {
-	mfDeltaTime = ( timeGetTime() - mfStartTime ) / 1000.0f;
+	timeBeginPeriod(1);
+	float time = timeGetTime();
+	timeEndPeriod(1);
+	float dt = ( time - lastTime );
+
+	if( dt > 0.00f )
+	{
+		mfDeltaTime = dt / 1000.0f;
+	}
+
+	//char buf[50];
+	//sprintf(buf, "t =%f, dt=%f\n", time, time-lastTime);
+	//OutputDebugString(buf);
+
+	lastTime = time;
+
 	mfTime += mfDeltaTime;
 
 	fpsTimeCounter += mfDeltaTime;

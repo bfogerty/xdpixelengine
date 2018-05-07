@@ -1,0 +1,81 @@
+Game Ready 3D Model: 122313SSPC
+Vehicle Reference: McLaren MP4-12C
+Build Date: 12.23.13
+Series: Street Super Car (SSPC)
+
+Mesh/Geometry				Triangles
+
+Vehicle Body				6404
+
+Wheelset LOD 0				960
+Wheelset LOD 1				720
+Wheelset LOD 2				480
+
+Prefab MP412C				7364
+
+Mesh 122313SSPC
+This specific mesh contains the following sub-objects:
+body, Whl RL, Whl RR, Whl FL, Whl FR.
+Drawcalls: 8
+
+Mesh 122313SSPC_v2
+This specific mesh contains the following sub-objects:
+body, Whl RL, Whl RR, Whl FL, Whl FR, headlights, engine bay.
+Drawcalls: 10
+
+Optional
+Overall polygon/triangle count of mesh 122313SSPC_v2 can be further reduced by removing the following sub-objects: head lights, engine bay. With these sub-objects removed, 122313SSPC-glass material must use the car/body shader (or any other non-transparent diffuse shader).  Use 122313SSPC_glass.psd as a template to create a texture image for the glass material.
+
+
+Dimensions		Game Unit (1unit=1meter)
+
+Vehicle Exterior        L: 4.44  W: 2.10  H: 1.17
+
+Tyres/Wheels 
+Front		235/35/ZR19
+Tires		Diameter: .648    Radius: .324  Width: .235
+Wheel		Diameter: .48    Radius: .24
+
+Rear		305/30/ZR20
+Tires		Diameter: .69    Radius: .345  Width: .305
+Wheel		Diameter: .508    Radius: .254
+
+WheelTyre Texture Images
+
+* 10 Wheel Style images are included
+* Static images (example: wheeltyre_type1static) has
+brake calipers included.  Use images when wheels do not spin 
+(example: car selection section)
+
+
+Importing to Unity 3D
+
+Importing a Unity Package: 
+* Open a new project or an existing one
+* Assets-->Import Package-->Custom Package-->
+GR3D_122313SSPC.unitypackage
+* Import into project
+* GR3D 122313SSPC folder imported into project/scene.
+
+FBX Importer Setting
+
+Scale Factor: .01 **
+Mesh Compression: off
+Normals: Import **
+Tangents: Calculate **
+Split Tangents: Checked
+
+** These settings are very important when re-importing FBX into Unity
+
+Special Note
+
+The default Brake Light texture image (122313SSPC_color of car) is clear LED.  This texture image can be modified by opening .PSD file (122313SSPC_main), disabling "clear led lights" layer, and enabling "red led lights" layer. Resave file as .png format.
+
+Support
+Send your questions and concerns to gameready3d@yahoo.com
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+{
+
+	"name" : "Sphere",
+	"components" :
+	[
+		{
+			"name" : "MeshComponent",
+			"model" : "./assets/models/primitives/Sphere.obj"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/white.txt"
+		}
+	]
+
+}

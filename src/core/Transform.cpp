@@ -2,15 +2,15 @@
 
 //-----------------------------------------------------------------------------------
 Transform::Transform( GameObject *pGameObject ) 
-: mpGameObject(pGameObject)
+: gameObject(pGameObject)
 {
 	mChildren.reserve(5);
 
 	mpParent = 0;
 	
-	Scale = Vector3::One();
-	Rotation = Quaternion::AxisAngle(Vector3::Up(), 1.0f);
-	Position = Vector3::Zero();
+	scale = Vector3::One();
+	rotation = Quaternion::AxisAngle(Vector3::Up(), 1.0f);
+	position = Vector3::Zero();
 }
 
 //-----------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ Transform::~Transform()
 //-----------------------------------------------------------------------------------
 Vector3 Transform::GetLookVector()
 {
-	Matrix4x4 mat = Quaternion::ToMatrix(Rotation);
+	Matrix4x4 mat = Quaternion::ToMatrix(rotation);
 	mat.Transpose();
 	Vector4 v4 = mat.GetRow(2);
 	Vector3 look( v4.x(), v4.y(), v4.z() );
@@ -40,7 +40,7 @@ Vector3 Transform::GetLookVector()
 //-----------------------------------------------------------------------------------
 void Transform::SetPosition(Vector3 &vecPos)
 {
-	mMatWorld.Translate(vecPos);
+	worldMatrix.Translate(vecPos);
 }
 
 //-----------------------------------------------------------------------------------
@@ -52,24 +52,24 @@ void Transform::SetLocalPosition(Vector3 &vecPos)
 //-----------------------------------------------------------------------------------
 void Transform::BuildTranslationMatrix()
 {
-	matPosition.SetIdentity();
-	matPosition.Translate(Position);
+	translationMatrix.SetIdentity();
+	translationMatrix.Translate(position);
 }
 
 //-----------------------------------------------------------------------------------
 void Transform::Update()
 {
-	matScale.SetIdentity();
-	matScale.Set(0,0, Scale.x());
-	matScale.Set(1,1, Scale.y());
-	matScale.Set(2,2, Scale.z());
+	scaleMatrix.SetIdentity();
+	scaleMatrix.Set(0,0, scale.x());
+	scaleMatrix.Set(1,1, scale.y());
+	scaleMatrix.Set(2,2, scale.z());
 
-	matRotation.SetIdentity();
-	matRotation = Quaternion::ToMatrix(Rotation);
+	rotationMatrix.SetIdentity();
+	rotationMatrix = Quaternion::ToMatrix(rotation);
 
 	BuildTranslationMatrix();
 
-	mMatWorld = matScale * matRotation * matPosition;
+	worldMatrix = scaleMatrix * rotationMatrix * translationMatrix;
 }
 
 //-----------------------------------------------------------------------------------

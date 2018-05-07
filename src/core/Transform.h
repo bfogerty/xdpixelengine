@@ -15,16 +15,16 @@ class Transform : BaseObject
 {
 public:
 
-	GameObject *mpGameObject;
-	Matrix4x4 mMatWorld;
+	GameObject *gameObject;
+	Matrix4x4 worldMatrix;
 
-	Matrix4x4 matScale;
-	Matrix4x4 matRotation;
-	Matrix4x4 matPosition;
+	Matrix4x4 scaleMatrix;
+	Matrix4x4 rotationMatrix;
+	Matrix4x4 translationMatrix;
 
-	Vector3 Scale;
-	Quaternion Rotation;
-	Vector3 Position;
+	Vector3 scale;
+	Quaternion rotation;
+	Vector3 position;
 	
 
 	std::vector<Transform*> mChildren;

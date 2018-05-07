@@ -32,7 +32,7 @@ void AutoRotateComponent::OnUpdate()
 		mft = 1.0f;
 	}
 
-	this->mpGameObject->mpTransform->Rotation = Quaternion::AxisAngle(vecAxis, theta);
+	this->mpGameObject->mpTransform->rotation = Quaternion::AxisAngle(vecAxis, theta);
 
 	mft += Time::GetInstance()->GetSmoothDeltaTime() * speed;
 	

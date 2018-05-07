@@ -1,0 +1,125 @@
+{
+    "ModelFileName": "tekka.md2",
+    "Clips": [
+        {
+            "Name": "stand",
+            "StartFrame": 0,
+            "EndFrame": 39,
+            "FramesPerSecond" : 8
+        },
+        {
+            "Name": "run",
+            "StartFrame": 40,
+            "EndFrame": 45,
+            "FramesPerSecond" : 8
+        },
+        {
+            "Name": "attack",
+            "StartFrame": 46,
+            "EndFrame": 53,
+            "FramesPerSecond" : 8
+        },
+        {
+            "Name": "pain",
+            "StartFrame": 54,
+            "EndFrame": 65,
+            "FramesPerSecond" : 8
+        },
+        {
+            "Name": "jump",
+            "StartFrame": 66,
+            "EndFrame": 71,
+            "FramesPerSecond" : 5
+        },
+        {
+            "Name": "flipoff",
+            "StartFrame": 72,
+            "EndFrame": 83,
+            "FramesPerSecond" : 9
+        },
+        {
+            "Name": "salute",
+            "StartFrame": 84,
+            "EndFrame": 94,
+            "FramesPerSecond" : 10
+        },
+        {
+            "Name": "taunt",
+            "StartFrame": 95,
+            "EndFrame": 111,
+            "FramesPerSecond" : 7
+        },
+        {
+            "Name": "wave",
+            "StartFrame": 112,
+            "EndFrame": 122,
+            "FramesPerSecond" : 7
+        },
+        {
+            "Name": "point",
+            "StartFrame": 123,
+            "EndFrame": 134,
+            "FramesPerSecond" : 9
+        },
+        {
+            "Name": "crstand",
+            "StartFrame": 135,
+            "EndFrame": 153,
+            "FramesPerSecond" : 5
+        },
+        {
+            "Name": "crwalk",
+            "StartFrame": 154,
+            "EndFrame": 159,
+            "FramesPerSecond" : 4
+        },
+        {
+            "Name": "crattack",
+            "StartFrame": 160,
+            "EndFrame": 168,
+            "FramesPerSecond" : 4
+        },
+        {
+            "Name": "crpain",
+            "StartFrame": 169,
+            "EndFrame": 172,
+            "FramesPerSecond" : 4
+        },
+        {
+            "Name": "crdeath",
+            "StartFrame": 173,
+            "EndFrame": 177,
+            "FramesPerSecond" : 2
+        },
+        {
+            "Name": "deathha",
+            "StartFrame": 178,
+            "EndFrame": 183,
+            "FramesPerSecond" : 2
+        },
+        {
+            "Name": "deathhb",
+            "StartFrame": 184,
+            "EndFrame": 189,
+            "FramesPerSecond" : 2
+        },
+        {
+            "Name": "deathhc",
+            "StartFrame": 190,
+            "EndFrame": 197,
+            "FramesPerSecond" : 2
+        },
+        {
+            "Name": "skinref",
+            "StartFrame": 198,
+            "EndFrame": 198,
+            "FramesPerSecond" : 60
+        },
+        {
+            "Name": "exploded",
+            "StartFrame": 199,
+            "EndFrame": 199,
+            "FramesPerSecond" : 60
+        }
+    ]
+}

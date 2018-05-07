@@ -21,6 +21,7 @@ public:
 	OpenGLRenderer(RendererConfig config);
 
 	virtual void Clear( unsigned int buffers, Color c );
+	virtual void UpdateMatricies();
 	virtual void BeginScene();
 	virtual void EndScene();
 	virtual void Present();
@@ -33,6 +34,8 @@ public:
 	virtual void FakeSceneSetup( RendererConfig config );
 
 	//virtual void SetTransform( MATRIX_TRANSFORM_STATE_TYPE ts, Matrix4x4 mat);
+
+	virtual void DrawDebugLine(Vector3 *start, Vector3 *end, Color *color);
 
 	~OpenGLRenderer();
 

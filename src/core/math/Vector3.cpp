@@ -18,6 +18,13 @@ Vector3::Vector3( float x, float y, float z )
 	data[Z] = z;
 }
 
+/*
+Vector3::Vector3( const Vector3 &rhs )
+{
+	this->Set(rhs.data[X], rhs.data[Y], rhs.data[Z]);
+}
+*/
+
 Vector3 Vector3::operator -()
 {
 	Vector3 vecResult;
@@ -57,6 +64,15 @@ Vector3 Vector3::operator *( float fScale )
 
 	return vecResult;
 }
+
+/*
+Vector3& Vector3::operator=( const Vector3 &rhs )
+{
+	this->Set(rhs.data[X], rhs.data[Y],rhs.data[Z]);
+
+	return *this;
+}
+*/
 
 Vector3 Vector3::Scale( float fScale )
 {

@@ -37,7 +37,7 @@ Mesh *ObjLoader::Load(const char* strFileName)
 			// Parse vertex
 			float vert[] = {0,0,0};
 			sscanf(buffer.c_str(), "v %f %f %f", &vert[0], &vert[1], &vert[2]);
-			pMesh->verticies.push_back(new Vector3( vert[0], vert[1], vert[2]));
+			pMesh->verticies.push_back( Vector3( vert[0], vert[1], vert[2]));
 		}
 		else if( buffer.substr(0, pref_f.size()) == pref_f)
 		{

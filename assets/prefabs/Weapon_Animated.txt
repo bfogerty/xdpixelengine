@@ -1,0 +1,16 @@
+{
+
+	"name" : "WeaponAnimated",
+	"components" :
+	[
+		{
+			"name" : "AbmComponent",
+			"model" : "./assets/models/weapon.abm"
+		},
+		{
+			"name" : "MaterialComponent",
+			"file" : "./assets/materials/weapon.txt"
+		}
+	]
+
+}

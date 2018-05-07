@@ -1,0 +1,47 @@
+{
+	"name" : "Animation",
+	"objects" :
+	[
+
+		{
+			"name"	: "Room2",
+			"prefab" : "./assets/prefabs/room2.txt",
+			"localPosition" : "0.00,2.52,2.00",
+			"localRotation" : "0,180,0",
+			"localScale" : "60,60,60",
+                        "layer" : "1"
+		},
+		{
+			"name"	: "Hellpig",
+			"prefab" : "./assets/prefabs/Hellpig_Animated.txt",
+			"localPosition" : "0.00,0.00,1.00",
+			"localRotation" : "180.0,0.0,90.0",
+			"localScale" : "1.00,1.00,1.00",
+			"layer" : "1"
+		},
+		{
+			"name"	: "FPS",
+			"prefab" : "./assets/prefabs/FpsText.txt",
+			"localPosition" : "-4.80,9.2,-1.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "10,10,10",
+                        "layer" : "2"
+		},
+		{
+			"name"	: "PerspectiveCamera",
+			"prefab" : "./assets/prefabs/PerspectiveCamera.txt",
+			"localPosition" : "0.00,2.00,-6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0"
+		},
+                {
+			"name"	: "OthrongonalCamera",
+                        "prefab" : "./assets/prefabs/OrthogonalCamera.txt",
+			"localPosition" : "0.00,4.60,-6.00",
+			"localRotation" : "0,0,0",
+			"localScale" : "0,0,0",
+                        "layer" : "1"
+		}
+	]
+
+}

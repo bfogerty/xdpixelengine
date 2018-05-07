@@ -1,9 +1,10 @@
-#include "Mesh.h"
+#include "core/mesh/Mesh.h"
+#include "renderer/RenderEngine.h"
 
 //-----------------------------------------------------------------------------------
 Mesh::Mesh()
 {
-	
+	m_pVertexBuffer = 0;
 }
 
 //-----------------------------------------------------------------------------------
@@ -15,13 +16,28 @@ Mesh::~Mesh()
 //-----------------------------------------------------------------------------------
 void Mesh::Build()
 {
+	if( triangleData.size() <= 0 )
+	{
+		triangleData.resize(triangles.size());
+		for(vector<TriangleData*>::iterator it = triangleData.begin(); it != triangleData.end(); ++it )
+		{
+			*it = new TriangleData();
+		}
+	}
+
 	int iTriangleIndicieCount = triangles.size();
+	int triangleIndex = 0;
 	for( int i=0; i < iTriangleIndicieCount; i += 3 )
 	{
-		TriangleData *pTri = new TriangleData();
-		pTri->verts[0] = *verticies[triangles[i + 0]->VertexIndex];
-		pTri->verts[1] = *verticies[triangles[i + 1]->VertexIndex];
-		pTri->verts[2] = *verticies[triangles[i + 2]->VertexIndex];
+		TriangleData *pTri = triangleData[triangleIndex++];
+		int vertIndicies[] = {
+			triangles[i + 0]->VertexIndex,
+			triangles[i + 1]->VertexIndex,
+			triangles[i + 2]->VertexIndex
+		};
+		pTri->verts[0] = verticies[vertIndicies[0]];
+		pTri->verts[1] = verticies[vertIndicies[1]];
+		pTri->verts[2] = verticies[vertIndicies[2]];
 
 		if( colors.size() > 0 )
 		{
@@ -45,9 +61,16 @@ void Mesh::Build()
 
 		if( normals.size() > 0)
 		{
-			pTri->normals[0] = *normals[triangles[i + 0]->NormalIndex];
-			pTri->normals[1] = *normals[triangles[i + 1]->NormalIndex];
-			pTri->normals[2] = *normals[triangles[i + 2]->NormalIndex];
+
+			int normalIndicies[] = {
+				triangles[i + 0]->NormalIndex,
+				triangles[i + 1]->NormalIndex,
+				triangles[i + 2]->NormalIndex
+			};
+
+			pTri->normals[0] = *normals[normalIndicies[0]];
+			pTri->normals[1] = *normals[normalIndicies[1]];
+			pTri->normals[2] = *normals[normalIndicies[2]];
 		}
 		else
 		{
@@ -65,7 +88,17 @@ void Mesh::Build()
 			pTri->normals[2] = vecNormal;
 		}
 
-		triangleData.push_back(pTri);
+		//triangleData.push_back(pTri);
+	}
+
+	if (m_pVertexBuffer == NULL)
+	{
+		m_pVertexBuffer = RenderEngine::GetInstance()->GetRenderer()->CreateVertexBuffer(triangleData.size());
+	}
+
+	if (m_pVertexBuffer != NULL)
+	{
+		RenderEngine::GetInstance()->GetRenderer()->UploadMeshToGPU(this);
 	}
 }
 
@@ -74,7 +107,7 @@ TriangleData *Mesh::GetTriangleData(int iTriangleIndex)
 {
 	if( iTriangleIndex < 0 )
 	{
-		return NULL;
+		return 0;
 	}
 
 	return triangleData[iTriangleIndex];
@@ -88,32 +121,17 @@ void Mesh::Clone(Mesh *pSrcMesh)
 	colors.clear();
 	triangles.clear();
 	normals.clear();
-	triangleData.clear();
+	verticies.reserve(pSrcMesh->verticies.size());
+	uvs.reserve(pSrcMesh->uvs.size());
+	colors.reserve(pSrcMesh->colors.size());
+	triangles.reserve(pSrcMesh->triangles.size());
+	normals.reserve(pSrcMesh->normals.size());
 
-	for(int i = 0; i<pSrcMesh->verticies.size(); ++i)
-	{
-		verticies.push_back(pSrcMesh->verticies[i]);
-	}
-
-	for(int i = 0; i<pSrcMesh->uvs.size(); ++i)
-	{
-		uvs.push_back(pSrcMesh->uvs[i]);
-	}
-
-	for(int i = 0; i<pSrcMesh->colors.size(); ++i)
-	{
-		colors.push_back(pSrcMesh->colors[i]);
-	}
-
-	for(int i = 0; i<pSrcMesh->triangles.size(); ++i)
-	{
-		triangles.push_back(pSrcMesh->triangles[i]);
-	}
-
-	for(int i = 0; i<pSrcMesh->normals.size(); ++i)
-	{
-		normals.push_back(pSrcMesh->normals[i]);
-	}
+	std::copy(pSrcMesh->verticies.begin(), pSrcMesh->verticies.end(), std::back_inserter(verticies));
+	std::copy(pSrcMesh->uvs.begin(), pSrcMesh->uvs.end(), std::back_inserter(uvs));
+	std::copy(pSrcMesh->colors.begin(), pSrcMesh->colors.end(), std::back_inserter(colors));
+	std::copy(pSrcMesh->triangles.begin(), pSrcMesh->triangles.end(), std::back_inserter(triangles));
+	std::copy(pSrcMesh->normals.begin(), pSrcMesh->normals.end(), std::back_inserter(normals));
 
 	Build();
 }
