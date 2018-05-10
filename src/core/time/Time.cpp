@@ -43,7 +43,7 @@ void Time::Start()
 void Time::End()
 {
 	timeBeginPeriod(1);
-	float time = timeGetTime();
+	float time = static_cast<float>(timeGetTime());
 	timeEndPeriod(1);
 	float dt = ( time - lastTime );
 

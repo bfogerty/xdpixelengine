@@ -1,6 +1,6 @@
-#include "renderer/shaders/ShaderPass.h"
-#include "renderer/RenderEngine.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/shaders/ShaderPass.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/PlatformRenderer.h"
 
 ShaderPass::ShaderPass( CGpass pass )
 {

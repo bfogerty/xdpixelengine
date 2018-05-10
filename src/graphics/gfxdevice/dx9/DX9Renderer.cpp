@@ -2,8 +2,8 @@
 
 #ifdef COMPILE_DX9_RENDERER
 #include "external/directx/Include/d3dx9.h"
-#include "renderer/dx9/DX9Renderer.h"
-#include "renderer/Color.h"
+#include "graphics/gfxdevice/dx9/DX9Renderer.h"
+#include "graphics/Color.h"
 #include "core/math/Vector3.h"
 #include "core/mesh/Mesh.h"
 #include "core/math/MathHelper.h"
@@ -89,10 +89,10 @@ struct CUSTOMVERT
 };
 
 //-----------------------------------------------------------------------------------
-void DX9Renderer::SetVertexData(TriangleData triangle)
+void DX9Renderer::SetVertexData(Mesh *pMesh)
 {
-	SetVertexDataViaSystemMemory(triangle);
-	//SetVertexDataViaVertexBuffer( triangle );
+	//SetVertexDataViaSystemMemory(triangle);
+	SetVertexDataViaVertexBuffer( pMesh );
 }
 
 //-----------------------------------------------------------------------------------
@@ -110,32 +110,98 @@ void DX9Renderer::SetVertexDataViaSystemMemory(TriangleData triangle)
 }
 
 //-----------------------------------------------------------------------------------
-void DX9Renderer::SetVertexDataViaVertexBuffer(TriangleData triangle)
+void* DX9Renderer::CreateVertexBuffer(unsigned int triangleCount)
 {
-	LPDIRECT3DVERTEXBUFFER9 pVertexBuffer;
-	CUSTOMVERT *pVerts;
+	LPDIRECT3DVERTEXBUFFER9 pVertexBuffer = NULL;
 
-	mpDev->CreateVertexBuffer(sizeof(CUSTOMVERT)*6,
+	const unsigned int bufferSizeInBytes = triangleCount * sizeof(CUSTOMVERT) * 3;
+
+	mpDev->CreateVertexBuffer(bufferSizeInBytes,
 		D3DUSAGE_WRITEONLY,
 		D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1,
 		D3DPOOL_DEFAULT,
 		&pVertexBuffer,
 		NULL);
 
-	pVertexBuffer->Lock(0, sizeof(CUSTOMVERT)*3,(void**) &pVerts, 0);
-	for(int i=0; i<3; ++i)
+	return pVertexBuffer;
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::FreeVertexBuffer(void* pVertexBuffer)
+{
+	LPDIRECT3DVERTEXBUFFER9 pBuffer = static_cast<LPDIRECT3DVERTEXBUFFER9>(pVertexBuffer);
+	pBuffer->Release();
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::UploadMeshToGPU(Mesh *pMesh)
+{
+	LPDIRECT3DVERTEXBUFFER9 pVertexBuffer = static_cast<LPDIRECT3DVERTEXBUFFER9>(pMesh->GetVertexBuffer());
+	CUSTOMVERT *pVerts;
+
+	const unsigned int bufferSizeInBytes = pMesh->triangleData.size() * sizeof(CUSTOMVERT) * 3;
+
+	pVertexBuffer->Lock(0, bufferSizeInBytes, (void**)&pVerts, 0);
+	for (unsigned int triangleIndex = 0; triangleIndex < pMesh->triangleData.size(); ++triangleIndex)
 	{
-		Vector3 points = triangle.verts[i];
-		Vector3 normal = triangle.normals[i];
-		Color color = triangle.colors[i];
-		Vector3 texCoord = triangle.uvs[i];
-		*pVerts++ = CUSTOMVERT(points, normal, color, texCoord);
+		for (int i = 0; i < 3; ++i)
+		{
+			Vector3 points = pMesh->triangleData[triangleIndex]->verts[i];
+			Vector3 normal = pMesh->triangleData[triangleIndex]->normals[i];
+			Color color = pMesh->triangleData[triangleIndex]->colors[i];
+			Vector3 texCoord = pMesh->triangleData[triangleIndex]->uvs[i];
+			*pVerts++ = CUSTOMVERT(points, normal, color, texCoord);
+		}
 	}
+
+	pVertexBuffer->Unlock();
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::DrawMesh(Mesh *pMesh)
+{
+	LPDIRECT3DVERTEXBUFFER9 pVertexBuffer = static_cast<LPDIRECT3DVERTEXBUFFER9>(pMesh->GetVertexBuffer());
+	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	mpDev->SetStreamSource(0, pVertexBuffer, 0, sizeof(CUSTOMVERT));
+	mpDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, pMesh->triangleData.size());
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::SetVertexDataViaVertexBuffer(Mesh *pMesh)
+{
+	static LPDIRECT3DVERTEXBUFFER9 pVertexBuffer = NULL;
+	CUSTOMVERT *pVerts;
+
+	const unsigned int bufferSizeInBytes = pMesh->triangleData.size() * sizeof(CUSTOMVERT) * 3;
+
+	//if (pVertexBuffer == NULL)
+	{
+		mpDev->CreateVertexBuffer(bufferSizeInBytes,
+			D3DUSAGE_WRITEONLY,
+			D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1,
+			D3DPOOL_DEFAULT,
+			&pVertexBuffer,
+			NULL);
+	}
+
+	pVertexBuffer->Lock(0, bufferSizeInBytes, (void**) &pVerts, 0);
+	for (unsigned int triangleIndex = 0; triangleIndex < pMesh->triangleData.size(); ++triangleIndex)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			Vector3 points = pMesh->triangleData[triangleIndex]->verts[i];
+			Vector3 normal = pMesh->triangleData[triangleIndex]->normals[i];
+			Color color = pMesh->triangleData[triangleIndex]->colors[i];
+			Vector3 texCoord = pMesh->triangleData[triangleIndex]->uvs[i];
+			*pVerts++ = CUSTOMVERT(points, normal, color, texCoord);
+		}
+	}
+
 	pVertexBuffer->Unlock();
 
 	mpDev->SetFVF(D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	mpDev->SetStreamSource(0, pVertexBuffer, 0, sizeof(CUSTOMVERT));
-	mpDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
+	mpDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, pMesh->triangleData.size());
 }
 
 //-----------------------------------------------------------------------------------
@@ -151,7 +217,7 @@ void DX9Renderer::Clear( unsigned int buffers, Color c)
 }
 
 //-----------------------------------------------------------------------------------
-void DX9Renderer::BeginScene()
+void DX9Renderer::UpdateMatricies()
 {
 	D3DXMATRIX d3dMat(mMatProjection.mMatrix);
 	mpDev->SetTransform(D3DTS_PROJECTION, &d3dMat);
@@ -161,10 +227,15 @@ void DX9Renderer::BeginScene()
 
 	d3dMat = mMatWorld.mMatrix;
 	mpDev->SetTransform(D3DTS_WORLD, &d3dMat);
+}
+
+//-----------------------------------------------------------------------------------
+void DX9Renderer::BeginScene()
+{
 
 	//mpDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-	mpDev->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
+	//mpDev->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
 
 	mpDev->BeginScene();
 }

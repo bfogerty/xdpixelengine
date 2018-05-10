@@ -1,6 +1,6 @@
 #include "core/GameObject.h"
 #include "core/GameObjectComponent.h"
-#include "renderer/Material.h"
+#include "graphics/Material.h"
 #include "core/resource/image_loaders/ImageLoader.h"
 #include "core/resource/materialLoader/MaterialLoader.h"
 #include <string>

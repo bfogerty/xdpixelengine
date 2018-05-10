@@ -5,7 +5,7 @@
 #include "core/GameObjectComponent.h"
 #include "core/mesh/Mesh.h"
 #include "core/resource/texture2d/Texture2D.h"
-#include "renderer/Material.h"
+#include "graphics/Material.h"
 #include <string>
 #include <vector>
 

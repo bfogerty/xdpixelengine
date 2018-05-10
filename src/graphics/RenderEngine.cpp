@@ -1,6 +1,6 @@
 #include "core/platform.h"
-#include "renderer/RenderEngine.h"
-#include "renderer/Color.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/Color.h"
 #include "core/GameObject.h"
 #include "core/math/Matrix4x4.h"
 #include "core/math/MathHelper.h"

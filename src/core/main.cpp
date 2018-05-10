@@ -67,10 +67,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hOrevInstance, LPSTR lpCmdLine
 	UpdateWindow(gHWND);
 
 	EngineConfig::WindowHandle = (char*)(gHWND);
-	EngineConfig::ClientAreaOrigin.x(rcClientArea.left);
-	EngineConfig::ClientAreaOrigin.y(rcClientArea.top);
-	EngineConfig::ClientAreaWidthHeight.x(rcClientArea.right);
-	EngineConfig::ClientAreaWidthHeight.y(rcClientArea.bottom);
+	EngineConfig::ClientAreaOrigin.x(static_cast<float>(rcClientArea.left));
+	EngineConfig::ClientAreaOrigin.y(static_cast<float>(rcClientArea.top));
+	EngineConfig::ClientAreaWidthHeight.x(static_cast<float>(rcClientArea.right));
+	EngineConfig::ClientAreaWidthHeight.y(static_cast<float>(rcClientArea.bottom));
 
 	Engine *pEngine = new Engine();
 

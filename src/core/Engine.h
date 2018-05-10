@@ -1,8 +1,8 @@
 #ifndef __ENGINE__
 #define __ENGINE__
 
-#include "renderer/RendererConfig.h"
-#include "renderer/RenderEngine.h"
+#include "graphics/RendererConfig.h"
+#include "graphics/RenderEngine.h"
 #include "core/config/EngineConfig.h"
 
 

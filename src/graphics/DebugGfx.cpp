@@ -1,6 +1,6 @@
-#include "renderer/DebugGfx.h"
-#include "renderer/RenderEngine.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/DebugGfx.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/PlatformRenderer.h"
 #include "core/GameObject.h"
 #include "core/Transform.h"
 

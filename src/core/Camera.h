@@ -2,7 +2,7 @@
 #define __CAMERA__
 #include "core/GameObject.h"
 #include "core/GameObjectComponent.h"
-#include "renderer/Color.h"
+#include "graphics/Color.h"
 #include <vector>
 using namespace std;
 

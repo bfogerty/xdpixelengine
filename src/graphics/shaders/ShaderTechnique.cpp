@@ -1,7 +1,7 @@
-#include "renderer/shaders/ShaderTechnique.h"
-#include "renderer/shaders/ShaderPass.h"
-#include "renderer/RenderEngine.h"
-#include "renderer/Material.h"
+#include "graphics/shaders/ShaderTechnique.h"
+#include "graphics/shaders/ShaderPass.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/Material.h"
 
 //-----------------------------------------------------------------------------------
 ShaderTechnique::ShaderTechnique( CGtechnique technique )

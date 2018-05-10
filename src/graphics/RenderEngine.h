@@ -7,10 +7,10 @@
 #include "ps2/PS2Renderer.h"
 #else
 #if COMPILE_DX9_RENDERER
-#include "dx9/DX9Renderer.h"
+#include "gfxdevice/dx9/DX9Renderer.h"
 #endif
 #if COMPILE_OPENGL_RENDERER
-#include "opengl/OpenGLRenderer.h"
+#include "gfxdevice/opengl/OpenGLRenderer.h"
 #endif
 #endif
 

@@ -4,8 +4,8 @@
 
 #ifdef COMPILE_DX9_RENDERER
 #define D3D_DEBUG_INFO
-#include "renderer/PlatformRenderer.h"
-#include "renderer/RendererConfig.h"
+#include "graphics/PlatformRenderer.h"
+#include "graphics/RendererConfig.h"
 #include "core/resource/texture2d/Texture2D.h"
 #include "core/resource/texture2d/DX9Texture2D.h"
 #include "external/directx/Include/d3d9.h"

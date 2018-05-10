@@ -1,5 +1,5 @@
 #include "core/mesh/Mesh.h"
-#include "renderer/RenderEngine.h"
+#include "graphics/RenderEngine.h"
 
 //-----------------------------------------------------------------------------------
 Mesh::Mesh()

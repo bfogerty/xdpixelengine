@@ -2,7 +2,7 @@
 #define __MESH__
 #include <vector>
 #include "core/math/Vector3.h"
-#include "renderer/Color.h"
+#include "graphics/Color.h"
 #include "core/resource/texture2d/Texture2D.h"
 using namespace std;
 

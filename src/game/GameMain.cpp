@@ -9,9 +9,9 @@
 #include "core/resource/prefabLoader/PrefabLoader.h"
 #include "core/resource/materialLoader/MaterialLoader.h"
 
-#include "renderer/RenderEngine.h"
-#include "renderer/RendererConfig.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/RendererConfig.h"
+#include "graphics/PlatformRenderer.h"
 
 #include "game/RenderTestComponent.h"
 #include "game/TriangleComponent.h"

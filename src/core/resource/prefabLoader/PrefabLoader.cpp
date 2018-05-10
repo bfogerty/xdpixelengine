@@ -1,7 +1,7 @@
 #include "core/GameObject.h"
 #include "core/GameObjectComponent.h"
 #include "core/resource/prefabLoader/PrefabLoader.h"
-#include "renderer/Material.h"
+#include "graphics/Material.h"
 #include "external/jsoncpp-src-0.5.0/include/json/json.h"
 #include <string>
 #include <fstream>

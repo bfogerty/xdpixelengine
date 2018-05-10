@@ -1,6 +1,6 @@
 #include "core/resource/texture2d/Texture2D.h"
-#include "renderer/RenderEngine.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/PlatformRenderer.h"
 
 Texture2D::Texture2D(unsigned char *data, unsigned int width, unsigned int height)
 {

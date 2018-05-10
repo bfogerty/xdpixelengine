@@ -5,14 +5,14 @@
 #include "external/cg/include/Cg/cgD3D9.h"
 #include "external/cg/include/Cg/cgGL.h"
 #include "core/math/Matrix4x4.h"
-#include "renderer/Material.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/Material.h"
+#include "graphics/PlatformRenderer.h"
 #include <vector>
 #include <map>
 #include <string>
 #include "core/math/Matrix4x4.h"
-#include "renderer/Material.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/Material.h"
+#include "graphics/PlatformRenderer.h"
 
 using namespace std;
 

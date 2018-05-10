@@ -1,8 +1,8 @@
 #include "core/platform.h"
 
 #ifdef COMPILE_OPENGL_RENDERER
-#include "renderer/opengl/OpenGLRenderer.h"
-#include "renderer/Color.h"
+#include "graphics/gfxdevice/opengl/OpenGLRenderer.h"
+#include "graphics/Color.h"
 #include "core/math/Vector3.h"
 #include "core/mesh/Mesh.h"
 #include "core/math/MathHelper.h"

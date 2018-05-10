@@ -1,5 +1,5 @@
 #include "core/config/EngineConfig.h"
-#include "renderer/RendererConfig.h"
+#include "graphics/RendererConfig.h"
 #include "external/jsoncpp-src-0.5.0/include/json/json.h"
 #include <string>
 #include <fstream>

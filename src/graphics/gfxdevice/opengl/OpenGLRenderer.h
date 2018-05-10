@@ -1,8 +1,8 @@
 #ifndef		__OPENGL_RENDERER__
 #define		__OPENGL_RENDERER__
 #include "core/platform.h"
-#include "renderer/PlatformRenderer.h"
-#include "renderer/RendererConfig.h"
+#include "graphics/PlatformRenderer.h"
+#include "graphics/RendererConfig.h"
 
 #ifdef WIN_RELEASE
 #include "windows.h"

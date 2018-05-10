@@ -7,7 +7,7 @@
 #include "core/time/Time.h"
 #include "core/math/Matrix4x4.h"
 #include "core/input/Input.h"
-#include "renderer/DebugGfx.h"
+#include "graphics/DebugGfx.h"
 #include "game/GameMain.h"
 #include <iostream>
 

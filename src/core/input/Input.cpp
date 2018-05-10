@@ -107,11 +107,11 @@ Vector3 Input::FromClientToScreenSpace( Vector3 position )
 #ifdef WIN_RELEASE
 	HWND hWnd = (HWND)EngineConfig::WindowHandle;
 	POINT pnt;
-	pnt.x = position.x();
-	pnt.y = position.y();
+	pnt.x = static_cast<LONG>(position.x());
+	pnt.y = static_cast<LONG>(position.y());
 	ClientToScreen(hWnd, &pnt);
-	position.x( pnt.x );
-	position.y( pnt.y );
+	position.x(static_cast<float>(pnt.x) );
+	position.y(static_cast<float>(pnt.y) );
 	position.z( 0.00f );
 #endif
 
@@ -123,11 +123,11 @@ Vector3 Input::FromScreenSpaceToClientSpace( Vector3 position )
 #ifdef WIN_RELEASE
 	HWND hWnd = (HWND)EngineConfig::WindowHandle;
 	POINT pnt;
-	pnt.x = position.x();
-	pnt.y = position.y();
+	pnt.x = static_cast<LONG>(position.x());
+	pnt.y = static_cast<LONG>(position.y());
 	ScreenToClient(hWnd, &pnt);
-	position.x( pnt.x );
-	position.y( pnt.y );
+	position.x( static_cast<float>(pnt.x) );
+	position.y( static_cast<float>(pnt.y) );
 	position.z( 0.00f );
 #endif
 
@@ -142,8 +142,8 @@ Vector3 Input::GetMousePosition()
 	HWND hWnd = (HWND)EngineConfig::WindowHandle;
 	POINT mousePosition;
 	GetCursorPos(&mousePosition);
-	pos.x( mousePosition.x );
-	pos.y( mousePosition.y );
+	pos.x( static_cast<float>(mousePosition.x) );
+	pos.y( static_cast<float>(mousePosition.y) );
 	pos.z( 0.00f );
 #endif
 
@@ -155,8 +155,8 @@ void Input::SetMousePosition( Vector3 position )
 #ifdef WIN_RELEASE
 	HWND hWnd = (HWND)EngineConfig::WindowHandle;
 	POINT pnt;
-	pnt.x = position.x();
-	pnt.y = position.y();
+	pnt.x = static_cast<LONG>(position.x());
+	pnt.y = static_cast<LONG>(position.y());
 	SetCursorPos(pnt.x, pnt.y);
 #endif
 }
@@ -169,8 +169,8 @@ Vector3 Input::GetWindowPositionInScreenSpace()
 	HWND hWnd = (HWND)EngineConfig::WindowHandle;
 	RECT r;
 	GetWindowRect(hWnd, &r);
-	pos.x( r.left );
-	pos.y( r.top );
+	pos.x( static_cast<float>(r.left) );
+	pos.y( static_cast<float>(r.top) );
 	pos.z( 0.00f );
 #endif
 

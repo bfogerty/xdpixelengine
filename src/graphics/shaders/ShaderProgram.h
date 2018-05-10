@@ -12,8 +12,8 @@
 #include "external/cg/include/Cg/cgGL.h"
 #endif
 
-#include "renderer/Material.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/Material.h"
+#include "graphics/PlatformRenderer.h"
 
 #include <vector>
 #include <map>

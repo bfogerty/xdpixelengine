@@ -1,8 +1,8 @@
 #include "core/platform.h"
-#include "renderer/shaders/ShaderProgram.h"
-#include "renderer/shaders/ShaderTechnique.h"
-#include "renderer/RenderEngine.h"
-#include "renderer/PlatformRenderer.h"
+#include "graphics/shaders/ShaderProgram.h"
+#include "graphics/shaders/ShaderTechnique.h"
+#include "graphics/RenderEngine.h"
+#include "graphics/PlatformRenderer.h"
 #include "core/config/EngineConfig.h"
 #include "core/resource/texture2d/Texture2D.h"
 

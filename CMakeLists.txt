@@ -10,7 +10,9 @@ set_property (CACHE CPUArchitecture PROPERTY STRINGS x86 x64)
 set(SRC src)
 set(CORE_SRC src/core)
 set(GAME_SRC src/game)
-set(RENDERER_SRC src/renderer)
+set(GRAPHICS_SRC src/graphics)
+set(DX9_SRC src/graphics/gfxdevice/dx9)
+set(OPENGL_SRC src/graphics/gfxdevice/opengl)
 set(EXTERNAL_SRC src/external)
 
 include_directories(${SRC})
@@ -118,30 +120,36 @@ file(GLOB game_src
     "${GAME_SRC}/TriangleComponent.h"
 )
 
-file(GLOB renderer_src
-    "${RENDERER_SRC}/BitmapText.cpp"
-    "${RENDERER_SRC}/BitmapText.h"
-    "${RENDERER_SRC}/Color.cpp"
-    "${RENDERER_SRC}/Color.h"
-    "${RENDERER_SRC}/DebugGfx.cpp"
-    "${RENDERER_SRC}/DebugGfx.h"
-    "${RENDERER_SRC}/Material.cpp"
-    "${RENDERER_SRC}/Material.h"
-    "${RENDERER_SRC}/PlatformRenderer.cpp"
-    "${RENDERER_SRC}/PlatformRenderer.h"
-    "${RENDERER_SRC}/RenderEngine.cpp"
-    "${RENDERER_SRC}/RenderEngine.h"
-    "${RENDERER_SRC}/RendererConfig.h"
-    "${RENDERER_SRC}/dx9/DX9Renderer.cpp"
-    "${RENDERER_SRC}/dx9/DX9Renderer.h"
-    "${RENDERER_SRC}/opengl/OpenGLRenderer.cpp"
-    "${RENDERER_SRC}/opengl/OpenGLRenderer.h"
-    "${RENDERER_SRC}/shaders/ShaderPass.cpp"
-    "${RENDERER_SRC}/shaders/ShaderPass.h"
-    "${RENDERER_SRC}/shaders/ShaderProgram.cpp"
-    "${RENDERER_SRC}/shaders/ShaderProgram.h"
-    "${RENDERER_SRC}/shaders/ShaderTechnique.cpp"
-    "${RENDERER_SRC}/shaders/ShaderTechnique.h"
+file(GLOB graphics_src
+    "${GRAPHICS_SRC}/BitmapText.cpp"
+    "${GRAPHICS_SRC}/BitmapText.h"
+    "${GRAPHICS_SRC}/Color.cpp"
+    "${GRAPHICS_SRC}/Color.h"
+    "${GRAPHICS_SRC}/DebugGfx.cpp"
+    "${GRAPHICS_SRC}/DebugGfx.h"
+    "${GRAPHICS_SRC}/Material.cpp"
+    "${GRAPHICS_SRC}/Material.h"
+    "${GRAPHICS_SRC}/PlatformRenderer.cpp"
+    "${GRAPHICS_SRC}/PlatformRenderer.h"
+    "${GRAPHICS_SRC}/RenderEngine.cpp"
+    "${GRAPHICS_SRC}/RenderEngine.h"
+    "${GRAPHICS_SRC}/RendererConfig.h"
+    "${GRAPHICS_SRC}/shaders/ShaderPass.cpp"
+    "${GRAPHICS_SRC}/shaders/ShaderPass.h"
+    "${GRAPHICS_SRC}/shaders/ShaderProgram.cpp"
+    "${GRAPHICS_SRC}/shaders/ShaderProgram.h"
+    "${GRAPHICS_SRC}/shaders/ShaderTechnique.cpp"
+    "${GRAPHICS_SRC}/shaders/ShaderTechnique.h"
+)
+
+file(GLOB dx9_src
+    "${DX9_SRC}/DX9Renderer.cpp"
+    "${DX9_SRC}/DX9Renderer.h"
+)
+
+file(GLOB opengl_src
+    "${OPENGL_SRC}/OpenGLRenderer.cpp"
+    "${OPENGL_SRC}/OpenGLRenderer.h"
 )
 
 file(GLOB external_src
@@ -185,13 +193,17 @@ list(REMOVE_ITEM external_src "${libpng_pngtest_c}")
 source_group("src" FILES ${src})
 source_group("core" FILES ${core_src})
 source_group("game" FILES ${game_src})
-source_group("renderer" FILES ${renderer_src})
+source_group("graphics" FILES ${graphics_src})
+source_group("graphics\\gfxdevice\\dx9" FILES ${dx9_src})
+source_group("graphics\\gfxdevice\\opengl" FILES ${opengl_src})
 source_group("external" FILES ${external_src})
 
 list(SORT src)
 list(SORT core_src)
 list(SORT game_src)
-list(SORT renderer_src)
+list(SORT graphics_src)
+list(SORT dx9_src)
+list(SORT opengl_src)
 list(SORT external_src)
 
 if(${CPUArchitecture} MATCHES "x86")
@@ -205,7 +217,7 @@ endif()
 link_directories(src/external/cg/lib/)
 
 # add the executable
-add_executable(xdPixelEngine WIN32 ${main_src} ${core_src} ${game_src} ${renderer_src} ${external_src})
+add_executable(xdPixelEngine WIN32 ${main_src} ${core_src} ${game_src} ${graphics_src} ${dx9_src} ${opengl_src} ${external_src})
 
 target_link_libraries(xdPixelEngine d3d9)
 target_link_libraries(xdPixelEngine cg)

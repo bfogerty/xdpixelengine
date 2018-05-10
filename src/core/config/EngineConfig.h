@@ -1,6 +1,6 @@
 #ifndef __ENGINE_CONFIG__
 #define __ENGINE_CONFIG__
-#include "renderer/RendererConfig.h"
+#include "graphics/RendererConfig.h"
 #include "core/math/Vector3.h"
 #include "external/jsoncpp-src-0.5.0/include/json/json.h"
 #include <vector>

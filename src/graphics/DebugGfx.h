@@ -4,7 +4,7 @@
 #include "core/math/Matrix4x4.h"
 #include "core/math/Vector3.h"
 #include "core/math/Vector4.h"
-#include "renderer/Color.h"
+#include "graphics/Color.h"
 #include <vector>
 #include <map>
 #include <string>

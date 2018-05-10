@@ -15,9 +15,9 @@
 #include "core/math/Vector3.h"
 #include "core/math/Quaternion.h"
 #include "core/math/MathHelper.h"
-#include "renderer/Material.h"
+#include "graphics/Material.h"
 
-#include "renderer/DebugGfx.h"
+#include "graphics/DebugGfx.h"
 
 //-----------------------------------------------------------------------------------
 void AbmComponent::OnAwake()
