@@ -26,7 +26,7 @@ public:
 	virtual void EndScene();
 	virtual void Present();
 
-	virtual void SetVertexData(TriangleData triangle);
+	virtual void SetVertexData(Mesh *pMesh);
 	virtual void CreateTexture(Texture2D &texture);
 	virtual void BindTexture( Texture2D *pTexture );
 

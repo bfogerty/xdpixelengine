@@ -39,6 +39,8 @@ OpenGLRenderer::OpenGLRenderer(RendererConfig config) : PlatformRenderer(config)
 	InitializeForWindows(config);
 #endif
 
+	gladLoadGL();
+
 	glViewport(0, 0, (GLsizei)config.ScreenWidth, (GLsizei)config.ScreenHeight);
 }
 
@@ -74,25 +76,27 @@ void OpenGLRenderer::FakeSceneSetup(RendererConfig config)
 }
 
 //-----------------------------------------------------------------------------------
-void OpenGLRenderer::SetVertexData(TriangleData triangle)
+void OpenGLRenderer::SetVertexData(Mesh *pMesh)
 {
-	//glBegin(GL_TRIANGLES);
-	for( int i=0; i<3; ++i)
+	for (unsigned int triangleIndex = 0; triangleIndex < pMesh->triangleData.size(); ++triangleIndex)
 	{
-		// Color must come before vertex,
-		// otherwise the color will not be assigned to the correct vertex.
-		(glColor4d(	(GLdouble)triangle.colors[i].r,
-					(GLdouble)triangle.colors[i].g, 
-					(GLdouble)triangle.colors[i].b, 
-					(GLdouble)triangle.colors[i].a ));
+		TriangleData triangle = *pMesh->triangleData[triangleIndex];
+		for (int i = 0; i < 3; ++i)
+		{
+			// Color must come before vertex,
+			// otherwise the color will not be assigned to the correct vertex.
+			(glColor4d((GLdouble)triangle.colors[i].r,
+				(GLdouble)triangle.colors[i].g,
+				(GLdouble)triangle.colors[i].b,
+				(GLdouble)triangle.colors[i].a));
 
-		(glTexCoord2d(triangle.uvs[i].x(),triangle.uvs[i].y()));
+			(glTexCoord2d(triangle.uvs[i].x(), triangle.uvs[i].y()));
 
-		(glNormal3f( triangle.normals[i].x(), triangle.normals[i].y(), triangle.normals[i].z() ));
+			(glNormal3f(triangle.normals[i].x(), triangle.normals[i].y(), triangle.normals[i].z()));
 
-		(glVertex3f(triangle.verts[i].x(),triangle.verts[i].y(),triangle.verts[i].z()));
+			(glVertex3f(triangle.verts[i].x(), triangle.verts[i].y(), triangle.verts[i].z()));
+		}
 	}
-	//glEnd();
 }
 
 //-----------------------------------------------------------------------------------

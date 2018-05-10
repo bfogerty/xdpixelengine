@@ -2,8 +2,8 @@
 	"renderer" : 
 	[
 		{
-			"api" : "dx9",
-			//"api" : "opengl",
+			//"api" : "dx9",
+			"api" : "opengl",
 			"screenwidth" : "800",
 			"screenheight" : "600",
 			"fullscreen" : "0"
