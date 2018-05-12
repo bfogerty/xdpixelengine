@@ -43,6 +43,8 @@ protected:
 
 #ifdef WIN_RELEASE
 	void InitializeForWindows( RendererConfig config );
+	void SetupGLCore(HWND hWnd);
+	void SetupOldGL(HWND hWnd);
 	HDC mHdc;
 	HGLRC mpDev;
 #endif

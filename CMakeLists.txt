@@ -180,6 +180,10 @@ file(GLOB external_src
     "${EXTERNAL_SRC}/glad/*.h"
     "${EXTERNAL_SRC}/glad/*.c"
     "${EXTERNAL_SRC}/glad/*.cpp"
+
+    "${EXTERNAL_SRC}/khronos/gl/*.h"
+    "${EXTERNAL_SRC}/khronos/gl/*.c"
+    "${EXTERNAL_SRC}/khronos/gl/*.cpp"
 )
 
 get_filename_component(lua_lua_c ${EXTERNAL_SRC}/lua-5.2.2/src/lua.c ABSOLUTE)
